@@ -1,0 +1,65 @@
+.signin-container{
+    min-width: 100vw;
+    max-width: max-content;
+    height: 100vh;
+    background: linear-gradient(to bottom,#4569C3,#5F80D7,#BABFCC);
+    display: flex;
+    gap: 25vw;
+    overflow: hidden;
+}
+#logo{
+    padding: 20px;
+    >img{
+        height: 3.5vh;
+        width: 3.5vw;
+        transform: scaleY(190%);
+        border-radius: 50%;
+    }
+   
+}
+#signin{
+    padding-top: 50px;
+}
+#signin-box{
+    height: 80vh;
+    width: 35vw;
+    background: #ffff;
+    text-align: center;
+    border-radius: 20px;
+}
+#signin-msg{
+    height: 35vh;
+    width: 100%;
+    background: #49E0E0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-top: 50px;
+    
+}
+#signin-msg-img{
+    >img{
+        height: 20vh;
+        width: 20vw;
+        transform: scaleY(150%);
+        padding-bottom: 20px;
+        
+    }
+}
+#signin-msg-content{
+    >p{
+        font-size: 16px;
+    }
+}
+#signin-form{
+    padding-top: 20px;
+}
+#signin-form-field{
+     
+    >input{
+        width: 80%;
+        margin-bottom: 20px;
+        height: 6vh;
+        background: #9497DF;
+        border: none;
+    }
+}
