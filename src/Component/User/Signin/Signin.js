@@ -41,19 +41,21 @@ export default function Signin() {
                 placeholder="Password"
               />
             </div>
-            <div id="signin-form-field">
-              <input type="checkbox" onClick={toggle} /> Show
-            </div>
-            <div id="signin-btn">
-              <button>Signin</button>
-            </div>
-            <div id="signin-nav">
-              <span>
-                Don't Have An Account?<Link to={"/"}>Signup</Link>
-              </span>
-              <Link>Forget Password?</Link>
-            </div>
+           
           </div>
+          <div id="signin-show">
+          <input type="checkbox" onClick={toggle} /> Show
+        </div>
+        <div id="signin-nav">
+        <Link style={{color:"#D76C1E",textDecoration:"none"}}>Forget Password?</Link>
+          <span>
+            Don't Have An Account?<Link to={"/"} style={{color:"#D76C1E",textDecoration:"none"}}>Signup</Link>
+          </span>
+        </div>
+        <div id="signin-btn">
+          <button>Login</button>
+        </div>
+        
         </div>
       </div>
     </div>
