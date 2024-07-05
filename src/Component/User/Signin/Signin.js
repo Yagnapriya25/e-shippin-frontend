@@ -49,7 +49,7 @@ export default function Signin() {
         <div id="signin-nav">
         <Link style={{color:"#D76C1E",textDecoration:"none"}}>Forget Password?</Link>
           <span>
-            Don't Have An Account?<Link to={"/"} style={{color:"#D76C1E",textDecoration:"none"}}>Signup</Link>
+            Don't Have An Account?<Link to={"/signup"} style={{color:"#D76C1E",textDecoration:"none"}}>Signup</Link>
           </span>
         </div>
         <div id="signin-btn">

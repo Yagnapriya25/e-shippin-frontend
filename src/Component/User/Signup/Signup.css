@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
+.signup-container{
+    min-height: 100vh;
+    height: 100%;
+    min-width: 100vw;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: #426BB9;
+    display: flex;
+    font-family: "Irish Grover", system-ui;
+    
+}
+#signup-logo{
+    padding: 20px;
+    >img{
+        height: 3.5vh;
+        width: 3.5vw;
+        transform: scaleY(190%);
+        border-radius: 50%;
+    }
+}
+#signup-form{
+    width: 35vw;
+}
+#signup-head{
+    text-align: center;
+    >h5{
+        font-size: 30px;
+        margin: 0;
+        padding: 30px 0px 0px;
+    }
+    >h6{
+        font-size: 25px;
+        margin: 0;
+        padding: 0 0 80px;
+    }
+}
+
+#signup-form-container{
+    margin: 100px 100px 0px;
+    display: flex;
+    height: 75vh;
+    width: 65vw;
+    background: #F5E9E9;
+    
+}
+#signup-form-img{
+    >figure{
+        margin: 0px;
+        padding: 0px;
+        >img{
+            height: 75vh;
+            width: 30vw;
+
+        }
+    }
+}
+#signup-form-field{
+    text-align: center;
+    >input{
+        height: 5.5vh;
+        max-width: 25vw;
+        width: 100%;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 17px;
+        padding-left: 20px;
+    }
+    >input::placeholder{
+        color: #000;
+        padding-left: 10px;
+        font-size: 17px;
+    }
+}
+#signup-show{
+    margin-left: 65px;
+}
+#signup-btn{
+    text-align: center;
+    >button{
+        background: #fff;
+        color: #2D46C9;
+        max-width: 150px;
+        width: 100%;
+        margin: 20px;
+        border: none;
+        cursor: pointer;
+        height: 30px;
+        font-size: 17px;
+        font-weight: 550;
+        border-radius: 20px;
+    }
+}
+#signup-nav{
+    text-align: center;
+}
