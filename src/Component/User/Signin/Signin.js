@@ -10,9 +10,9 @@ export default function Signin() {
   const toggle = () => setShowPassword(!showPassword);
 
   return (
-    <div className="signin-container">
+    <div className="signin-container h-screen">
       <div id="logo">
-        <img src={img} alt="logo" />
+       <img src={img} alt="logo" />
       </div>
       <div id="signin">
         <div id="signin-box">
@@ -23,7 +23,7 @@ export default function Signin() {
             <div id="signin-msg-content">
               <p>
                 YOUR SHOULD LEARN FROM YOUR COMPETITOR,BUT NEVER COPY... COPY
-                AND YOU DIE
+                AND YOU DIE....
               </p>
             </div>
           </div>
@@ -47,7 +47,7 @@ export default function Signin() {
           <input type="checkbox" onClick={toggle} /> Show
         </div>
         <div id="signin-nav">
-        <Link style={{color:"#D76C1E",textDecoration:"none"}}>Forget Password?</Link>
+        <Link to={"/forget"} style={{color:"#D76C1E",textDecoration:"none"}}>Forget Password?</Link>
           <span>
             Don't Have An Account?<Link to={"/signup"} style={{color:"#D76C1E",textDecoration:"none"}}>Signup</Link>
           </span>

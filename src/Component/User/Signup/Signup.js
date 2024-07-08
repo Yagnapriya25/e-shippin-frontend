@@ -10,7 +10,7 @@ export default function Signup() {
   const toggle = ()=>setShowPassword(!showPasword);
 
   return (
-    <div className="signup-container">
+    <div className="signup-container h-screen">
       <figure id="signup-logo">
         <img src={logo} alt="logo" />
       </figure>

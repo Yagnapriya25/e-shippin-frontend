@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 
 .signup-container{
-    min-height: 100vh;
-    height: 100%;
     min-width: 100vw;
     width: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    display: flex;
+    overflow: hidden;
     background: #426BB9;
     display: flex;
     font-family: "Irish Grover", system-ui;
@@ -26,6 +24,7 @@
 }
 #signup-head{
     text-align: center;
+    
     >h5{
         font-size: 30px;
         margin: 0;
@@ -39,9 +38,9 @@
 }
 
 #signup-form-container{
-    margin: 100px 100px 0px;
+    margin: 50px 100px 0px;
     display: flex;
-    height: 75vh;
+    height: 79vh;
     width: 65vw;
     background: #F5E9E9;
     
@@ -51,7 +50,7 @@
         margin: 0px;
         padding: 0px;
         >img{
-            height: 75vh;
+            height: 79vh;
             width: 30vw;
 
         }
@@ -86,7 +85,7 @@
         color: #2D46C9;
         max-width: 150px;
         width: 100%;
-        margin: 20px;
+        margin: 20px 0px 5px;
         border: none;
         cursor: pointer;
         height: 30px;
@@ -97,4 +96,296 @@
 }
 #signup-nav{
     text-align: center;
+}
+
+@media (max-width:900px) and (min-width:764px) {
+    #signup-form-container{
+        margin: 50px 50px 0px;
+        display: flex;
+        height: 89vh;
+        width: 85vw;
+        background: #F5E9E9;
+        
+    }
+    #signup-form-img{
+    >figure{
+        margin: 0px;
+        padding: 0px;
+        >img{
+            height: 89vh;
+            width: 45vw;
+
+        }
+    }
+}
+    #signup-form{
+        width: 65%;
+    }
+}
+@media (max-width:764px) and (min-width:571px) {
+    #signup-form-container{
+        margin: 50px 50px 0px;
+        display: flex;
+        height: 89vh;
+        width: 85vw;
+        background: #F5E9E9;
+        
+    }
+    #signup-form-img{
+    >figure{
+        margin: 0px;
+        padding: 0px;
+        >img{
+            height: 89vh;
+            width: 45vw;
+
+        }
+    }
+}
+    #signup-form{
+        width: 65%;
+    }
+    #signup-head{
+        text-align: center;
+        
+        >h5{
+            font-size: 20px;
+            margin: 0;
+            padding: 30px 0px 0px;
+        }
+        >h6{
+            font-size: 17px;
+            margin: 0;
+            padding: 0 0 40px;
+        }
+    }
+    
+    #signup-form-field{
+        text-align: center;
+        >input{
+            height: 6.5vh;
+            max-width: 35vw;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            padding-left: 18px;
+        }
+        >input::placeholder{
+            color: #000;
+            padding-left: 10px;
+            font-size: 16px;
+        }
+    }
+    #signup-show{
+        margin-left: 40px;
+    }
+    #signup-btn{
+        text-align: center;
+        >button{
+            background: #fff;
+            color: #2D46C9;
+            max-width: 150px;
+            width: 100%;
+            margin: 20px 0px 5px;
+            border: none;
+            cursor: pointer;
+            height: 30px;
+            font-size: 17px;
+            font-weight: 550;
+            border-radius: 20px;
+        }
+    }
+    #signup-nav{
+        text-align: center;
+      >span{
+        font-size: 15px;
+      }
+    }
+}
+@media (max-width:571px) and (min-width:380px) {
+    #signup-logo{
+        padding: 20px 10px;
+        >img{
+            height: 3.5vh;
+            width: 5.5vw;
+            transform: scaleY(190%);
+            border-radius: 50%;
+        }
+    }
+    #signup-form-container{
+        margin: 50px 10px 0px;
+        display: flex;
+        height: 89vh;
+        width: 85vw;
+        background: #F5E9E9;
+        
+    }
+    #signup-form-img{
+    >figure{
+        margin: 0px;
+        padding: 0px;
+        >img{
+            height: 89vh;
+            width: 0vw;
+
+        }
+    }
+}
+    #signup-form{
+        width: 100%;
+    }
+    #signup-head{
+        text-align: center;
+        
+        >h5{
+            font-size: 30px;
+            margin: 0;
+            padding: 30px 0px 0px;
+        }
+        >h6{
+            font-size: 18px;
+            margin: 0;
+            padding: 0 0 35px;
+        }
+    }
+    
+    #signup-form-field{
+        text-align: center;
+        >input{
+            height: 7.5vh;
+            max-width: 65vw;
+            width: 100%;
+            margin-bottom: 25px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            padding-left: 18px;
+        }
+        >input::placeholder{
+            color: #000;
+            padding-left: 10px;
+            font-size: 16px;
+        }
+    }
+    #signup-show{
+        margin-left: 70px;
+    }
+    #signup-btn{
+        text-align: center;
+        >button{
+            background: #fff;
+            color: #2D46C9;
+            max-width: 150px;
+            width: 100%;
+            margin: 20px 0px 5px;
+            border: none;
+            cursor: pointer;
+            height: 30px;
+            font-size: 17px;
+            font-weight: 550;
+            border-radius: 20px;
+        }
+    }
+    #signup-nav{
+        text-align: center;
+      >span{
+        font-size: 15px;
+      }
+    }
+}
+@media (max-width:380px) and (min-width:200px) {
+    #signup-logo{
+        padding: 20px 10px;
+        >img{
+            height: 3.5vh;
+            width: 6.5vw;
+            transform: scaleY(190%);
+            border-radius: 50%;
+        }
+    }
+    #signup-form-container{
+        margin: 50px 0px 0px;
+        display: flex;
+        height: 89vh;
+        width: 85vw;
+        background: #F5E9E9;
+        
+    }
+    #signup-form-img{
+    >figure{
+        margin: 0px;
+        padding: 0px;
+        >img{
+            height: 89vh;
+            width: 0vw;
+
+        }
+    }
+}
+    #signup-form{
+        width: 100%;
+    }
+    #signup-head{
+        text-align: center;
+        
+        >h5{
+            font-size: 20px;
+            margin: 0;
+            padding: 30px 0px 0px;
+        }
+        >h6{
+            font-size: 14px;
+            margin: 0;
+            padding: 0 0 35px;
+        }
+    }
+    
+    #signup-form-field{
+        text-align: center;
+        >input{
+            height: 7.5vh;
+            max-width: 65vw;
+            width: 100%;
+            margin-bottom: 25px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            padding-left: 18px;
+        }
+        >input::placeholder{
+            color: #000;
+            padding-left: 10px;
+            font-size: 16px;
+        }
+    }
+    #signup-show{
+        margin-left: 50px;
+    }
+    #signup-btn{
+        text-align: center;
+        >button{
+            background: #fff;
+            color: #2D46C9;
+            max-width: 150px;
+            width: 100%;
+            margin: 20px 0px 5px;
+            border: none;
+            cursor: pointer;
+            height: 30px;
+            font-size: 17px;
+            font-weight: 550;
+            border-radius: 20px;
+        }
+    }
+    #signup-nav{
+        text-align: center;
+      >span{
+        font-size: 10px;
+      }
+    }
 }

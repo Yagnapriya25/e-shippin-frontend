@@ -2,9 +2,6 @@
 
 
 .signin-container{
-    min-width: 100vw;
-    max-width: max-content;
-    height: 100vh;
     background: linear-gradient(to bottom,#4569C3,#5F80D7,#BABFCC);
     display: flex;
     gap: 28vw;
@@ -25,7 +22,7 @@
     padding-top: 40px;
 }
 #signin-box{
-    height: 92vh;
+    height: 88vh;
     width: 35vw;
     background: #ffff;
     border-radius: 20px;
@@ -37,13 +34,15 @@
     background: #49E0E0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    padding-top: 50px;
+    padding-top: 40px;
     
 }
 #signin-msg-img{
+    display: flex;
+    justify-content: center;
     >img{
         height: 20vh;
-        width: 20vw;
+        width: 17vw;
         transform: scaleY(150%);
         padding-bottom: 20px;
         
@@ -109,5 +108,379 @@
         cursor: pointer;
         color: #fff;
         font-size: 20px;
+    }
+}
+
+
+@media (max-width:900px)  and (min-width:740px){
+    #logo{
+        padding: 15px;
+        >img{
+            height: 3vh;
+            width: 3vw;
+            transform: scaleY(190%);
+            border-radius: 50%;
+        }
+       
+    }
+ 
+    #signin-box{
+        height: 88vh;
+        width: 40vw;
+        background: #ffff;
+        border-radius: 20px;
+    }
+ 
+}
+@media (max-width:740px)  and (min-width:600px){
+    #logo{
+        padding: 15px;
+        >img{
+            height: 3vh;
+            width: 3vw;
+            transform: scaleY(190%);
+            border-radius: 50%;
+        }
+       
+    }
+    #signin-box{
+        height: 88vh;
+        width: 50vw;
+        background: #ffff;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width:600px)  and (min-width:420px){
+    .signin-container{
+        background: linear-gradient(to bottom,#4569C3,#5F80D7,#BABFCC);
+        display: flex;
+        gap: 18vw;
+        overflow: hidden;
+        font-family: "Jim Nightshade", cursive;
+    }
+    #logo{
+        padding: 15px;
+        >img{
+            height: 3vh;
+            width: 3vw;
+            transform: scaleY(190%);
+            border-radius: 50%;
+        }
+       
+    }
+    #signin{
+        padding-top: 70px;
+    }
+    #signin-box{
+        height: 78vh;
+        width: 50vw;
+        background: #ffff;
+        border-radius: 20px;
+    }
+    #signin-msg{
+        text-align: center;
+        height: 33vh;
+        width: 100%;
+        background: #49E0E0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding-top: 40px;
+        
+    }
+    #signin-msg-img{
+        display: flex;
+        justify-content: center;
+        >img{
+            height: 16vh;
+            width: 17vw;
+            transform: scaleY(150%);
+            padding-bottom: 20px;
+            
+        }
+    }
+    #signin-msg-content{
+        >p{
+            font-size: 14px;
+        }
+    }
+    #signin-form{
+        text-align: center;
+    }
+    #sigin-welcome{
+        margin: 0px;
+        padding: 0px;
+        >h5{
+            margin: 0px;
+            padding: 0px;
+            font-size: 25px;
+        }
+        >p{
+            margin: 0px;
+            padding: 0px;
+            font-size: 16px;
+        }
+    }
+    #signin-form-field{
+         
+        >input{
+            width: 90%;
+            margin-bottom: 20px;
+            height: 5vh;
+            background: #9497DF;
+            border: none;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        >input::placeholder{
+            color: #000000;
+            padding-left: 10px;
+        }
+    }
+    #signin-show{
+        margin-left: 20px;
+        font-size: 16px;
+    }
+    #signin-nav{
+        display: flex;
+        justify-content: space-around;
+        font-size: 14px;
+    }
+    #signin-btn{
+        text-align: center;
+        margin: 15px 0px;
+        >button{
+            height: 5vh;
+            max-width: 20vw;
+            width: 100%;
+            background: #D76C1E;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+}
+@media (max-width:420px)  and (min-width:300px){
+    .signin-container{
+        background: linear-gradient(to bottom,#4569C3,#5F80D7,#BABFCC);
+        display: flex;
+        gap: 0vw;
+        overflow: hidden;
+        font-family: "Jim Nightshade", cursive;
+    }
+    #logo{
+        padding: 15px;
+        >img{
+            height: 2vh;
+            transform: scaleY(190%);
+            width: 5vw;
+            border-radius: 50%;
+        }
+       
+    }
+    #signin{
+        padding-top: 70px;
+    }
+    #signin-box{
+        height: 78vh;
+        width: 70vw;
+        background: #ffff;
+        border-radius: 20px;
+    }
+    #signin-msg{
+        text-align: center;
+        height: 33vh;
+        width: 100%;
+        background: #49E0E0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding-top: 40px;
+        
+    }
+    #signin-msg-img{
+        display: flex;
+        justify-content: center;
+        >img{
+            height: 13vh;
+            width: 15vw;
+            transform: scaleY(150%);
+            padding-bottom: 20px;
+            
+        }
+    }
+    #signin-msg-content{
+        >p{
+            font-size: 14px;
+        }
+    }
+    #signin-form{
+        text-align: center;
+    }
+    #sigin-welcome{
+        margin: 0px;
+        padding: 0px;
+        >h5{
+            margin: 0px;
+            padding: 0px;
+            font-size: 25px;
+        }
+        >p{
+            margin: 0px;
+            padding: 0px;
+            font-size: 16px;
+        }
+    }
+    #signin-form-field{
+         
+        >input{
+            width: 90%;
+            margin-bottom: 20px;
+            height: 5vh;
+            background: #9497DF;
+            border: none;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        >input::placeholder{
+            color: #000000;
+            padding-left: 10px;
+        }
+    }
+    #signin-show{
+        margin-left: 20px;
+        font-size: 16px;
+    }
+    #signin-nav{
+        display: flex;
+        justify-content: space-around;
+        font-size: 14px;
+    }
+    #signin-btn{
+        text-align: center;
+        margin: 15px 0px;
+        >button{
+            height: 5vh;
+            max-width: 20vw;
+            width: 100%;
+            background: #D76C1E;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+}
+@media (max-width:300px)  and (min-width:200px){
+    .signin-container{
+        background: linear-gradient(to bottom,#4569C3,#5F80D7,#BABFCC);
+        display: flex;
+        gap: 0vw;
+        overflow: hidden;
+        font-family: "Jim Nightshade", cursive;
+    }
+    #logo{
+        padding: 15px;
+        >img{
+            height: 2vh;
+            transform: scaleY(190%);
+            width: 5vw;
+            border-radius: 50%;
+        }
+       
+    }
+    #signin{
+        padding-top: 70px;
+    }
+    #signin-box{
+        height: 78vh;
+        width: 70vw;
+        background: #ffff;
+        border-radius: 20px;
+    }
+    #signin-msg{
+        text-align: center;
+        height: 33vh;
+        width: 100%;
+        background: #49E0E0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding-top: 40px;
+        
+    }
+    #signin-msg-img{
+        display: flex;
+        justify-content: center;
+        >img{
+            height: 13vh;
+            width: 15vw;
+            transform: scaleY(150%);
+            padding-bottom: 20px;
+            
+        }
+    }
+    #signin-msg-content{
+        >p{
+            font-size: 12px;
+        }
+    }
+    #signin-form{
+        text-align: center;
+    }
+    #sigin-welcome{
+        margin: 0px;
+        padding: 0px;
+        >h5{
+            margin: 0px;
+            padding: 0px;
+            font-size: 20px;
+        }
+        >p{
+            margin: 0px;
+            padding: 0px;
+            font-size: 14px;
+        }
+    }
+    #signin-form-field{
+         
+        >input{
+            width: 90%;
+            margin-bottom: 20px;
+            height: 5vh;
+            background: #9497DF;
+            border: none;
+            padding-left: 5px;
+            font-size: 12px;
+        }
+        >input::placeholder{
+            color: #000000;
+            padding-left: 5px;
+        }
+    }
+    #signin-show{
+        margin-left: 15px;
+        font-size: 14px;
+    }
+    #signin-nav{
+        display: flex;
+        justify-content: space-around;
+        font-size: 12px;
+    }
+    #signin-btn{
+        text-align: center;
+        margin: 15px 0px;
+        >button{
+            height: 5vh;
+            max-width: 30vw;
+            width: 100%;
+            background: #D76C1E;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+        }
     }
 }
