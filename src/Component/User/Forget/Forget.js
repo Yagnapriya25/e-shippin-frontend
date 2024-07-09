@@ -4,11 +4,11 @@ import img from "../../../Images/forget.jpg";
 export default function Forget() {
   return (
     <div className="h-screen bg-blue-400 w-screen flex justify-center items-center overflow-hidden">
-      <div className="h-5/6 bg-white w-4/5 flex">
-        <div className="w-3/5 h-full">
-          <img src={img} alt="forget-img" className="h-full" />
+      <div className="h-5/6 bg-white flex grid grid-cols-2">
+        <div className=" h-full">
+          <img src={img} alt="forget-img" className="h-full w-4/5" />
         </div>
-        <div className="w-2/5 h-full text-center">
+        <div className="h-full text-center">
           <h4 className="font-serif font-bold text-2xl ml-30 mt-36">
             FORGET PASSWORD
           </h4>
