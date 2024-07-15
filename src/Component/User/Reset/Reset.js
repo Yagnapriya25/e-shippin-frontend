@@ -45,8 +45,8 @@ export default function Reset() {
             />
           </div>
 
-          <div className="">
-            <button className="px-2 lg:w-96 xl:w-96 md:w-72  bg-red-100 lg:h-10 xl:h-10 md:h-10 h-8 lg:font-bold text-md rounded-xl font-serif text-red-400 font-sm md:font-xl lg:font-2xl xl:font-2xl" onClick={toggle}>
+          <div className="mx-8 md:mx-0 lg:mx-0 xl:m0">
+            <button className="px-2 lg:w-96 xl:w-96 md:w-72  bg-red-100 lg:h-10 xl:h-10 md:h-10 h-8 lg:font-bold text-sm rounded-xl font-serif text-red-400 font-sm md:font-xl lg:font-2xl xl:font-2xl" onClick={toggle}>
               CHANGE PASSWORD
             </button>
             '
