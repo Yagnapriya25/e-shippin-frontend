@@ -5,6 +5,6 @@ export default function Home() {
   return (
     <Base>
     <div className='h-screen w-screen bg-white'>Home</div>
-   </Base>
+    </Base>
   )
 }
