@@ -1,9 +1,26 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
-  plugins: [],
-}
+  variants: {
+    extend: {},
+  },
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.hide-scrollbar': {
+          /* For Webkit-based browsers (Chrome, Safari) */
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          /* For Firefox */
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+      };
 
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+  ],
+};
