@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../../../Images/forget.jpg";
+import img from "../../Images/forget.jpg";
 
 export default function Forget() {
   return (

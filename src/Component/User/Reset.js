@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import img from "../../../Images/reset.jpg";
+import img from "../../Images/reset.jpg";
 
 export default function Reset() {
   const [showPassword,setShowPassword]=useState();

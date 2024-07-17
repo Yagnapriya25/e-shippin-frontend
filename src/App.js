@@ -2,13 +2,14 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Signin from './Component/User/Signin/Signin';
 import Signup from './Component/User/Signup/Signup';
-import Forget from './Component/User/Forget/Forget';
-import Reset from './Component/User/Reset/Reset';
-import Home from './Component/Home/Home';
-import Cart from './Component/Cart/Cart';
-import Product from './Component/Product/Product';
-import Profile from './Component/Profile/Profile';
-import Category from './Component/Category/Category';
+import Forget from './Component/User/Forget';
+import Reset from './Component/User/Reset';
+import Home from './Component/Home';
+import Cart from './Component/Cart';
+import Product from './Component/Product';
+import Profile from './Component/Profile';
+import Category from './Component/Category';
+
 
 function App() {
   return (
