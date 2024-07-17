@@ -7,7 +7,7 @@ export default function  Base({children}) {
     <div className='sticky top-2.5 h-1/6 mx-5 my-0'>
     <Topbar/>
     </div>
-    <div className=''>
+    <div className='mx-8'>
     {children}
     </div>
     </div>
