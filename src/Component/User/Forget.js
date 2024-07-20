@@ -24,7 +24,8 @@ export default function Forget() {
           <div className="text-center">
             <button className="px-2 lg:w-96 xl:w-96 md:w-72  bg-purple-300 lg:h-10 xl:h-10 md:h-10 h-8 lg:font-bold text-md rounded-xl font-serif text-blue-700 font-sm md:font-xl lg:font-2xl xl:font-2xl">
               Reset Password
-            </button>'
+            </button>
+            '
           </div>
         </div>
       </div>

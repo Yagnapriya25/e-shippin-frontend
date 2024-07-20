@@ -5,9 +5,9 @@ import s_img from "../../../Images/signup.png";
 import { Link } from "react-router-dom";
 
 export default function Signup() {
-  const [showPasword,setShowPassword]=useState(true);
+  const [showPasword, setShowPassword] = useState(true);
 
-  const toggle = ()=>setShowPassword(!showPasword);
+  const toggle = () => setShowPassword(!showPasword);
 
   return (
     <div className="signup-container h-screen">
@@ -32,7 +32,10 @@ export default function Signup() {
             <input type="email" placeholder="Email" />
           </div>
           <div id="signup-form-field">
-            <input type={showPasword ? "password" : "text"} placeholder="Password" />
+            <input
+              type={showPasword ? "password" : "text"}
+              placeholder="Password"
+            />
           </div>
           <div id="signup-show">
             <input type="checkbox" onClick={toggle} /> Show

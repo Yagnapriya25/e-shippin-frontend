@@ -3,11 +3,10 @@ import logo from "../Images/logo.png";
 import img from "../Images/PROFILE.jpg";
 
 export default function Topbar() {
-
   return (
     <div className="h-4/6 shadow-gray-700 sticky top-2.5 bg-white shadow ">
       <div className="flex justify-around">
-        <div className="h-10 my-5 lg:h-12 lg:mx-4 lg:my-4 xl:h-14 xl:mx-6 xl:my-3 md:h-10 md:mx-4 md:my-4">
+        <div className="h-10 my-3 lg:h-12 lg:mx-4 lg:my-1 xl:h-14 xl:mx-6 xl:my-1 md:h-10 md:mx-4 md:my-3">
           <img src={logo} alt="logo" className="h-full w-16" />
         </div>
         <span className="my-6 flex gap-2 lg:my-5 lg:flex lg:gap-3 xl:my-8 xl:flex xl:gap-3 md:my-5 md:flex md:gap-3">
@@ -30,7 +29,7 @@ export default function Topbar() {
           </li>
         </ul>
 
-        <div className="hidden md:block lg:h-14 lg:my-3 xl:h-15 xl:my-3 md:h-12 md:my-2">
+        <div className="hidden md:block lg:h-13 lg:my-1 xl:h-15 xl:my-2 md:h-12 md:my-1">
           <img
             src={img}
             alt="profile"

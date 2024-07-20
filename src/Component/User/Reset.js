@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import img from "../../Images/reset.jpg";
 
 export default function Reset() {
-  const [showPassword,setShowPassword]=useState();
+  const [showPassword, setShowPassword] = useState();
 
-  const toggle = ()=>setShowPassword(!showPassword);
+  const toggle = () => setShowPassword(!showPassword);
 
   return (
     <div className="h-screen bg-blue-400 w-screen flex justify-center items-center overflow-hidden">
@@ -28,14 +28,18 @@ export default function Reset() {
               PASSWORD
             </h4>
           </div>
-          <div> 
+          <div>
             <input
               type={!showPassword ? "password" : "text"}
               className="bg-red-100 h-8 md:h-10 lg:h-10 xl:h-10 pl-8 lg:w-96 xl:w-96 md:w-72 w-50 placeholder-black placeholder:font-bold rounded-xl font-md md:font-xl lg:font-2xl xl:font-2xl outline-none"
               placeholder="Password"
             />
             <div className="ml-3 mt-2 flex gap-1">
-              <input type="checkbox" className="mb-2 md:mb-6 lg:mb-8 xl:mb-8" onClick={toggle}/>
+              <input
+                type="checkbox"
+                className="mb-2 md:mb-6 lg:mb-8 xl:mb-8"
+                onClick={toggle}
+              />
               <span>Show</span>
             </div>
             <input
@@ -46,7 +50,10 @@ export default function Reset() {
           </div>
 
           <div className="mx-8 md:mx-0 lg:mx-0 xl:m0">
-            <button className="px-2 lg:w-96 xl:w-96 md:w-72  bg-red-100 lg:h-10 xl:h-10 md:h-10 h-8 lg:font-bold text-sm rounded-xl font-serif text-red-400 font-sm md:font-xl lg:font-2xl xl:font-2xl" onClick={toggle}>
+            <button
+              className="px-2 lg:w-96 xl:w-96 md:w-72  bg-red-100 lg:h-10 xl:h-10 md:h-10 h-8 lg:font-bold text-sm rounded-xl font-serif text-red-400 font-sm md:font-xl lg:font-2xl xl:font-2xl"
+              onClick={toggle}
+            >
               CHANGE PASSWORD
             </button>
             '
