@@ -10,6 +10,10 @@ import Product from './Component/Product';
 import Profile from './Component/Profile';
 import Category from './Component/Category';
 import Search from './Component/Search';
+import ProfileEdit from './Component/ProfileEdit';
+import AddressEdit from './Component/AddressEdit';
+import AddProductEntry from './Component/AddProductEntry';
+import AddProduct from './Component/AddProduct';
 
 
 function App() {
@@ -36,7 +40,16 @@ function App() {
 
    <Route path='/search/:name' element={<Search/>}/>
 
+   <Route path='/profile_edit/:token' element={<ProfileEdit/>}/>
+
+   <Route path='/address_edit/:token' element={<AddressEdit/>}/>
+
+   <Route path='/add_product_entry/:token' element={<AddProductEntry/>}/>
+
+   <Route path='/add-product/:id' element={<AddProduct/>}/> 
    
+
+
     </Routes>
      
     </div>
