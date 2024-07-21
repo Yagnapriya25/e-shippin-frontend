@@ -9,6 +9,7 @@ import Cart from './Component/Cart';
 import Product from './Component/Product';
 import Profile from './Component/Profile';
 import Category from './Component/Category';
+import Search from './Component/Search';
 
 
 function App() {
@@ -32,6 +33,10 @@ function App() {
    <Route path='/profile/:token' element={<Profile/>}/>
 
    <Route path='/category/:token' element={<Category/>}/>
+
+   <Route path='/search/:name' element={<Search/>}/>
+
+   
     </Routes>
      
     </div>
