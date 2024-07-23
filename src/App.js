@@ -14,6 +14,7 @@ import ProfileEdit from './Component/ProfileEdit';
 import AddressEdit from './Component/AddressEdit';
 import AddProductEntry from './Component/AddProductEntry';
 import AddProduct from './Component/AddProduct';
+import Buy from './Component/Buy';
 
 
 function App() {
@@ -47,7 +48,9 @@ function App() {
    <Route path='/add_product_entry/:token' element={<AddProductEntry/>}/>
 
    <Route path='/add-product/:id' element={<AddProduct/>}/> 
-   
+
+   <Route path='/buy/:id' element={<Buy/>}/> 
+
 
 
     </Routes>

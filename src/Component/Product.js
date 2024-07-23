@@ -83,7 +83,9 @@ export default function Product() {
                 product
               </li>
             </ul>
-            <h2 className="text-sm md:text-md lg:text-lg xl:text-lg font-bold px-20 md:px-16 lg:px-28 xl:px-28 py-4">PRICE: ₹15000</h2>
+            <h2 className="text-sm md:text-md lg:text-lg xl:text-lg font-bold px-20 md:px-16 lg:px-28 xl:px-28 py-4">
+              PRICE: ₹15000
+            </h2>
             <div className="flex gap-3 mt-5 mx-2">
               <button className="bg-blue-500 text-white px-4 md:px-2 lg:px-4 xl:px-4 py-2 rounded  text-sm lg:text-lg xl:text-lg ">
                 <i class="bx bx-shopping-bag"></i>BUY NOW
