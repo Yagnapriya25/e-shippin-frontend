@@ -6,14 +6,15 @@ export default function Buy() {
   return (
     <div className="h-screen w-screen bg-[#F2F1F1]">
       <Base>
-        <div className="flex gap-1 md:gap-5 lg:gap-5 xl:gap-5 flex-col justify-center items-center">
-          <div className="bg-white shadow shadow-sm shadow-black h-28 md:h-32 md:w-4/6 lg:w-4/6 xl:w-4/6 w-5/6 md:mt-6 lg:h-36 xl:h-36 lg:mt-10 p-5 flex justify-around">
+        <div className="flex gap-1 md:gap-5 lg:gap-5 xl:gap-5 flex-col justify-center items-center overflow-y-scroll">
+          <div className="bg-white shadow shadow-sm shadow-black h-32 md:h-36 md:mt-6 lg:h-44 xl:h-48 md:w-4/6 lg:w-4/6 xl:w-4/6 w-5/6 md:mt-6 lg:mt-10 p-5 flex justify-around">
             <div className="text-[12px] md:text-md lg:text-[16px]">
-              <p>Name</p>
+              <p>Name</p> 
               <p>Address 1</p>
               <p>Address 2</p>
               <p>LandMark</p>
               <p>Pincode</p>
+              <p>Phone Number</p>
             </div>
             <div className="flex justify-center items-center">
               <button className="bg-blue-500 lg:p-1 w-12 lg:w-16 text-white text-[12px] text-md lg:text-lg shadow-lg shadow-[#000000]">
@@ -40,11 +41,13 @@ export default function Buy() {
               <i class="bx bxs-trash-alt text-center cursor-pointer text-red-500"></i>
             </div>
           </div>
+          
           <div className="">
             <button className="bg-green-600 text-white p-2 flex gap-2 w-32 pl-6 mt-10 md:mt-10 lg:mt-10 xl:mt-10">
               Buy Now<i class="bx bxs-truck pt-2"></i>
             </button>
           </div>
+          
         </div>
       </Base>
     </div>

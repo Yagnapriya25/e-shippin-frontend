@@ -18,13 +18,14 @@ export default function Cart() {
               </h3>
             </div>
             <div className="overflow-y-scroll h-[calc(87vh-10rem)] hide-scrollbar ">
-              <div className="bg-white h-28 md:h-32 md:mt-6 lg:h-36 xl:h-36 lg:mt-10 p-5 flex justify-around">
+              <div className="bg-white h-32 md:h-36 md:mt-6 lg:h-44 xl:h-48 lg:mt-10 p-5 flex justify-around">
                 <div className="text-[12px] md:text-md lg:text-[16px]">
                   <p>Name</p>
                   <p>Address 1</p>
                   <p>Address 2</p>
                   <p>LandMark</p>
                   <p>Pincode</p>
+                  <p>Phone Number</p>
                 </div>
                 <div className="flex justify-center items-center">
                   <button className="bg-blue-500 lg:p-1 w-12 lg:w-16 text-white text-[12px] text-md lg:text-lg shadow-lg shadow-[#000000]">
