@@ -29,7 +29,8 @@ export default function Category() {
             Mobiles
           </h6>
           </div>
-        </div> <div className="flex flex-col justify-center place-items-center shadow-gray-700 shadow xl:h-48 xl:w-52 lg:h-44 lg:w-48 md:h-40 md:w-44 h-24 w-24 p-4 cursor-pointer rounded-full">
+        </div> 
+        <div className="flex flex-col justify-center place-items-center shadow-gray-700 shadow xl:h-48 xl:w-52 lg:h-44 lg:w-48 md:h-40 md:w-44 h-24 w-24 p-4 cursor-pointer rounded-full">
         <div className="h-4/6 w-4/6">
           <img src={p_img} alt="product" className="h-full w-full" />
         </div>

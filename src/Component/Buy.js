@@ -43,7 +43,7 @@ export default function Buy() {
           </div>
           
           <div className="">
-            <button className="bg-green-600 text-white p-2 flex gap-2 w-32 pl-6 mt-10 md:mt-10 lg:mt-10 xl:mt-10">
+            <button className="bg-green-600 text-white p-2 flex gap-2 w-32 pl-6 mt-5 md:mt-5 lg:mt-5 xl:mt-5">
               Buy Now<i class="bx bxs-truck pt-2"></i>
             </button>
           </div>
