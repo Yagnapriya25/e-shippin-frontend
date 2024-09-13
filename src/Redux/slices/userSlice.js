@@ -1,91 +1,122 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    userInfo:null,
-    loading:true,
-    error:null,
-    otpSent:false,
-    passwordResetSuccess:false
-
-}
+    userInfo: null,
+    loading: true,
+    error: null,
+    otpSent: false,
+    passwordResetSuccess: false,
+};
 
 const userSlice = createSlice({
-    name:'user',
+    name: 'user',
     initialState,
-    reducers:{
-        loginRequest(state){
-          state.loading(true)
-        },
-        loginSuccess(action,state){
-            state.loading=false;
-            state.userInfo=action.payload;
-        },
-        loginFail(state,action){
-            state.loading=false;
-            state.error=action.payload;
-        },
-        //signup 
-        signupRequest(state){
+    reducers: {
+        // Login
+        loginRequest(state) {
             state.loading = true;
         },
-        signupSuccess(state,action){
+        loginSuccess(state, action) {
             state.loading = false;
             state.userInfo = action.payload;
         },
-        signupFail(state,action){
+        loginFail(state, action) {
             state.loading = false;
-            state.error = action.payload
-        },
-        otpRequest(state){
-          state.loading = true
-        },
-        otpSuccess(state,action){
-            state.loading=false;
-            state.otpSent = false;
-        },
-        otpFail(state,action){
-            state.loading =false;
             state.error = action.payload;
         },
-        forgetPaswordRequest(state){
-            state.loading = true
+
+        // Signup
+        signupRequest(state) {
+            state.loading = true;
         },
-        forgetPasswordSuccess(state,action){
-            state.loading = false;
-            state.userInfo = action.payload
-        },
-        forgetPasswordFail(state,action){
-            state.loading = false;
-            state.error = action.payload
-        },
-        resetPasswordRequest(state){
-            state.loading = true
-        },
-        resetPasswordSuccess(state,action){
+        signupSuccess(state, action) {
             state.loading = false;
             state.userInfo = action.payload;
         },
-        resetPasswordFail(state,action){
-            state.loading= false;
+        signupFail(state, action) {
+            state.loading = false;
             state.error = action.payload;
         },
-        logout(state){
-            state.userInfo = null
+
+        // OTP
+        otpRequest(state) {
+            state.loading = true;
         },
-        deleteUserRequest(state){
-            state.loading = true
+        otpSuccess(state) {
+            state.loading = false;
+            state.otpSent = true;
         },
-        deleteUserSuccess(state,action){
+        otpFail(state, action) {
+            state.loading = false;
+            state.error = action.payload;
+        },
+
+        // Forgot Password
+        forgetPasswordRequest(state) {
+            state.loading = true;
+        },
+        forgetPasswordSuccess(state, action) {
+            state.loading = false;
+            state.otpSent = true; // OTP sent for resetting the password
+        },
+        forgetPasswordFail(state, action) {
+            state.loading = false;
+            state.error = action.payload;
+        },
+
+        // Reset Password
+        resetPasswordRequest(state) {
+            state.loading = true;
+        },
+        resetPasswordSuccess(state, action) {
+            state.loading = false;
+            state.passwordResetSuccess = true; // Password reset successfully
+        },
+        resetPasswordFail(state, action) {
+            state.loading = false;
+            state.error = action.payload;
+        },
+
+        // Logout
+        logout(state) {
+            state.userInfo = null;
+        },
+
+        // Delete User
+        deleteUserRequest(state) {
+            state.loading = true;
+        },
+        deleteUserSuccess(state) {
             state.loading = false;
             state.userInfo = null;
         },
-        deleteUserFail(state,action){
+        deleteUserFail(state, action) {
             state.loading = false;
-            state.error = action.payload
-        }
-    }
-})
+            state.error = action.payload;
+        },
+    },
+});
 
-export const {loginRequest,loginSuccess,loginFail,signupRequest,signupSuccess,signupFail,otpRequest,otpSuccess,otpFail,forgetPaswordRequest,forgetPasswordSuccess,forgetPasswordFail,resetPasswordRequest,resetPasswordSuccess,resetPasswordFail,logout,deleteUserRequest,deleteUserSuccess,deleteUserFail} =userSlice.actions;
+export const {
+    loginRequest,
+    loginSuccess,
+    loginFail,
+    signupRequest,
+    signupSuccess,
+    signupFail,
+    otpRequest,
+    otpSuccess,
+    otpFail,
+    forgetPasswordRequest,
+    forgetPasswordSuccess,
+    forgetPasswordFail,
+    resetPasswordRequest,
+    resetPasswordSuccess,
+    resetPasswordFail,
+    logout,
+    deleteUserRequest,
+    deleteUserSuccess,
+    deleteUserFail
+} = userSlice.actions;
 
 export default userSlice.reducer;
