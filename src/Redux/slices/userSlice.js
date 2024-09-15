@@ -94,6 +94,10 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
+        getUserRequest(state){
+            state.loading=true;
+        },
+        getUser
     },
 });
 
