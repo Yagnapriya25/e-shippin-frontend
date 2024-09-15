@@ -94,10 +94,39 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
+        getAllUserRequest(state){
+            state.loading=true;
+        },
+        getAllUserSuccess(state,action){
+            state.loading = false;
+            state.userInfo = action.payload;
+        },
+        getAllUserFail(state,action){
+            state.loading = false;
+            state.error = action.payload;
+        },
         getUserRequest(state){
             state.loading=true;
         },
-        getUser
+        getUserSuccess(state,action){
+            state.loading = false;
+            state.userInfo = action.payload;
+        },
+        getUserFail(state,action){
+            state.loading = false;
+            state.error = action.payload;
+        },
+        editUserRequest(state){
+            state.loading = true
+        },
+        editUserSuccess(state,action){
+            state.loading = false;
+            state.userInfo = action.payload;
+        },
+        editUserFail(state,action){
+            state.loading = false;
+            state.error = action.payload;
+        }
     },
 });
 
@@ -120,7 +149,16 @@ export const {
     logout,
     deleteUserRequest,
     deleteUserSuccess,
-    deleteUserFail
+    deleteUserFail,
+    getUserFail,
+    getUserRequest,
+    getUserSuccess,
+    getAllUserFail,
+    getAllUserRequest,
+    getAllUserSuccess,
+    editUserRequest,
+    editUserSuccess,
+    editUserFail
 } = userSlice.actions;
 
 export default userSlice.reducer;
