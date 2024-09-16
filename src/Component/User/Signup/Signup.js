@@ -58,15 +58,16 @@ dispatch(register(credentials));
             <h6>Ship Smarter Today</h6>
           </div>
           <div id="signup-form-field">
-            <input type="text" placeholder="Username" value={credentials.username} onChange={handleChange} />
+            <input type="text" placeholder="Username" name="username" value={credentials.username} onChange={handleChange} />
           </div>
           <div id="signup-form-field">
-            <input type="email" placeholder="Email" value={credentials.email} onChange={handleChange}/>
+            <input type="email" placeholder="Email" name="email" value={credentials.email} onChange={handleChange}/>
           </div>
           <div id="signup-form-field">
             <input
               type={showPasword ? "password" : "text"}
               placeholder="Password"
+              name="password"
               value={credentials.password}
               onChange={handleChange}
             />
