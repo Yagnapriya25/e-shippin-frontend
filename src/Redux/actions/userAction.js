@@ -62,6 +62,7 @@ const register = (credentials) => async (dispatch) => {
       },
     });
     const data = await res.json();
+    console.log(data);
     if (res.ok) {
       dispatch(signupSuccess(data));
     } else {
