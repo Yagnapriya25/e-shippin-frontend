@@ -66,7 +66,7 @@ export default function Signup() {
   useEffect(() => {
     if (userInfo && !userInfo.isOtpRequired) {
       console.log("OTP verified, redirecting to home page...");
-      navigate("/home");
+      // navigate("/home");
     }
   }, [userInfo, navigate]);
 
