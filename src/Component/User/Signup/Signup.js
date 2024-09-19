@@ -9,26 +9,25 @@ import { register, verifyOtp } from "../../../Redux/actions/userAction";
 export default function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, userInfo } = useSelector((state) => state.user);
-
+  const [otpSent, setOtpSent] = useState(false); // Flag to check if OTP is sent
   const [credentials, setCredentials] = useState({
-    username: '',
-    email: '',
-    password: ''
+    username: "",
+    email: "",
+    password: "",
   });
 
-  const [otp, setOtp] = useState('');
-  const [otpRequired, setOtpRequired] = useState(false);
+  const [otp, setOtp] = useState("");
   const [showPassword, setShowPassword] = useState(true);
+  const [loading, setLoading] = useState(false); // Local loading state
+
+  const { error, userInfo } = useSelector((state) => state.user);
 
   const toggle = () => setShowPassword(!showPassword);
 
-  // Log credentials on every change
   useEffect(() => {
     console.log("Credentials Updated: ", credentials);
   }, [credentials]);
 
-  // Log OTP on every change
   useEffect(() => {
     console.log("OTP Updated: ", otp);
   }, [otp]);
@@ -42,28 +41,32 @@ export default function Signup() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();  // prevent form from refreshing the page
+    e.preventDefault();
+    if (loading) return; // Prevent multiple submissions when loading
+    setLoading(true); // Set loading state to true when the signup starts
     console.log("Signup form submitted with credentials: ", credentials);
-    dispatch(register(credentials));
+    dispatch(register(credentials))
+      .finally(() => {
+        setLoading(false); // Set loading back to false after the dispatch
+        setOtpSent(true); // OTP sent, now change the UI
+      });
   };
 
   const handleOtpSubmit = (e) => {
-    e.preventDefault();  // prevent form from refreshing the page
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
     console.log("OTP form submitted with otp: ", otp);
-    dispatch(verifyOtp({ otp, email: credentials.email }));
+    dispatch(verifyOtp({ otp, email: credentials.email }))
+      .finally(() => {
+        setLoading(false); // Set loading back to false after the dispatch
+      });
   };
 
   useEffect(() => {
-    if (userInfo && userInfo.isOtpRequired) {
-      setOtpRequired(true);
-      console.log("OTP is required. Showing OTP input.");
-    }
-
     if (userInfo && !userInfo.isOtpRequired) {
-      const id = sessionStorage.getItem('id');
-      const token = sessionStorage.getItem('token');
       console.log("OTP verified, redirecting to home page...");
-      navigate(`/home/${id}/${token}`);
+      navigate("/home");
     }
   }, [userInfo, navigate]);
 
@@ -84,68 +87,68 @@ export default function Signup() {
             <h6>Ship Smarter Today</h6>
           </div>
 
-          {/* Signup Form */}
-          {!otpRequired ? (
-            <form>
-              <div id="signup-form-field">
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Username"
-                  value={credentials.username}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div id="signup-form-field">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={credentials.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div id="signup-form-field">
-                <input
-                  type={showPassword ? "password" : "text"}
-                  name="password"
-                  placeholder="Password"
-                  value={credentials.password}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div id="signup-show">
-                <input type="checkbox" onClick={toggle} /> Show
-              </div>
-              <div id="signup-btn">
-                <button type="button" onClick={handleSubmit} disabled={loading}>
-                  {loading ? "Signing up..." : "Signup"}
-                </button>
-              </div>
-            </form>
-          ) : (
-            // OTP Form, only visible if signup is successful
-            <form>
-              <div id="signup-form-field">
-                <input
-                  type="text"
-                  name="otp"
-                  placeholder="Enter OTP"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  required
-                />
-              </div>
-              <div id="signup-btn">
-                <button type="button" onClick={handleOtpSubmit} disabled={loading}>
-                  {loading ? "Verifying OTP..." : "Verify OTP"}
-                </button>
-              </div>
-            </form>
-          )}
+          <form>
+            {!otpSent ? (
+              <>
+                <div id="signup-form-field">
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={credentials.username}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div id="signup-form-field">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={credentials.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div id="signup-form-field">
+                  <input
+                    type={showPassword ? "password" : "text"}
+                    name="password"
+                    placeholder="Password"
+                    value={credentials.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div id="signup-show">
+                  <input type="checkbox" onClick={toggle} /> Show
+                </div>
+                <div id="signup-btn">
+                  <button type="button" onClick={handleSubmit}>
+                    {loading ? "Sending OTP..." : "Signup"}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div id="signup-form-field">
+                  <input
+                    type="text"
+                    name="otp"
+                    placeholder="Enter OTP"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    required
+                  />
+                </div>
+                <div id="signup-btn">
+                  <button type="button" onClick={handleOtpSubmit}>
+                    {loading ? "Verifying OTP..." : "Verify OTP"}
+                  </button>
+                </div>
+              </>
+            )}
+          </form>
 
           {error && <p style={{ color: "red" }}>Error: {error}</p>}
 

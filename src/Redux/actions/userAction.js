@@ -24,7 +24,9 @@ import {
   signupRequest,
   signupSuccess,
 } from "../slices/userSlice";
-import { URL } from "../../server";
+// import { URL } from "../../server";
+
+let URL = "http://localhost:7890/api";
 
 const login = (credentials) => async (dispatch) => {
   try {
