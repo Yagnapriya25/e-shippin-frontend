@@ -79,7 +79,7 @@ const verifyOtp = (credentials) => async (dispatch) => {
   try {
     dispatch(otpRequest());
     const { otp } = credentials;
-    const res = await fetch(`${URL}/verify-otp`, {
+    const res = await fetch(`${URL}/user/verify-otp`, {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
@@ -89,6 +89,8 @@ const verifyOtp = (credentials) => async (dispatch) => {
     const data = await res.json();
     if (res.ok) {
       dispatch(otpSuccess(data));
+      sessionStorage.setItem("token",data.token);
+      sessionStorage.setItem("id",data.id);
     } else {
       dispatch(otpFail(data.message));
     }

@@ -45,11 +45,10 @@ export default function Signup() {
     if (loading) return; // Prevent multiple submissions when loading
     setLoading(true); // Set loading state to true when the signup starts
     console.log("Signup form submitted with credentials: ", credentials);
-    dispatch(register(credentials))
-      .finally(() => {
-        setLoading(false); // Set loading back to false after the dispatch
-        setOtpSent(true); // OTP sent, now change the UI
-      });
+    dispatch(register(credentials)).finally(() => {
+      setLoading(false); // Set loading back to false after the dispatch
+      setOtpSent(true); // OTP sent, now change the UI
+    });
   };
 
   const handleOtpSubmit = (e) => {
@@ -58,6 +57,20 @@ export default function Signup() {
     setLoading(true);
     console.log("OTP form submitted with otp: ", otp);
     dispatch(verifyOtp({ otp, email: credentials.email }))
+      .then((response) => {
+        // Assuming the response contains token and user ID
+        const { token, id } = response;
+        console.log(response);
+        // Store token and id in sessionStorage
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("userId", id);
+
+        // Navigate to /home/id/token
+        navigate(`/home/${id}/${token}`);
+      })
+      .catch((err) => {
+        console.error("OTP verification failed", err);
+      })
       .finally(() => {
         setLoading(false); // Set loading back to false after the dispatch
       });
@@ -66,7 +79,6 @@ export default function Signup() {
   useEffect(() => {
     if (userInfo && !userInfo.isOtpRequired) {
       console.log("OTP verified, redirecting to home page...");
-      // navigate("/home");
     }
   }, [userInfo, navigate]);
 
@@ -88,7 +100,7 @@ export default function Signup() {
           </div>
 
           <form>
-            {!otpSent ? (
+            {!otpSent && (
               <>
                 <div id="signup-form-field">
                   <input
@@ -100,35 +112,46 @@ export default function Signup() {
                     required
                   />
                 </div>
+                </>)}
+    {/* Email field should always be visible */}
+            <div id="signup-form-field">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={credentials.email}
+                onChange={handleChange}
+                required
+                readOnly={otpSent} // Make email read-only after OTP is sent
+              />
+            </div>
+               {!otpSent && (
+                <>
                 <div id="signup-form-field">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={credentials.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div id="signup-form-field">
-                  <input
-                    type={showPassword ? "password" : "text"}
-                    name="password"
-                    placeholder="Password"
-                    value={credentials.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div id="signup-show">
-                  <input type="checkbox" onClick={toggle} /> Show
-                </div>
-                <div id="signup-btn">
-                  <button type="button" onClick={handleSubmit}>
-                    {loading ? "Sending OTP..." : "Signup"}
-                  </button>
-                </div>
-              </>
+                <input
+                  type={showPassword ? "password" : "text"}
+                  name="password"
+                  placeholder="Password"
+                  value={credentials.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div id="signup-show">
+                <input type="checkbox" onClick={toggle} /> Show
+              </div>
+            </>
+          )}
+            
+                
+
+        
+            {!otpSent ? (
+              <div id="signup-btn">
+                <button type="button" onClick={handleSubmit}>
+                  {loading ? "Sending OTP..." : "Signup"}
+                </button>
+              </div>
             ) : (
               <>
                 <div id="signup-form-field">
