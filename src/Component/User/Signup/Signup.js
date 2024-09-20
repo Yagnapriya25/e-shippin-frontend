@@ -16,6 +16,9 @@ export default function Signup() {
     password: "",
   });
 
+ const token = sessionStorage.getItem("token");
+ const id = sessionStorage.getItem("id");
+
   const [otp, setOtp] = useState("");
   const [showPassword, setShowPassword] = useState(true);
   const [loading, setLoading] = useState(false); // Local loading state
@@ -58,21 +61,17 @@ export default function Signup() {
     console.log("OTP form submitted with otp: ", otp);
     dispatch(verifyOtp({ otp, email: credentials.email }))
       .then((response) => {
-        // Assuming the response contains token and user ID
-        const { token, id } = response;
         console.log(response);
-        // Store token and id in sessionStorage
-        sessionStorage.setItem("token", token);
-        sessionStorage.setItem("userId", id);
-
-        // Navigate to /home/id/token
-        navigate(`/home/${id}/${token}`);
+        
       })
       .catch((err) => {
         console.error("OTP verification failed", err);
       })
       .finally(() => {
         setLoading(false); // Set loading back to false after the dispatch
+        setTimeout(()=>{
+          navigate(`/home/${token}`)
+        },2000)
       });
   };
 

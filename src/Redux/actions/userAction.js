@@ -90,7 +90,8 @@ const verifyOtp = (credentials) => async (dispatch) => {
     if (res.ok) {
       dispatch(otpSuccess(data));
       sessionStorage.setItem("token",data.token);
-      sessionStorage.setItem("id",data.id);
+      sessionStorage.setItem("id",data.user._id);
+      
     } else {
       dispatch(otpFail(data.message));
     }
