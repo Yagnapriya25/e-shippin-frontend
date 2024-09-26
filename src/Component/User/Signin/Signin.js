@@ -4,7 +4,6 @@ import img2 from "../../../Images/signin.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css";
 import { useDispatch, useSelector } from "react-redux";
-import { loginSuccess } from "../../../Redux/slices/userSlice";
 import { login } from "../../../Redux/actions/userAction";
 
 export default function Signin() {
