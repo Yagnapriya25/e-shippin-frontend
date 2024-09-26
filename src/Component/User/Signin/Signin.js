@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import img from "../../../Images/logo.png";
 import img2 from "../../../Images/signin.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css";
 import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "../../../Redux/slices/userSlice";
+import { login } from "../../../Redux/actions/userAction";
 
 export default function Signin() {
  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState();
+  const navigate = useNavigate();
 
   const toggle = () => setShowPassword(!showPassword);
 
@@ -31,8 +34,20 @@ export default function Signin() {
     e.preventDefault();
     if(loading) return;
     setLoading(true);
+    dispatch(login({email:credentials.email,password:credentials.password}).then((res)=>{
+       console.log(res);
+    }).catch((err)=>{
+       console.log(err);
+    }).finally(()=>{
+      setLoading(false);
+      sessionStorage.setItem("token",)
+      setTimeout(()=>{
+        navigate("/")
+      })
+    }))
   }
 
+  
 
   return (
     <div className="signin-container h-screen">
