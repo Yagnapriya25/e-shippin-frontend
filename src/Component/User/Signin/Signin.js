@@ -3,11 +3,36 @@ import img from "../../../Images/logo.png";
 import img2 from "../../../Images/signin.png";
 import { Link } from "react-router-dom";
 import "./Signin.css";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Signin() {
+ const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState();
 
   const toggle = () => setShowPassword(!showPassword);
+
+  const [loading,setLoading]= useState(false);
+
+  const [credentials,setCredentials]=useState({
+    email:"",
+    password:""
+  })
+
+  const {error,userInfo}=useSelector((state)=>state.user)
+
+  const handleChange = (e)=>{
+    setCredentials({
+      ...credentials,
+      [e.target.name]:e.target.value
+    })
+  }
+
+  const handleLoginSubmit = (e)=>{
+    e.preventDefault();
+    if(loading) return;
+    setLoading(true);
+  }
+
 
   return (
     <div className="signin-container h-screen">

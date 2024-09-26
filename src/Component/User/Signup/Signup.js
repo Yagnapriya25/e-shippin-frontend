@@ -17,7 +17,6 @@ export default function Signup() {
   });
 
  const token = sessionStorage.getItem("token");
- const id = sessionStorage.getItem("id");
 
   const [otp, setOtp] = useState("");
   const [showPassword, setShowPassword] = useState(true);
@@ -27,9 +26,6 @@ export default function Signup() {
 
   const toggle = () => setShowPassword(!showPassword);
 
-  useEffect(() => {
-    console.log("Credentials Updated: ", credentials);
-  }, [credentials]);
 
   useEffect(() => {
     console.log("OTP Updated: ", otp);
