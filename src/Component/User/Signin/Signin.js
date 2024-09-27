@@ -33,17 +33,13 @@ export default function Signin() {
     e.preventDefault();
     if(loading) return;
     setLoading(true);
-    dispatch(login({email:credentials.email,password:credentials.password}).then((res)=>{
-       console.log(res);
-    }).catch((err)=>{
-       console.log(err);
-    }).finally(()=>{
+    dispatch(login({email:credentials.email,password:credentials.password})).finally(()=>{
       setLoading(false);
-      sessionStorage.setItem("token",)
       setTimeout(()=>{
-        navigate("/")
-      })
-    }))
+        const token = sessionStorage.getItem("token")
+        navigate(`/home/${token}`)
+      },1000)
+    })
   }
 
   
@@ -66,18 +62,23 @@ export default function Signin() {
               </p>
             </div>
           </div>
+          <form onSubmit={handleLoginSubmit}>
           <div id="signin-form">
             <div id="sigin-welcome">
               <h5>E-SHIPIN</h5>
               <p>Welcome</p>
             </div>
+            
             <div id="signin-form-field">
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" name="email" value={credentials.email} onChange={handleChange} />
             </div>
             <div id="signin-form-field">
               <input
                 type={!showPassword ? "password" : "text"}
                 placeholder="Password"
+                name="password"
+                value={credentials.password}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -102,8 +103,9 @@ export default function Signin() {
             </span>
           </div>
           <div id="signin-btn">
-            <button>Login</button>
+            <button type="submit">Login</button>
           </div>
+          </form>
         </div>
       </div>
     </div>

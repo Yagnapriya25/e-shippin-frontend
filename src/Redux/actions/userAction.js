@@ -32,18 +32,19 @@ const login = (credentials) => async (dispatch) => {
   try {
     dispatch(loginRequest());
     const { email, password } = credentials;
-    const res = await fetch(`${URL}/user/login`, {
+    const res = await fetch(`${URL}/user/login`,{
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
-        "Contert-Type": "application/json",
+        "Content-Type": "application/json",
       },
     });
     const data = await res.json();
+    console.log(data);
     if (res.ok) {
       dispatch(loginSuccess(data));
-      localStorage.setItem("id", data.id);
-      localStorage.setItem("token", data.token);
+      sessionStorage.setItem("id", data.user._id);
+      sessionStorage.setItem("token", data.token);
     } else {
       dispatch(loginFail(data.message));
     }
@@ -112,6 +113,7 @@ const forget = (credentials) => async (dispatch) => {
       },
     });
     const data = await res.json();
+    console.log(data);
     if (res.ok) {
       dispatch(forgetPasswordSuccess(data));
     } else {
