@@ -128,7 +128,8 @@ const reset = (credentials, userData) => async (dispatch) => {
     dispatch(resetPasswordRequest());
     const { password } = credentials;
     const { id, token } = userData;
-    const res = await fetch(`${URL}/user/reset/${id}/${token}`, {
+    console.log(id,token);
+    const res = await fetch(`${URL}/user/reset-password/${id}/${token}`, {
       method: "PUT",
       body: JSON.stringify(credentials),
       headers: {
@@ -136,8 +137,11 @@ const reset = (credentials, userData) => async (dispatch) => {
       },
     });
     const data = await res.json();
+    console.log(data);
     if (res.ok) {
       dispatch(resetPasswordSuccess(data));
+      sessionStorage.setItem("token",data.token);
+      sessionStorage.setItem("id",data.user._id);
     } else {
       dispatch(resetPasswordFail(data.message));
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img from "../../../Images/logo.png";
 import img2 from "../../../Images/signin.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -29,17 +29,37 @@ export default function Signin() {
     })
   }
 
+  useEffect(()=>{
+    if(!sessionStorage.getItem("token") && !sessionStorage.getItem("id")){
+      navigate("/")
+    }
+  })
+
   const handleLoginSubmit = (e)=>{
     e.preventDefault();
     if(loading) return;
     setLoading(true);
-    dispatch(login({email:credentials.email,password:credentials.password})).finally(()=>{
-      setLoading(false);
-      setTimeout(()=>{
-        const token = sessionStorage.getItem("token")
-        navigate(`/home/${token}`)
-      },1000)
+    dispatch(login({ email: credentials.email, password: credentials.password }))
+    .then(() => {
+      // Only navigate if the user info exists (login successful)
+     
     })
+    .catch((err) => {
+      console.error("Login failed:", err);
+    })
+    .finally(() => {
+     
+        setLoading(false);
+        if(sessionStorage.getItem("token") && sessionStorage.getItem("id")){
+          const token = sessionStorage.getItem("token");
+          setTimeout(()=>{
+            navigate(`/home/${token}`)
+          },1000)
+        }
+        
+           
+    });
+
   }
 
   

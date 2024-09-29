@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Base from "../Base/Base";
 import p_img from "../Images/realme-narzo-30-pro-5g (1).jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+  
+  useEffect(()=>{
+    if(!sessionStorage.getItem("token") && !sessionStorage.getItem("id")){
+      navigate("/")
+    }
+  })
   return (
     <div className="overflow-hidden overflow-x-hidden ">
       <Base>

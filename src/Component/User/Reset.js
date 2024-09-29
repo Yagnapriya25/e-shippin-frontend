@@ -1,10 +1,56 @@
 import React, { useState } from "react";
 import img from "../../Images/reset.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "../../Redux/actions/userAction";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Reset() {
   const [showPassword, setShowPassword] = useState();
 
+  const {id,token}=useParams();
+
   const toggle = () => setShowPassword(!showPassword);
+
+  const navigate = useNavigate();
+  
+  const dispatch = useDispatch();
+
+  const {error,userInfo} = useSelector((state)=>state.user)
+
+  const [loading,setLoading]=useState(false);
+
+  const [credentials,setCredentials]=useState({
+    password:"",
+    confirmPassword:""
+  });
+
+  const handleChange = (e)=>{
+    setCredentials(
+      {...credentials,
+        [e.target.name]:e.target.value
+      }
+    )
+  };
+
+  const handleResetPassword = (e)=>{
+   e.preventDefault();
+   if(loading) return ;
+   if(credentials.password !== credentials.confirmPassword){
+    console.log("its working 1");
+   }
+   if(credentials.password===credentials.confirmPassword){
+    setLoading(true);
+    dispatch(reset({password: credentials.password}, {id: id, token: token})).finally(()=>{
+
+       setLoading(false);
+       setTimeout(()=>{
+         navigate(`/`)
+       },1000)
+    })
+   }
+   
+
+  }
 
   return (
     <div className="h-screen bg-blue-400 w-screen flex justify-center items-center overflow-hidden">
@@ -28,11 +74,15 @@ export default function Reset() {
               PASSWORD
             </h4>
           </div>
+          <form>
           <div>
             <input
               type={!showPassword ? "password" : "text"}
               className="bg-red-100 h-8 md:h-10 lg:h-10 xl:h-10 pl-8 lg:w-96 xl:w-96 md:w-72 w-50 placeholder-black placeholder:font-bold rounded-xl font-md md:font-xl lg:font-2xl xl:font-2xl outline-none"
               placeholder="Password"
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
             />
             <div className="ml-3 mt-2 flex gap-1">
               <input
@@ -46,19 +96,24 @@ export default function Reset() {
               type="password"
               className="bg-red-100 h-8 md:h-10 lg:h-10 xl:h-10 mb-3 md:mb-6 lg:mb-10 xl:mb-10 pl-8 lg:w-96 xl:w-96 md:w-72 w-50 placeholder-black placeholder:font-bold rounded-xl font-md md:font-xl lg:font-2xl xl:font-2xl outline-none"
               placeholder="Confirm Password"
+              name="confirmPassword"
+              value={credentials.confirmPassword}
+              onChange={handleChange}
             />
           </div>
 
           <div className="mx-8 md:mx-0 lg:mx-0 xl:m0">
             <button
               className="px-2 lg:w-96 xl:w-96 md:w-72  bg-red-100 lg:h-10 xl:h-10 md:h-10 h-8 lg:font-bold text-sm rounded-xl font-serif text-red-400 font-sm md:font-xl lg:font-2xl xl:font-2xl"
-              onClick={toggle}
+              onClick={handleResetPassword}
             >
               CHANGE PASSWORD
             </button>
             '
           </div>
+          </form>
         </div>
+        
       </div>
     </div>
   );
