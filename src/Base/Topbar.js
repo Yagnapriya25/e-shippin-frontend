@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../Images/logo.png";
 import img from "../Images/PROFILE.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleUser } from "../Redux/actions/userAction";
+import { useNavigate } from "react-router-dom";
 
 export default function Topbar() {
+  const dispatch = useDispatch();
+  const [loading,setLoading]=useState(false);
+  const [userData,setUserData]=useState({});
+
+  const {error,userInfo}=useSelector((state)=>state.user);
+
+  const token = sessionStorage.getItem("token");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      setLoading(true); 
+      await dispatch(getSingleUser({id:sessionStorage.getItem("id")})); 
+      setLoading(false); 
+    };
+    if(userInfo){
+      setUserData(userInfo.user)
+    }
+    fetchUserData();
+  }, [dispatch]);
+
   return (
     <div className="h-4/6 shadow-gray-700 sticky top-2.5 bg-white shadow ">
       <div className="flex justify-around">
@@ -18,22 +43,23 @@ export default function Topbar() {
           <i className="bx bx-search text-red-400 pt-1 lg:text-xl xl:text-xl md:text-lg cursor-pointer"></i>
         </span>
         <ul className="hidden lg:flex lg:gap-10 lg:my-5 md:block lg:block xl:block xl:flex md:flex xl:gap-10 md:gap-10 xl:my-8 md:my-5">
-          <li className="hover:text-red-400 cursor-pointer lg:text-lg xl:text-lg md:text-md">
+          <li className="hover:text-red-400 cursor-pointer lg:text-lg xl:text-lg md:text-md" onClick={()=>navigate(`/home/${token}`)}>
             HOME
           </li>
-          <li className="hover:text-red-400 cursor-pointer lg:text-lg xl:text-lg md:text-md">
+          <li className="hover:text-red-400 cursor-pointer lg:text-lg xl:text-lg md:text-md" onClick={()=>navigate(`/category/${token}`)}>
             CATEGORY
           </li>
-          <li className="hover:text-red-400 cursor-pointer lg:text-lg xl:text-lg md:text-md">
+          <li className="hover:text-red-400 cursor-pointer lg:text-lg xl:text-lg md:text-md" onClick={()=>navigate(`/cart/${token}`)}>
             CART
           </li>
         </ul>
 
         <div className="hidden md:block lg:h-13 lg:my-1 xl:h-15 xl:my-2 md:h-12 md:my-1">
           <img
-            src={img}
+            src={userData.avatar ? userData.avatar : img}
             alt="profile"
             className="h-full rounded-full cursor-pointer"
+            onClick={()=>navigate(`/profile/${token}`)}
           />
         </div>
       </div>

@@ -181,6 +181,7 @@ const getSingleUser = (userInfo) => async (dispatch) => {
       },
     });
     const data = await res.json();
+    console.log(data);
     if (res.ok) {
       dispatch(getUserSuccess(data));
     } else {
@@ -205,11 +206,10 @@ const editUser = (credentials, userInfo) => async (dispatch) => {
     const res = await fetch(`${URL}/user/edit/${id}`, {
       method: "PUT",
       body: formData,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      
     });
     const data = await res.json();
+    console.log(data);
     if (res.ok) {
       dispatch(editUserSuccess(data));
     } else {
