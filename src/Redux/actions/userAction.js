@@ -199,7 +199,7 @@ const editUser = (credentials, userInfo) => async (dispatch) => {
     formData.append("username", credentials.username);
     formData.append("email", credentials.email);
     formData.append("phoneNumber", credentials.phoneNumber);
-
+    
     if (credentials.avatar) {
       formData.append("avatar", credentials.avatar); // Add the image file to FormData
     }
