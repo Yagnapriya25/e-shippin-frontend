@@ -10,6 +10,8 @@ export default function CategoryProduct() {
     const navigate = useNavigate();
     const { cat_id } = useParams();
 
+    const token = sessionStorage.getItem("token");
+    
     const { categoryInfo, error, loading: categoryLoading } = useSelector((state) => state.category || {});
 
     useEffect(() => {
@@ -23,7 +25,7 @@ export default function CategoryProduct() {
     }, [dispatch, cat_id]);
 
     // Modify handleCategoryClick to take product ID and token
-    const handleCategoryClick = (productId, token) => {
+    const handleCategoryClick = (productId) => {
         navigate(`/product/${productId}/${token}`);
     };
 
@@ -44,7 +46,7 @@ export default function CategoryProduct() {
                             <div
                                 key={product.id} // Make sure to use a unique identifier
                                 className="flex flex-col justify-center place-items-center shadow-gray-700 shadow xl:h-48 xl:w-52 lg:h-44 lg:w-48 md:h-40 md:w-44 h-28 w-28 p-4 cursor-pointer"
-                                onClick={() => handleCategoryClick(product.id, product.token)} // Pass product ID and token
+                                onClick={() => handleCategoryClick(product._id)} // Pass product ID and token
                             >
                                 <div className="h-4/6 w-4/6">
                                     <img
