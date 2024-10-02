@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState  = {
     loading:true,
-    categoryInfo:null,
+    categoryInfo:[],
     error:null
 }
 
@@ -11,7 +11,8 @@ const categorySlice = createSlice({
     initialState,
     reducers:{
         categoryPostRequest(state){
-            state.loading = true
+            state.loading = true;
+            state.error = null;
         },
         categoryPostSuccess(state,action){
             state.loading = false;
@@ -23,6 +24,7 @@ const categorySlice = createSlice({
         },
         categoryGetAllRequest(state){
             state.loading = true;
+            state.error = null;
         },
         categoryGetAllSuccess(state,action){
             state.loading = false;
@@ -34,7 +36,7 @@ const categorySlice = createSlice({
         },
         categoryGetSingleRequest(state){
             state.loading = true;
-
+            state.error = null;
         },
         categoryGetSingleSuccess(state,action){
             state.loading = false;
@@ -46,6 +48,7 @@ const categorySlice = createSlice({
         },
         categoryDeleteRequest(state){
             state.loading = true;
+            state.error = null;
         },
         categoryDeleteSuccess(state,action){
             state.loading = false;
