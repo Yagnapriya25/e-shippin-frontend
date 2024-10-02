@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {categoryGetAll} from '../../src/Redux/actions/categoryAction'
+import {categoryGetAll} from '../Redux/actions/categoryAction'
 import Base from '../Base/Base';
 import p_img from '../Images/realme-narzo-30-pro-5g (1).jpg'
 
-const CategoryComponent = () => {
+const CategoryEntry = () => {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -59,4 +59,4 @@ const CategoryComponent = () => {
     );
 };
 
-export default CategoryComponent;
+export default CategoryEntry;

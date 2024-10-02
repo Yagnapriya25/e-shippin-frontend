@@ -1,4 +1,4 @@
-import { categoryDeleteFail, categoryDeleteRequest, categoryDeleteSuccess, categoryGetAllFail, categoryGetAllRequest, categoryGetAllSuccess, categoryGetSingleFail, categoryGetSingleRequest, categoryGetSingleSuccess, categoryPostFail, categoryPostRequest, categoryPostSuccess } from "../slices/categorySlice";
+import { categoryDeleteFail, categoryDeleteRequest, categoryDeleteSuccess, categoryGetAllFail, categoryGetAllRequest, categoryGetAllSuccess, categoryGetSingleFail, categoryGetSingleRequest, categoryGetSingleSuccess, categoryPostFail, categoryPostRequest, categoryPostSuccess, categoryProductFail, categoryProductRequest, categoryProductSuccess } from "../slices/categorySlice";
 
 
 
@@ -99,11 +99,34 @@ const deleteCategory = (categoryInfo)=>async(dispatch)=>{
         dispatch(categoryDeleteFail(error.message))
     }
 }
+const getCategoryProducts = (categoryInfo)=>async(dispatch)=>{
+    try {
+        const {cat_id}=categoryInfo;
+        dispatch(categoryProductRequest());
+        const res = await fetch(`${URL}/category/${cat_id}`,{
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        const data = await res.json();
+        console.log(data);
+        if(res.ok){
+            dispatch(categoryProductSuccess(data))
+        }
+        else{
+            dispatch(categoryProductFail(data.message))
+        }
+    } catch (error) {
+        dispatch(categoryProductFail(error.message))
+    }
+}
 
 export 
 {
     categoryPost,
     categoryGetAll,
     categoryGetSingle,
-    deleteCategory
+    deleteCategory,
+    getCategoryProducts
 };
