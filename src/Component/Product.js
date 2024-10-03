@@ -9,17 +9,16 @@ export default function Product() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const { productInfo, error } = useSelector((state) => state.product);
-  const { p_id } = useParams();
-
+  const  {id }= useParams();
   useEffect(() => {
     const fetchProduct = async () => {
       setLoading(true);
-      await dispatch(getSingleProduct(p_id));
+      await dispatch(getSingleProduct(id));
       setLoading(false);
     };
 
     fetchProduct();
-  }, [dispatch, p_id]);
+  }, [dispatch, id]);
 
   if (loading) {
     return <div>Loading...</div>; // Show a loading indicator while fetching data
