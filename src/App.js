@@ -17,6 +17,7 @@ import AddProduct from "./Component/AddProduct";
 import Buy from "./Component/Buy";
 import categoryProduct from "./Component/CategoryProduct";
 import CategoryProduct from "./Component/CategoryProduct";
+import UserProducts from "./Component/UserProducts";
 
 function App() {
   return (
@@ -53,6 +54,8 @@ function App() {
         <Route path="/categoryProduct/:cat_id" element={<CategoryProduct />} />
 
         <Route path="/buy/:id" element={<Buy />} />
+
+        <Route path="/userProduct/:token" element={<UserProducts/>}/>
 
         
       </Routes>
