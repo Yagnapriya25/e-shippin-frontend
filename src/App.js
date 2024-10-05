@@ -48,7 +48,7 @@ function App() {
 
         <Route path="/add_product_entry/:token" element={<AddProductEntry />} />
 
-        <Route path="/add-product/:id" element={<AddProduct />} />
+        <Route path="/add-product/:cat_id" element={<AddProduct />} />
 
         <Route path="/categoryProduct/:cat_id" element={<CategoryProduct />} />
 

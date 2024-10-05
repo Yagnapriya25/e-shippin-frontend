@@ -31,6 +31,14 @@ export default function Home() {
         navigate(`/product/${id}/${token}`);
     };
 
+    const formatPrice = (amount) => {
+        return new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        }).format(amount);
+    };
     return (
         <div className="overflow-hidden overflow-x-hidden">
             <Base>
@@ -54,7 +62,7 @@ export default function Home() {
                                                 {product.name}
                                             </h6>
                                             <h5 className="font-bold xl:text-xl lg:text-lg md:text-md text-sm">
-                                                ₹{product.price}
+                                                {formatPrice(product.price)}
                                             </h5>
                                         </div>
                                     </div>

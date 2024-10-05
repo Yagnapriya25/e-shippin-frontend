@@ -182,7 +182,7 @@ const getSingleUser = (userInfo) => async (dispatch) => {
     });
     const data = await res.json();
     console.log(data);
-    if (res.ok) {
+    if (res.ok) { 
       dispatch(getUserSuccess(data));
     } else {
       dispatch(getUserFail(data.message));

@@ -1,48 +1,74 @@
 import React, { useState } from "react";
 import Base from "../Base/Base";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productPost } from "../Redux/actions/productAction";
 
 export default function AddProduct() {
-  const [formData, setFormData] = useState({
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { cat_id } = useParams();
+  const userInfo = sessionStorage.getItem("id");
+  const token = sessionStorage.getItem("token");
+
+  const [credential, setCredential] = useState({
     name: '',
     quantity: '',
     price: '',
     description1: '',
     description2: '',
     description3: '',
-    images: []
+    images: [],
+    instock: '',
+    category: cat_id,
+    user: userInfo
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setCredential({
+      ...credential,
       [e.target.name]: e.target.value
     });
   };
 
   const handleFileChange = (e) => {
-    setFormData({
-      ...formData,
+    setCredential({
+      ...credential,
       images: Array.from(e.target.files)
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (loading) return;
 
     const data = new FormData();
-    data.append('name', formData.name);
-    data.append('quantity', formData.quantity);
-    data.append('price', formData.price);
-    data.append('description1', formData.description1);
-    data.append('description2', formData.description2);
-    data.append('description3', formData.description3);
-    formData.images.forEach((file) => {
+    data.append('name', credential.name);
+    data.append('quantity', credential.quantity);
+    data.append('price', credential.price);
+    data.append('description1', credential.description1);
+    data.append('description2', credential.description2);
+    data.append('description3', credential.description3);
+    data.append('instock', credential.instock);
+    
+    credential.images.forEach((file) => {
       data.append('images', file);
     });
 
-    // Add your fetch POST request here
-
-    console.log('Form submitted');
+    setLoading(true);
+    dispatch(productPost(data, cat_id , userInfo))
+      .then(() => {
+        setLoading(false);
+        setTimeout(()=>{
+          navigate(`/home/${token}`); 
+        },1000)
+      })
+      .catch((error) => {
+        console.error("Error adding product:", error);
+        setLoading(false);
+      });
   };
 
   return (
@@ -50,26 +76,27 @@ export default function AddProduct() {
       <Base>
         <div className="h-[90%] md:h-[95%] flex justify-center">
           <div className="pt-20 w-6/6 md:w-5/6 lg:w-4/6 xl:w-4/6 bg-white flex flex-col gap-6 justify-center items-center overflow-x-hidden overflow-y-auto hide-scrollbar">
-            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-6">
+            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-6" encType="multipart/form-data">
               <input
                 type="file"
                 multiple
                 className="relative left-16 md:left-11 lg:left-11 xl:left-11"
                 onChange={handleFileChange}
+                name="images"
               />
               <input
                 type="text"
                 name="name"
                 placeholder="Product Name"
-                value={formData.name}
+                value={credential.name}
                 onChange={handleChange}
                 className="h-10 w-5/6 text-sm md:text-md lg:text-lg xl:text-md lg:w-3/6 xl:w-3/6 md:w-4/6 bg-purple-200 placeholder:font-bold placeholder:text-black pl-10 outline-none"
               />
               <input
                 type="number"
-                name="quantity"
+                name="instock"
                 placeholder="Quantity"
-                value={formData.quantity}
+                value={credential.instock}
                 onChange={handleChange}
                 className="h-10 w-5/6 text-sm md:text-md lg:text-lg xl:text-md lg:w-3/6 xl:w-3/6 md:w-4/6 bg-purple-200 placeholder:font-bold placeholder:text-black pl-10 outline-none"
               />
@@ -77,7 +104,7 @@ export default function AddProduct() {
                 type="number"
                 name="price"
                 placeholder="Price"
-                value={formData.price}
+                value={credential.price}
                 onChange={handleChange}
                 className="h-10 w-5/6 text-sm md:text-md lg:text-lg xl:text-md lg:w-3/6 xl:w-3/6 md:w-4/6 bg-purple-200 placeholder:font-bold placeholder:text-black pl-10 outline-none"
               />
@@ -85,7 +112,7 @@ export default function AddProduct() {
                 type="text"
                 name="description1"
                 placeholder="Description 1"
-                value={formData.description1}
+                value={credential.description1}
                 onChange={handleChange}
                 className="h-10 w-5/6 text-sm md:text-md lg:text-lg xl:text-md lg:w-3/6 xl:w-3/6 md:w-4/6 bg-purple-200 placeholder:font-bold placeholder:text-black pl-10 outline-none"
               />
@@ -93,7 +120,7 @@ export default function AddProduct() {
                 type="text"
                 name="description2"
                 placeholder="Description 2"
-                value={formData.description2}
+                value={credential.description2}
                 onChange={handleChange}
                 className="h-10 w-5/6 text-sm md:text-md lg:text-lg xl:text-md lg:w-3/6 xl:w-3/6 md:w-4/6 bg-purple-200 placeholder:font-bold placeholder:text-black pl-10 outline-none"
               />
@@ -101,15 +128,16 @@ export default function AddProduct() {
                 type="text"
                 name="description3"
                 placeholder="Description 3"
-                value={formData.description3}
+                value={credential.description3}
                 onChange={handleChange}
                 className="h-10 w-5/6 text-sm md:text-md lg:text-lg xl:text-md lg:w-3/6 xl:w-3/6 md:w-4/6 bg-purple-200 placeholder:font-bold placeholder:text-black pl-10 outline-none"
               />
               <button
                 type="submit"
                 className="w-28 p-1 text-white bg-purple-600"
+                disabled={loading} // Disable the button while loading
               >
-                Add Product
+                {loading ? "Adding..." : "Add Product"}
               </button>
             </form>
           </div>

@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
-  productInfo: [],
-  loading: true,
+  loading: false,
   error: null,
+  products: [],
+  singleProduct: null, // To hold a single product
 };
 
 const productSlice = createSlice({
@@ -15,7 +17,7 @@ const productSlice = createSlice({
     },
     productPostSuccess(state, action) {
       state.loading = false;
-      state.productInfo = action.payload;
+      state.singleProduct = action.payload;
     },
     productPostFail(state, action) {
       state.loading = false;
@@ -38,7 +40,8 @@ const productSlice = createSlice({
     },
     productGetSingleSuccess(state, action) {
       state.loading = false;
-      state.productInfo = action.payload;
+      state.singleProduct = action.payload;
+    
     },
     productGetSingleFail(state, action) {
       state.loading = false;
@@ -66,6 +69,17 @@ const productSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    getSingleUserProductRequest(state){
+      state.loading = true
+    },
+    getSingleUserProductSuccess(state,action){
+      state.loading = false;
+      state.products=action.payload;
+    },
+    getSingleUserProductFail(state,action){
+      state.loading = false;
+      state.error = action.payload
+    }
   },
 });
 
@@ -85,6 +99,9 @@ export const {
   productEditRequest,
   productEditSuccess,
   productEditFail,
+  getSingleUserProductFail,
+  getSingleUserProductRequest,
+  getSingleUserProductSuccess
 } = productSlice.actions;
 
 export default productSlice.reducer;

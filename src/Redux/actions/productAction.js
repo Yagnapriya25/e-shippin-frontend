@@ -1,4 +1,4 @@
-import { productDeleteFail, productDeleteRequest, productDeleteSuccess, productEditFail, productEditRequest, productEditSuccess, productGetAllFail, productGetAllRequest, productGetAllSuccess, productGetSingleFail, productGetSingleRequest, productGetSingleSuccess, productPostFail, productPostRequest, productPostSuccess } from "../slices/productSlice";
+import { getSingleUserProductFail, getSingleUserProductRequest, getSingleUserProductSuccess, productDeleteFail, productDeleteRequest, productDeleteSuccess, productEditFail, productEditRequest, productEditSuccess, productGetAllFail, productGetAllRequest, productGetAllSuccess, productGetSingleFail, productGetSingleRequest, productGetSingleSuccess, productPostFail, productPostRequest, productPostSuccess } from "../slices/productSlice";
 
 
 
@@ -12,12 +12,11 @@ const productPost = (credential,categoryInfo,userInfo)=>async(dispatch)=>{
         dispatch(productPostRequest());
         const {cat_id}=categoryInfo;
         const {id}=userInfo;
-        const res = await fetch(`${URL}/product/${cat_id}/${id}`,{
+  
+        const res = await fetch(`${URL}/product/create/${categoryInfo}/${userInfo}`,{
             method:"POST",
-            body:JSON.stringify(credential),
-            headers:{
-                "Content-Type":"application/json"
-            }
+            body:credential,
+           
         })        
         const data = await res.json();
         console.log(data);
@@ -61,7 +60,7 @@ const getSingleProduct = (productInfo,userInfo)=>async(dispatch)=>{
         dispatch(productGetSingleRequest());
         const {id}=productInfo;
         const {token}=userInfo;
-        const res = await fetch(`${URL}/product/getsingle/${id}`,{
+        const res = await fetch(`${URL}/product/getsingle/${productInfo}`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -141,10 +140,34 @@ const updateProduct = (credential,productInfo)=>async(dispatch)=>{
     }
 }
 
+const getSingleUserProduct = (userInfo) =>async(dispatch)=>{
+    try {
+        dispatch(getSingleUserProductRequest());
+        const {id}= userInfo;
+        const res = await fetch(`${URL}/product/getproduct/${userInfo}`,{
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        const data = await res.json();
+        console.log(data);
+        if(res.ok){
+            dispatch(getSingleUserProductSuccess(data));
+        }
+        else{
+            dispatch(getSingleUserProductFail(data.message));
+        }
+    } catch (error) {
+        dispatch(getSingleUserProductFail(error.message))
+    }
+}
+
 export {
     productPost,
     getAllProduct,
     getSingleProduct,
     deleteProduct,
-    updateProduct
+    updateProduct,
+    getSingleUserProduct
 };
