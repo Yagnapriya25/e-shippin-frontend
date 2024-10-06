@@ -31,8 +31,8 @@ export default function UserProducts() {
         }
     }, [dispatch,id]);
 
-    const handleProductClick = (id, token) => {
-        navigate(`/product/${id}/${token}`);
+    const handleProductClick = (p_id, token) => {
+        navigate(`/userProductView/${p_id}/${token}`);
     };
 
     const formatPrice = (amount) => {

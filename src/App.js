@@ -18,6 +18,8 @@ import Buy from "./Component/Buy";
 import categoryProduct from "./Component/CategoryProduct";
 import CategoryProduct from "./Component/CategoryProduct";
 import UserProducts from "./Component/UserProducts";
+import UserProductView from "./Component/UserProductView";
+import EditProduct from "./Component/EditProduct";
 
 function App() {
   return (
@@ -56,6 +58,10 @@ function App() {
         <Route path="/buy/:id" element={<Buy />} />
 
         <Route path="/userProduct/:token" element={<UserProducts/>}/>
+
+        <Route path="/userProductView/:p_id/:token" element={<UserProductView/>}/>
+
+        <Route path="/editProduct/:p_id/:token" element={<EditProduct/>}/>
 
         
       </Routes>

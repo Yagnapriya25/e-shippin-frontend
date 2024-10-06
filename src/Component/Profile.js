@@ -59,7 +59,7 @@ const token = sessionStorage.getItem("token");
               <button className="text-red-400 md:text-xl hover:font-bold" onClick={()=>navigate(`/cart/${token}`)}>
                 <i class="bx bx-cart"></i>Cart
               </button>
-              <button className="text-green-300 md:text-xl hover:font-bold" onClick={()=>navigate(`/add_product_entry/${token}`)}>
+              <button className="text-green-300 md:text-xl hover:font-bold" onClick={()=>navigate(`/userProduct/${token}`)}>
                 <i class="bx bx-store-alt"></i>Become a seller
               </button>
               <button className="text-blue-400 md:text-xl hover:font-bold" onClick={()=>navigate(`/profile_edit/${token}`)}>

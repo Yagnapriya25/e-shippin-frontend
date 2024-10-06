@@ -58,7 +58,7 @@ const getAllProduct = ()=>async(dispatch)=>{
 const getSingleProduct = (productInfo,userInfo)=>async(dispatch)=>{
     try {
         dispatch(productGetSingleRequest());
-        const {id}=productInfo;
+        const {p_id}=productInfo;
         const {token}=userInfo;
         const res = await fetch(`${URL}/product/getsingle/${productInfo}`,{
             method:"GET",
@@ -83,7 +83,7 @@ const deleteProduct = (productInfo)=>async(dispatch)=>{
         dispatch(productDeleteRequest());
         const {id} = productInfo;
         const res = await fetch(`${URL}/product/remove/${id}`,{
-            method:"POST",
+            method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
             }
@@ -105,27 +105,15 @@ const updateProduct = (credential,productInfo)=>async(dispatch)=>{
     try {
         dispatch(productEditRequest());
         const {id} = productInfo;
-        const formData = new FormData();
-        formData.append("name", credential.name);
-        formData.append("description1", credential.description1);
-        formData.append("description2", credential.description2);
-        formData.append("description3", credential.description3);
-        formData.append("price", credential.price); // Include price
-        formData.append("Instock", credential.Instock); // Include Instock
-
-        // Append images if provided
-        if (credential.images) {
-            credential.images.forEach(image => {
-                formData.append("images", image); // Assuming 'images' is an array of files
-            });
-        }
+       
+       
         
-        const res = await fetch(`${URL}/product/edit/${id}`,{
+        const res = await fetch(`${URL}/product/edit/${productInfo}`,{
             method:"PUT",
-            body:formData,
-            headers:{
-                "Content-Type":"application/json"
-            }
+            body:credential,
+            // headers:{
+            //     "Content-Type":"application/json"
+            // }
         })
         const data = await res.json();
         console.log(data);
