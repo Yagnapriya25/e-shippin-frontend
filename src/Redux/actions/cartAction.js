@@ -78,9 +78,9 @@ const getCart = (userInfo)=>async(dispatch)=>{
         dispatch(getAllCartRequest());
         const res = await fetch(`${URL}/cart/get/${userInfo}`,{
             method:"GET",
-            headers:{
-                "Content-Type":"application/json"
-            }
+            // headers:{
+            //     "Content-Type":"application/json"
+            // }
         })
         const data = await res.json();
         console.log(data);
