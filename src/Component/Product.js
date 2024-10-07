@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Base from "../Base/Base";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getSingleProduct } from "../Redux/actions/productAction";
 import p_img from '../Images/realme-narzo-30-pro-5g (1).jpg'
+import { postCart } from "../Redux/actions/cartAction";
 
 export default function Product() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const { singleProduct, error } = useSelector((state) => state.product);
   const  { id,token }= useParams();
-  
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null);
 
   
@@ -47,7 +48,18 @@ export default function Product() {
   if (!singleProduct) {
     return <div>No product found.</div>; // Handle case where product is not found
   }
-
+const userInfo = sessionStorage.getItem("id");
+  const handleCart = (p_id)=>{
+    if(loading) return;
+    dispatch(postCart(userInfo,p_id)).then(()=>{
+      setLoading(true);
+      setTimeout(()=>{
+      navigate(`/cart/${token}`)
+      },1000)
+    }).catch(()=>{
+      console.log(error);
+    })
+  }
   
   return (
     <div className="h-screen w-screen">
@@ -121,7 +133,7 @@ export default function Product() {
               <button className="bg-blue-500 text-white px-4 md:px-2 lg:px-4 xl:px-4 py-2 rounded text-sm lg:text-lg xl:text-lg">
                 <i className="bx bx-shopping-bag"></i> BUY NOW
               </button>
-              <button className="bg-green-500 text-white px-4 md:px-2 lg:px-4 xl:px-4 py-2 rounded text-sm lg:text-lg xl:text-lg">
+              <button className="bg-green-500 text-white px-4 md:px-2 lg:px-4 xl:px-4 py-2 rounded text-sm lg:text-lg xl:text-lg" onClick={()=>handleCart(singleProduct.product._id)}>
                 <i className="bx bx-cart"></i> ADD TO CART
               </button>
             </div>

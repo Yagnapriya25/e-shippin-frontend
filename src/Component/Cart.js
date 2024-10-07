@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Base from "../Base/Base";
 import p_img from "../Images/realme-narzo-30-pro-5g (1).jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getCart } from "../Redux/actions/cartAction";
 
 export default function Cart() {
+  const [loading,setLoading]=useState(false);
+  const dispatch = useDispatch();
+  // const {cartInfo,error}=useSelector((state)=>state.cart);
+  const navigate = useNavigate();
+
+  const userInfo = sessionStorage.getItem("id");
+
+  useEffect(()=>{
+    const fetchCart = async()=>{
+      if(loading) return;
+      dispatch(getCart(userInfo)).then(()=>{
+        setLoading(true);
+        console.log("Data getting");
+      }).catch(()=>{
+        console.log("error");
+      })
+    }
+    fetchCart()
+  },[dispatch])
+
   return (
     <div className="h-screen w-screen bg-slate-200">
       <Base>
