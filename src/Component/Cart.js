@@ -10,6 +10,8 @@ export default function Cart() {
   const dispatch = useDispatch();
   const { cartInfo } = useSelector((state) => state.cart);
   const navigate = useNavigate();
+  
+  const token = sessionStorage.getItem("token");
 
   const userInfo = sessionStorage.getItem("id");
 
@@ -103,6 +105,9 @@ export default function Cart() {
       setLoadingCart(false);
     }
   }
+  const handleEditAddress = ()=>{
+    navigate(`/address_edit/${token}`)
+  }
   return (
     <div className="h-screen w-screen bg-slate-200">
       <Base>
@@ -124,7 +129,7 @@ export default function Cart() {
                   <p>Phone Number</p>
                 </div>
                 <div className="flex justify-center items-center">
-                  <button className="bg-blue-500 lg:p-1 w-12 lg:w-16 text-white text-[12px] text-md lg:text-lg shadow-lg shadow-[#000000]">EDIT</button>
+                  <button className="bg-blue-500 lg:p-1 w-12 lg:w-16 text-white text-[12px] text-md lg:text-lg shadow-lg shadow-[#000000]" onClick={handleEditAddress}>EDIT</button>
                 </div>
               </div>
               {items.length > 0 ? (
