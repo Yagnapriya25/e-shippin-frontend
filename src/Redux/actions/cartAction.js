@@ -1,4 +1,4 @@
-import { cartDecreaseFail, cartDecreaseRequest, cartDecreaseSuccess, cartPostFail, cartPostRequest, cartPostSuccess, cartRemoveFail, cartRemoveRequest, cartRemoveSuccess, getAllCartFail, getAllCartRequest, getAllCartSuccess } from "../slices/cartSlice"
+import { cartDecreaseFail, cartDecreaseRequest, cartDecreaseSuccess, cartIncreaseFail, cartIncreaseRequest, cartIncreaseSuccess, cartPostFail, cartPostRequest, cartPostSuccess, cartRemoveAllFail, cartRemoveAllRequest, cartRemoveAllSuccess, cartRemoveFail, cartRemoveRequest, cartRemoveSuccess, getAllCartFail, getAllCartRequest, getAllCartSuccess } from "../slices/cartSlice"
 
 
 
@@ -50,6 +50,52 @@ const decreaseCart = (userInfo,productInfo)=>async(dispatch)=>{
   
     }
 }
+// const increaseCart = (userInfo,productInfo)=>async(dispatch)=>{
+//     try {
+//         dispatch(cartIncreaseRequest());
+//         const res = await fetch(`${URL}/cart/increase/${userInfo}/${productInfo}`,{
+//             method:"PUT",
+//             headers:{
+//                 "Content-Type":"application/json"
+//             }
+//         })
+//         const data = await res.json();
+//         console.log(data);
+//         if(res.ok){
+//             dispatch(cartIncreaseSuccess(data));
+//         }
+//         else{
+//             dispatch(cartIncreaseFail(data.message))
+//         }
+//     } catch (error) {
+//         dispatch(cartIncreaseFail(error.message))
+  
+//     }
+// }
+const increaseCart = (userInfo, productInfo) => async (dispatch) => {
+    try {
+        dispatch(cartIncreaseRequest());
+        const res = await fetch(`${URL}/cart/increase/${userInfo}/${productInfo}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        
+        console.log("API URL:", `${URL}/cart/increase/${userInfo}/${productInfo}`);
+        console.log("Response status:", res.status);
+        
+        const data = await res.json();
+        if (res.ok) {
+            dispatch(cartIncreaseSuccess(data));
+        } else {
+            dispatch(cartIncreaseFail(data.message));
+        }
+    } catch (error) {
+        dispatch(cartIncreaseFail(error.message));
+    }
+};
+
 
 const cartRemove = (userInfo,productInfo)=>async(dispatch)=>{
     try {
@@ -96,9 +142,34 @@ const getCart = (userInfo)=>async(dispatch)=>{
     }
 }
 
+const emptyCart = (userInfo)=>async(dispatch)=>{
+    try {
+        dispatch(cartRemoveAllRequest());
+        const res = await fetch(`${URL}/cart/removeAll/${userInfo}`,{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        const data = await res.json();
+        console.log(data);
+        if(res.ok){
+            dispatch(cartRemoveAllSuccess(data));
+        }
+        else{
+            dispatch(cartRemoveAllFail(data.message))
+        }
+    } catch (error) {
+        dispatch(cartRemoveAllFail(error.message))
+
+    }
+}
+
 export {
     postCart,
     decreaseCart,
     cartRemove,
-    getCart
+    getCart,
+    increaseCart,
+    emptyCart
 }

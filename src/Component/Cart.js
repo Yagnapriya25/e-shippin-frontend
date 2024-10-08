@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Base from "../Base/Base";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCart } from "../Redux/actions/cartAction";
+import { cartRemove, decreaseCart, emptyCart, getCart, increaseCart } from "../Redux/actions/cartAction";
 
 export default function Cart() {
-  const [loading, setLoading] = useState(false);
+  const [loadingCart, setLoadingCart] = useState(false);
+  const [loadingUpdate, setLoadingUpdate] = useState(false);
   const dispatch = useDispatch();
   const { cartInfo } = useSelector((state) => state.cart);
   const navigate = useNavigate();
@@ -14,32 +15,94 @@ export default function Cart() {
 
   useEffect(() => {
     const fetchCart = async () => {
-      if (!loading) {
-        try {
-          await dispatch(getCart(userInfo));
-          setLoading(true);
-        } catch (error) {
-          console.log("Error fetching cart:", error);
-        }
+      setLoadingCart(true);
+      try {
+        await dispatch(getCart(userInfo));
+      } catch (error) {
+        console.log("Error fetching cart:", error);
+      } finally {
+        setLoadingCart(false);
       }
     };
-    fetchCart();
-  }, [dispatch, loading, userInfo]);
 
-  // Ensure cartInfo and its properties are defined before using them
+    fetchCart();
+  }, [dispatch, userInfo]);
+
   const items = cartInfo?.cart?.items || [];
   const totalPrice = cartInfo?.totalPrice?.totalPrice || 0;
   const productDetails = cartInfo?.totalPrice?.productDetails || [];
 
   const formatPrice = (amount) => {
     return new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: 'INR',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
     }).format(amount);
-};
+  };
 
+  const handleQuantityIncrease = async (productId) => {
+    if (loadingUpdate) return; // Prevent further clicks while updating
+    setLoadingUpdate(true); // Set loading state for the operation
+    console.log("Button clicked:", productId);
+  
+    try {
+      await dispatch(increaseCart(userInfo, productId));
+      console.log("Data updated");
+      // Refetch the cart to get the latest data
+      await dispatch(getCart(userInfo)); // Refetch the cart
+    } catch (error) {
+      console.error("Error occurred:", error);
+    } finally {
+      setLoadingUpdate(false); // Reset loading state after operation
+    }
+  };
+
+  const handleQuantityDecrease = async(productId)=>{
+    if (loadingUpdate) return; // Prevent further clicks while updating
+    setLoadingUpdate(true); // Set loading state for the operation
+    console.log("Button clicked:", productId);
+  
+    try {
+      await dispatch(decreaseCart(userInfo, productId));
+      console.log("Data updated");
+      // Refetch the cart to get the latest data
+      await dispatch(getCart(userInfo)); // Refetch the cart
+    } catch (error) {
+      console.error("Error occurred:", error);
+    } finally {
+      setLoadingUpdate(false); // Reset loading state after operation
+    }
+  }
+   
+  const handleRemoveProduct = async(productId)=>{
+    if (loadingUpdate) return; // Prevent further clicks while updating
+    setLoadingUpdate(true); // Set loading state for the operation
+    console.log("Button clicked:", productId);
+  
+    try {
+      await dispatch(cartRemove(userInfo, productId));
+      console.log("Data updated");
+      // Refetch the cart to get the latest data
+      await dispatch(getCart(userInfo)); // Refetch the cart
+    } catch (error) {
+      console.error("Error occurred:", error);
+    } finally {
+      setLoadingUpdate(false); // Reset loading state after operation
+    }
+  }
+
+  const handleRemoveCart = async()=>{
+    if(loadingCart) return;
+    setLoadingCart(true);
+    try {
+      await dispatch(emptyCart(userInfo));
+    } catch (error) {
+      console.log("Error fetching cart:", error);
+    } finally {
+      setLoadingCart(false);
+    }
+  }
   return (
     <div className="h-screen w-screen bg-slate-200">
       <Base>
@@ -48,7 +111,7 @@ export default function Cart() {
             <h2 className="font-['Kings'] text-sm lg:text-3xl md:text-xl">CART</h2>
             <div className="flex justify-between font-['Kings']">
               <h3 className="text-sm md:text-md lg:text-lg">Product: {items.length}</h3>
-              <h3 className="text-[#C73838] cursor-pointer text-sm md:text-md lg:text-lg">EMPTY CART</h3>
+              <h3 className="text-[#C73838] cursor-pointer text-sm md:text-md lg:text-lg" onClick={handleRemoveCart}>EMPTY CART</h3>
             </div>
             <div className="overflow-y-scroll h-[calc(87vh-10rem)] hide-scrollbar">
               <div className="bg-white h-32 md:h-36 md:mt-6 lg:h-44 xl:h-48 lg:mt-10 p-5 flex justify-around">
@@ -70,20 +133,16 @@ export default function Cart() {
                   return (
                     <div className="bg-white h-20 md:h-28 mt-2 p-5 flex justify-between" key={p._id}>
                       <div className="h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20">
-                        <img 
-                          src={p.product?.images?.[0]?.image || ''} 
-                          alt="product" 
-                          className="h-full" 
-                        />
+                        <img src={p.product?.images?.[0]?.image || ''} alt="product" className="h-full" />
                       </div>
                       <div className="text-[12px] md:text-[14px] lg:text-lg">
                         <h3>{p.product?.name || 'Unknown Product'}</h3>
                         <h4 className="text-[#C73838]">{p.product?.category?.name || 'No Category'}</h4>
                       </div>
                       <div className="flex gap-0 md:gap-1 lg:gap-2">
-                        <i className="bx bx-plus cursor-pointer text-[12px] lg:text-lg"></i>
-                        <p className="text-[12px] lg:text-lg">{p.quantity}</p>
-                        <i className="bx bx-minus cursor-pointer text-[12px] lg:text-lg"></i>
+                          <i className="bx bx-plus text-[12px] lg:text-lg cursor-pointer" onClick={() => handleQuantityIncrease(p.product?._id)}></i>
+                       <p className="text-[12px] lg:text-lg">{p.quantity}</p>
+                        <i className="bx bx-minus cursor-pointer text-[12px] lg:text-lg" onClick={() => handleQuantityDecrease(p.product?._id)}></i>
                       </div>
                       <div className="flex flex-col justify-between text-[12px] md:text-[16px] lg:text-lg">
                         {productDetail ? (
@@ -91,7 +150,7 @@ export default function Cart() {
                         ) : (
                           <h3>Price not available</h3>
                         )}
-                        <i className="bx bxs-trash-alt text-center cursor-pointer text-red-500"></i>
+                        <i className="bx bxs-trash-alt text-center cursor-pointer text-red-500" onClick={()=>handleRemoveProduct(p.product?._id)}></i>
                       </div>
                     </div>
                   );
