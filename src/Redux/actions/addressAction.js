@@ -15,14 +15,12 @@ const postAddress = (credential,userInfo) => async(dispatch)=>{
         formData.append("city",credential.city);
         formData.append("state",credential.state);
         formData.append("country",credential.country);
-        formData.append("postalCode",credential.postalCode);
+        formData.append("pincode",credential.pincode);
         formData.append("phoneNumber",credential.phoneNumber);
         const res = await fetch(`${URL}/address/create/${userInfo}`,{
             method:"POST",
             body:formData,
-            headers:{
-                "Content-Type":"application/json"
-            }
+           
         })
         const data = await res.json();
         console.log(data);
@@ -44,9 +42,9 @@ const getAddress = (userInfo)=>async(dispatch)=>{
         dispatch(addressGetRequest());
         const res = await fetch(`${URL}/get/${userInfo}`,{
             method:"GET",
-            headers:{
-                "Content-Type":"application/json"
-            }
+            // headers:{
+            //     "Content-Type":"application/json"
+            // }
         })
         const data = await res.json();
         console.log(data);
@@ -69,7 +67,8 @@ const editAddress = (credential,userInfo)=>async(dispatch)=>{
         formData.append("city",credential.city);
         formData.append("state",credential.state);
         formData.append("country",credential.country);
-        formData.append("postalCode",credential.postalCode);
+        formData.append("pincode",credential.pincode);
+        formData.append("landmark",credential.landmark);
         formData.append("phoneNumber",credential.phoneNumber);
         const res = await fetch(`${URL}/address/edit/${userInfo}`,{
             method:"PUT",
