@@ -20,6 +20,7 @@ import CategoryProduct from "./Component/CategoryProduct";
 import UserProducts from "./Component/UserProducts";
 import UserProductView from "./Component/UserProductView";
 import EditProduct from "./Component/EditProduct";
+import AddAddress from "./Component/AddAddress";
 
 function App() {
   return (
@@ -62,6 +63,8 @@ function App() {
         <Route path="/userProductView/:p_id/:token" element={<UserProductView/>}/>
 
         <Route path="/editProduct/:p_id/:token" element={<EditProduct/>}/>
+
+        <Route path="/addAddress/:token" element={<AddAddress/>}/>
 
         
       </Routes>

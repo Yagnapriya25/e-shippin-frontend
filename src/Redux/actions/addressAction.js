@@ -15,11 +15,15 @@ const postAddress = (credential,userInfo) => async(dispatch)=>{
         formData.append("city",credential.city);
         formData.append("state",credential.state);
         formData.append("country",credential.country);
+        formData.append("landmark",credential.landmark);
         formData.append("pincode",credential.pincode);
         formData.append("phoneNumber",credential.phoneNumber);
+        formData.append("user", userInfo);
+        
         const res = await fetch(`${URL}/address/create/${userInfo}`,{
             method:"POST",
             body:formData,
+           
            
         })
         const data = await res.json();
@@ -40,7 +44,7 @@ const postAddress = (credential,userInfo) => async(dispatch)=>{
 const getAddress = (userInfo)=>async(dispatch)=>{
     try {
         dispatch(addressGetRequest());
-        const res = await fetch(`${URL}/get/${userInfo}`,{
+        const res = await fetch(`${URL}/address/get/${userInfo}`,{
             method:"GET",
             // headers:{
             //     "Content-Type":"application/json"

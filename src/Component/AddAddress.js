@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { editAddress, postAddress } from "../Redux/actions/addressAction";
 
-export default function AddressEdit() {
+export default function AddAddress() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { addressInfo, error } = useSelector((state) => state.address);
@@ -34,7 +34,7 @@ export default function AddressEdit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loading) return;
-    dispatch(editAddress(credential, userInfo))
+    dispatch(postAddress(credential, userInfo))
       .then(() => {
         setLoading(true);
         setTimeout(()=>{
@@ -86,7 +86,23 @@ export default function AddressEdit() {
                   value={credential.district}
                 />
                 <input
-                  type="number"
+                  type="text"
+                  placeholder="State"
+                  className="w-5/6 md:w-4/6 lg:w-3/6 xl:w-3/6 h-10 pl-5 bg-[#E7EAF4] placeholder:text-black outline-none"
+                  name="state"
+                  onChange={handleChange}
+                  value={credential.state}
+                />
+                <input
+                  type="text"
+                  placeholder="Country"
+                  className="w-5/6 md:w-4/6 lg:w-3/6 xl:w-3/6 h-10 pl-5 bg-[#E7EAF4] placeholder:text-black outline-none"
+                  name="country"
+                  onChange={handleChange}
+                  value={credential.country}
+                />
+                <input
+                  type="text"
                   placeholder="Pincode"
                   className="w-5/6 md:w-4/6 lg:w-3/6 xl:w-3/6 h-10 pl-5 bg-[#E7EAF4] placeholder:text-black outline-none"
                   name="pincode"
@@ -102,7 +118,7 @@ export default function AddressEdit() {
                   value={credential.phoneNumber}
                 />
                 <button className="bg-purple-500 p-1 w-20 rounded-2xl text-white" type="submit">
-                  Update
+                  Add
                 </button>
               </div>
             </form>

@@ -66,7 +66,7 @@ export default function Signup() {
       .finally(() => {
         setLoading(false); // Set loading back to false after the dispatch
         setTimeout(()=>{
-          navigate(`/home/${token}`)
+          navigate(`/`)
         },2000)
       });
   };
