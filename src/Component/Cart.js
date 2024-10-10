@@ -162,14 +162,14 @@ export default function Cart() {
                   </div>
                 ) : (
                   <div className="bg-white h-32 md:h-36 md:mt-6 lg:h-44 xl:h-48 lg:mt-10 p-5 flex justify-around">
-                    <div className="text-[12px] md:text-md lg:text-[16px]">
-                      <p>{addressInfo.address.name}</p>
-                      <p>{addressInfo.address.city}</p>
-                      <p>{addressInfo.address.district}</p>
-                      <p>{addressInfo.address.landmark}</p>
-                      <p>{addressInfo.address.pincode}</p>
-                      <p>{addressInfo.address.phoneNumber}</p>
-                    </div>
+                  <div className="text-[12px] md:text-md lg:text-[16px]">
+                  <p>{addressInfo.address && addressInfo.address.name ? addressInfo.address.name : "john doe"}</p>
+                  <p>{addressInfo.address && addressInfo.address.city ? addressInfo.address.city : "Delhi"}</p>
+                  <p>{addressInfo.address && addressInfo.address.district ? addressInfo.address.district : "Delhi"}</p>
+                  <p>{addressInfo.address && addressInfo.address.landmark ? addressInfo.address.landmark : "Near Taj Mahal"}</p>
+                  <p>{addressInfo.address && addressInfo.address.pincode ? addressInfo.address.pincode : "283007"}</p>
+                  <p>{addressInfo.address && addressInfo.address.phoneNumber ? addressInfo.address.phoneNumber : "9876543210"}</p>
+                </div>
 
                     <div className="flex justify-center items-center">
                       <button

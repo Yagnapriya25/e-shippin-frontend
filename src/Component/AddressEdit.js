@@ -38,7 +38,7 @@ export default function AddressEdit() {
       .then(() => {
         setLoading(true);
         setTimeout(()=>{
-          // navigate(`/cart/${token}`)
+          navigate(`/cart/${token}`)
         })
       })
       .catch(() => {

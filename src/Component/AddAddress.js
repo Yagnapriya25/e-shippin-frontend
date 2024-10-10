@@ -30,21 +30,29 @@ export default function AddAddress() {
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loading) return;
+
+    // Basic validation
+    if (!credential.name || !credential.city || !credential.district) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    setLoading(true);
     dispatch(postAddress(credential, userInfo))
-      .then(() => {
-        setLoading(true);
-        setTimeout(()=>{
-          // navigate(`/cart/${token}`)
+        .then(() => {
+            setTimeout(()=>{
+              navigate(`/cart/${token}`)
+            })
         })
-      })
-      .catch(() => {
-        console.log("error");
-      });
-  };
+        .catch((error) => {
+            console.error("Error:", error);
+        })
+        .finally(() => setLoading(false)); // Reset loading state here
+};
+
 
   return (
     <div className="h-screen w-screen bg-[#E7EAF4]">

@@ -77,9 +77,7 @@ const editAddress = (credential,userInfo)=>async(dispatch)=>{
         const res = await fetch(`${URL}/address/edit/${userInfo}`,{
             method:"PUT",
             body:formData,
-            headers:{
-                "Content-Type":"application/json"
-            }
+            
         })
         const data = await res.json();
         console.log(data);
