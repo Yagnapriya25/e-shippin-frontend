@@ -10,6 +10,7 @@ import {
   increaseCart,
 } from "../Redux/actions/cartAction";
 import { getAddress } from "../Redux/actions/addressAction";
+import Loading from "./Loading";
 
 export default function Cart() {
   const [loadingCart, setLoadingCart] = useState(false);
@@ -136,143 +137,146 @@ export default function Cart() {
   return (
     <div className="h-screen w-screen bg-slate-200">
       <Base>
-        <div className="grid grid-cols-1 md:grid-cols-2 mx-2 my-2 md:mx-8 md:my-8 lg:mx-11 lg:my-11">
-          <div>
-            <h2 className="font-['Kings'] text-sm lg:text-3xl md:text-xl">
-              CART
-            </h2>
-            <div className="flex justify-between font-['Kings']">
-              <h3 className="text-sm md:text-md lg:text-lg">
-                Product: {items.length}
-              </h3>
-              <h3
-                className="text-[#C73838] cursor-pointer text-sm md:text-md lg:text-lg"
-                onClick={handleRemoveCart}
-              >
-                EMPTY CART
-              </h3>
-            </div>
-            <div className="overflow-y-scroll h-[calc(87vh-10rem)] hide-scrollbar">
-              <div>
-                {!addressInfo ? (
-                  <div className="bg-white h-14 md:h-14 md:mt-16 lg:h-18 xl:h-20 lg:mt-10 p-5 flex justify-around">
-                    <button className="md:bg-blue-500 w-28  p-0 text-small h-5 lg:bg-blue-500 xl:bg-blue-500 bg-blue-500 xl:w-32 lg:w-28 lg:h-8 lg:p-0 w-16 lg:w-20 text-white text-[16px] md:text-md lg:text-lg shadow-lg shadow-[#000000]" onClick={handleAddAddress}>
-                      Add Address
-                    </button>{" "}
-                  </div>
-                ) : (
-                  <div className="bg-white h-32 md:h-36 md:mt-6 lg:h-44 xl:h-48 lg:mt-10 p-5 flex justify-around">
-                  <div className="text-[12px] md:text-md lg:text-[16px]">
-                  <p>{addressInfo.address && addressInfo.address.name ? addressInfo.address.name : "john doe"}</p>
-                  <p>{addressInfo.address && addressInfo.address.city ? addressInfo.address.city : "Delhi"}</p>
-                  <p>{addressInfo.address && addressInfo.address.district ? addressInfo.address.district : "Delhi"}</p>
-                  <p>{addressInfo.address && addressInfo.address.landmark ? addressInfo.address.landmark : "Near Taj Mahal"}</p>
-                  <p>{addressInfo.address && addressInfo.address.pincode ? addressInfo.address.pincode : "283007"}</p>
-                  <p>{addressInfo.address && addressInfo.address.phoneNumber ? addressInfo.address.phoneNumber : "9876543210"}</p>
+      {
+        loadingCart ? <div><Loading/></div> : <div className="grid grid-cols-1 md:grid-cols-2 mx-2 my-2 md:mx-8 md:my-8 lg:mx-11 lg:my-11">
+        <div>
+          <h2 className="font-['Kings'] text-sm lg:text-3xl md:text-xl">
+            CART
+          </h2>
+          <div className="flex justify-between font-['Kings']">
+            <h3 className="text-sm md:text-md lg:text-lg">
+              Product: {items.length}
+            </h3>
+            <h3
+              className="text-[#C73838] cursor-pointer text-sm md:text-md lg:text-lg"
+              onClick={handleRemoveCart}
+            >
+              EMPTY CART
+            </h3>
+          </div>
+          <div className="overflow-y-scroll h-[calc(87vh-10rem)] hide-scrollbar">
+            <div>
+              {!addressInfo ? (
+                <div className="bg-white h-14 md:h-14 md:mt-16 lg:h-18 xl:h-20 lg:mt-10 p-5 flex justify-around">
+                  <button className="md:bg-blue-500 w-28  p-0 text-small h-5 lg:bg-blue-500 xl:bg-blue-500 bg-blue-500 xl:w-32 lg:w-28 lg:h-8 lg:p-0 w-16 lg:w-20 text-white text-[16px] md:text-md lg:text-lg shadow-lg shadow-[#000000]" onClick={handleAddAddress}>
+                    Add Address
+                  </button>{" "}
                 </div>
-
-                    <div className="flex justify-center items-center">
-                      <button
-                        className="bg-blue-500 lg:p-1 w-12 lg:w-16 text-white text-[12px] text-md lg:text-lg shadow-lg shadow-[#000000]"
-                        onClick={handleEditAddress}
-                      >
-                        EDIT
-                      </button>
-                    </div>
-                  </div>
-                )}
+              ) : (
+                <div className="bg-white h-32 md:h-36 md:mt-6 lg:h-44 xl:h-48 lg:mt-10 p-5 flex justify-around">
+                <div className="text-[12px] md:text-md lg:text-[16px]">
+                <p>{addressInfo.address && addressInfo.address.name ? addressInfo.address.name : "john doe"}</p>
+                <p>{addressInfo.address && addressInfo.address.city ? addressInfo.address.city : "Delhi"}</p>
+                <p>{addressInfo.address && addressInfo.address.district ? addressInfo.address.district : "Delhi"}</p>
+                <p>{addressInfo.address && addressInfo.address.landmark ? addressInfo.address.landmark : "Near Taj Mahal"}</p>
+                <p>{addressInfo.address && addressInfo.address.pincode ? addressInfo.address.pincode : "283007"}</p>
+                <p>{addressInfo.address && addressInfo.address.phoneNumber ? addressInfo.address.phoneNumber : "9876543210"}</p>
               </div>
-              {items.length > 0 ? (
-                items.map((p) => {
-                  const productDetail = productDetails.find(
-                    (detail) => detail.productId === p.product?._id
-                  );
-                  return (
-                    <div
-                      className="bg-white h-20 md:h-28 mt-2 p-5 flex justify-between"
-                      key={p._id}
+
+                  <div className="flex justify-center items-center">
+                    <button
+                      className="bg-blue-500 lg:p-1 w-12 lg:w-16 text-white text-[12px] text-md lg:text-lg shadow-lg shadow-[#000000]"
+                      onClick={handleEditAddress}
                     >
-                      <div className="h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20">
-                        <img
-                          src={p.product?.images?.[0]?.image || ""}
-                          alt="product"
-                          className="h-full"
-                        />
-                      </div>
-                      <div className="text-[12px] md:text-[14px] lg:text-lg">
-                        <h3>{p.product?.name || "Unknown Product"}</h3>
-                        <h4 className="text-[#C73838]">
-                          {p.product?.category?.name || "No Category"}
-                        </h4>
-                      </div>
-                      <div className="flex gap-0 md:gap-1 lg:gap-2">
-                        <i
-                          className="bx bx-plus text-[12px] lg:text-lg cursor-pointer"
-                          onClick={() => handleQuantityIncrease(p.product?._id)}
-                        ></i>
-                        <p className="text-[12px] lg:text-lg">{p.quantity}</p>
-                        <i
-                          className="bx bx-minus cursor-pointer text-[12px] lg:text-lg"
-                          onClick={() => handleQuantityDecrease(p.product?._id)}
-                        ></i>
-                      </div>
-                      <div className="flex flex-col justify-between text-[12px] md:text-[16px] lg:text-lg">
-                        {productDetail ? (
-                          <h3>{formatPrice(productDetail.totalItemPrice)}</h3>
-                        ) : (
-                          <h3>Price not available</h3>
-                        )}
-                        <i
-                          className="bx bxs-trash-alt text-center cursor-pointer text-red-500"
-                          onClick={() => handleRemoveProduct(p.product?._id)}
-                        ></i>
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="text-center text-gray-500">
-                  Your cart is empty
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="block md:hidden flex justify-around my-3">
-            <h4 className="">{formatPrice(totalPrice)}</h4>
-            <button className="bg-red-500 px-2 text-white">PLACE ORDER</button>
-          </div>
-          <div className="hidden md:block bg-white md:h-80 lg:h-96 w-5/6 md:mx-10 md:my-14 lg:mx-20 lg:my-10 md:px-10 md:pt-5 lg:px-20 lg:pt-10 overflow-hidden">
-            <div className="overflow-y-scroll md:h-40 lg:h-36 hide-scrollbar">
-              {productDetails.length > 0 ? (
-                productDetails.map((detail, index) => (
-                  <div
-                    className="flex justify-between text-[15px] lg:text-[16px]"
-                    key={index}
-                  >
-                    <h3>{detail.productName || "Product Name"}</h3>
-                    <h2>{formatPrice(detail.totalItemPrice)}</h2>
+                      EDIT
+                    </button>
                   </div>
-                ))
-              ) : (
-                <div className="text-center text-gray-500">
-                  No product details available
                 </div>
               )}
             </div>
-
-            <hr className="border-black" />
-            <div className="flex justify-between pt-8 lg:pt-10">
-              <h2>Total</h2>
-              <h1>{formatPrice(totalPrice)}</h1>
-            </div>
-            <div className="text-center my-2">
-              <button className="bg-blue-500 w-24 text-[12px] lg:text-[16px] lg:w-44 text-white shadow-lg shadow-[#000000] p-2">
-                BUY NOW
-              </button>
-            </div>
+            {items.length > 0 ? (
+              items.map((p) => {
+                const productDetail = productDetails.find(
+                  (detail) => detail.productId === p.product?._id
+                );
+                return (
+                  <div
+                    className="bg-white h-20 md:h-28 mt-2 p-5 flex justify-between"
+                    key={p._id}
+                  >
+                    <div className="h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20">
+                      <img
+                        src={p.product?.images?.[0]?.image || ""}
+                        alt="product"
+                        className="h-full"
+                      />
+                    </div>
+                    <div className="text-[12px] md:text-[14px] lg:text-lg">
+                      <h3>{p.product?.name || "Unknown Product"}</h3>
+                      <h4 className="text-[#C73838]">
+                        {p.product?.category?.name || "No Category"}
+                      </h4>
+                    </div>
+                    <div className="flex gap-0 md:gap-1 lg:gap-2">
+                      <i
+                        className="bx bx-plus text-[12px] lg:text-lg cursor-pointer"
+                        onClick={() => handleQuantityIncrease(p.product?._id)}
+                      ></i>
+                      <p className="text-[12px] lg:text-lg">{p.quantity}</p>
+                      <i
+                        className="bx bx-minus cursor-pointer text-[12px] lg:text-lg"
+                        onClick={() => handleQuantityDecrease(p.product?._id)}
+                      ></i>
+                    </div>
+                    <div className="flex flex-col justify-between text-[12px] md:text-[16px] lg:text-lg">
+                      {productDetail ? (
+                        <h3>{formatPrice(productDetail.totalItemPrice)}</h3>
+                      ) : (
+                        <h3>Price not available</h3>
+                      )}
+                      <i
+                        className="bx bxs-trash-alt text-center cursor-pointer text-red-500"
+                        onClick={() => handleRemoveProduct(p.product?._id)}
+                      ></i>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="text-center text-gray-500">
+                Your cart is empty
+              </div>
+            )}
           </div>
         </div>
+
+        <div className="block md:hidden flex justify-around my-3">
+          <h4 className="">{formatPrice(totalPrice)}</h4>
+          <button className="bg-red-500 px-2 text-white">PLACE ORDER</button>
+        </div>
+        <div className="hidden md:block bg-white md:h-80 lg:h-96 w-5/6 md:mx-10 md:my-14 lg:mx-20 lg:my-10 md:px-10 md:pt-5 lg:px-20 lg:pt-10 overflow-hidden">
+          <div className="overflow-y-scroll md:h-40 lg:h-36 hide-scrollbar">
+            {productDetails.length > 0 ? (
+              productDetails.map((detail, index) => (
+                <div
+                  className="flex justify-between text-[15px] lg:text-[16px]"
+                  key={index}
+                >
+                  <h3>{detail.productName || "Product Name"}</h3>
+                  <h2>{formatPrice(detail.totalItemPrice)}</h2>
+                </div>
+              ))
+            ) : (
+              <div className="text-center text-gray-500">
+                No product details available
+              </div>
+            )}
+          </div>
+
+          <hr className="border-black" />
+          <div className="flex justify-between pt-8 lg:pt-10">
+            <h2>Total</h2>
+            <h1>{formatPrice(totalPrice)}</h1>
+          </div>
+          <div className="text-center my-2">
+            <button className="bg-blue-500 w-24 text-[12px] lg:text-[16px] lg:w-44 text-white shadow-lg shadow-[#000000] p-2">
+              BUY NOW
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+        
       </Base>
     </div>
   );

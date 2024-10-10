@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteProduct, getSingleProduct } from '../Redux/actions/productAction';
 import Base from '../Base/Base';
+import Loading from './Loading';
 
 export default function UserProductView() {
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export default function UserProductView() {
     };
   
     if (loading) {
-      return <div>Loading...</div>; // Show a loading indicator while fetching data
+      return <div><Loading/></div>; // Show a loading indicator while fetching data
     }
   
     // Ensure productInfo is available and has the expected structure

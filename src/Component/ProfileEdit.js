@@ -3,6 +3,7 @@ import Base from "../Base/Base";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "../Redux/actions/userAction";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function ProfileEdit() {
   const [loading,setLoading]=useState(false);
@@ -53,7 +54,8 @@ export default function ProfileEdit() {
     <div className="h-screen w-screen bg-[#E7EAF4] ">
       <Base>
         <div className="h-screen w-screen flex justify-center my-2 md:my-5 lg:my-10 xl:my-10 ">
-          <div className="border shadow-xl shadow-gray-500 border-black h-5/6 w-5/6 md:h-5/6 lg:h-4/6 xl:h-4/6 md:w-4/6 lg:w-4/6 xl:w-4/6 bg-white text-center py-20 lg:py-10 xl:py-10 md:py-20 md:rounded-tl-[100px] lg:rounded-tl-[100px] xl:rounded-tl-[70px] rounded-tl-[50px] md:rounded-br-[70px] lg:rounded-br-[70px] xl:rounded-br-[70px] rounded-br-[50px] overflow-y-scroll hide-scrollbar">
+        {
+          loading ? <div><Loading/></div> :  <div className="border shadow-xl shadow-gray-500 border-black h-5/6 w-5/6 md:h-5/6 lg:h-4/6 xl:h-4/6 md:w-4/6 lg:w-4/6 xl:w-4/6 bg-white text-center py-20 lg:py-10 xl:py-10 md:py-20 md:rounded-tl-[100px] lg:rounded-tl-[100px] xl:rounded-tl-[70px] rounded-tl-[50px] md:rounded-br-[70px] lg:rounded-br-[70px] xl:rounded-br-[70px] rounded-br-[50px] overflow-y-scroll hide-scrollbar">
           <form>
             <div className="flex gap-10 flex-col justify-center items-center">
               <input type="file" className="relative left-11 " name="avatar" onChange={handleChange} />
@@ -87,6 +89,8 @@ export default function ProfileEdit() {
             </div>
             </form>
           </div>
+        }
+         
           
         </div>
       </Base>

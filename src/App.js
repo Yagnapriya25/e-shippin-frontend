@@ -56,7 +56,7 @@ function App() {
 
         <Route path="/categoryProduct/:cat_id" element={<CategoryProduct />} />
 
-        <Route path="/buy/:id" element={<Buy />} />
+        <Route path="/buy/:p_id/:token" element={<Buy />} />
 
         <Route path="/userProduct/:token" element={<UserProducts/>}/>
 

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../Redux/actions/productAction";
 import p_img from "../Images/realme-narzo-30-pro-5g (1).jpg"; // Make sure this import is correct
+import Loading from "./Loading";
 
 export default function Home() {
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ export default function Home() {
             <Base>
                 <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
                     {loading ? (
-                        <div>Loading...</div>
+                        <div><Loading/></div>
                     ) : (
                         <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
                             {productInfo && productInfo.product && productInfo.product.length > 0 ? (

@@ -5,6 +5,7 @@ import { getSingleUserProduct } from '../Redux/actions/productAction';
 import p_img from '../Images/realme-narzo-30-pro-5g (1).jpg';
 import add from '../Images/add.png'
 import Base from '../Base/Base';
+import Loading from './Loading';
 
 export default function UserProducts() {
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ export default function UserProducts() {
             <Base>
                 <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
                     {loading ? (
-                        <div>Loading...</div>
+                        <div><Loading/></div>
                     ) : (
                         <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
                             {products && products.product && products.product.length > 0 ? (
