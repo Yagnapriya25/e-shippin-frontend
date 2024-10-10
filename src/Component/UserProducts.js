@@ -47,11 +47,12 @@ export default function UserProducts() {
     console.log(products);
   return (
     <div className="overflow-hidden overflow-x-hidden">
+    {loading ? (
+        <div><Loading/></div>
+    ) :
             <Base>
                 <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
-                    {loading ? (
-                        <div><Loading/></div>
-                    ) : (
+                    (
                         <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
                             {products && products.product && products.product.length > 0 ? (
                                 products.product.map((product) => (
@@ -93,10 +94,11 @@ export default function UserProducts() {
                         </div>
                         </div>
                         
-                    )}
+                    )</div>
+                    </Base>
+                }
                    
-                </div>
-            </Base>
+                
         </div>
   )
 }

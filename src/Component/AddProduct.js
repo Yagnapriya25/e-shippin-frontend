@@ -74,9 +74,10 @@ export default function AddProduct() {
 
   return (
     <div className="h-screen w-screen bg-[#E7EAF4]">
+    {loading ? <div><Loading/></div> :
       <Base>
         <div className="h-[90%] md:h-[95%] flex justify-center">
-        {loading ? <div><Loading/></div> : <div className="pt-20 w-6/6 md:w-5/6 lg:w-4/6 xl:w-4/6 bg-white flex flex-col gap-6 justify-center items-center overflow-x-hidden overflow-y-auto hide-scrollbar">
+         <div className="pt-20 w-6/6 md:w-5/6 lg:w-4/6 xl:w-4/6 bg-white flex flex-col gap-6 justify-center items-center overflow-x-hidden overflow-y-auto hide-scrollbar">
           <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-6" encType="multipart/form-data">
             <input
               type="file"
@@ -141,10 +142,12 @@ export default function AddProduct() {
               {loading ? "Adding..." : "Add Product"}
             </button>
           </form>
-        </div>}
-          
+        </div>
         </div>
       </Base>
+      }
+          
+      
     </div>
   );
 }

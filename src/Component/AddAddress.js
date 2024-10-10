@@ -57,9 +57,10 @@ export default function AddAddress() {
 
   return (
     <div className="h-screen w-screen bg-[#E7EAF4]">
+    {loading ? <div><Loading/></div> :
       <Base>
         <div className="h-screen w-screen flex justify-center">
-        {loading ? <div><Loading/></div> : <div className="border shadow-xl shadow-gray-500 border-black h-4/6 w-5/6 md:h-[78%] lg:h-[78%] xl:h-[78%] md:w-4/6 lg:w-4/6 xl:w-4/6 bg-white text-center py-14 lg:py-20 xl:py-10 md:py-20 md:rounded-tl-[100px] lg:rounded-tl-[100px] xl:rounded-tl-[70px] rounded-tl-[50px] md:rounded-br-[70px] lg:rounded-br-[70px] xl:rounded-br-[70px] rounded-br-[50px] overflow-y-scroll hide-scrollbar">
+         <div className="border shadow-xl shadow-gray-500 border-black h-4/6 w-5/6 md:h-[78%] lg:h-[78%] xl:h-[78%] md:w-4/6 lg:w-4/6 xl:w-4/6 bg-white text-center py-14 lg:py-20 xl:py-10 md:py-20 md:rounded-tl-[100px] lg:rounded-tl-[100px] xl:rounded-tl-[70px] rounded-tl-[50px] md:rounded-br-[70px] lg:rounded-br-[70px] xl:rounded-br-[70px] rounded-br-[50px] overflow-y-scroll hide-scrollbar">
           <form onSubmit={handleSubmit}>
             <div className="flex gap-2 lg:gap-10 xl:gap-10 md:gap-5 flex-col justify-center items-center">
               <input
@@ -132,10 +133,11 @@ export default function AddAddress() {
             </div>
           </form>
         </div>
-        }
-          
         </div>
       </Base>
+        }
+          
+        
     </div>
   );
 }

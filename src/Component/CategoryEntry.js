@@ -29,7 +29,7 @@ const CategoryEntry = () => {
     };
 
     if (loading || categoryLoading) {
-        return <div>Loading...</div>;
+        return <div><Loading/></div>;
     }
 
     if (error) {
@@ -38,10 +38,11 @@ const CategoryEntry = () => {
 
     return (
         <div className="overflow-hidden">
+        {
+            loading ? <div><Loading/></div> : 
             <Base>
                 <div className="h-screen w-screen bg-white overflow-y-scroll hide-scrollbar">
-                {
-                    loading ? <div><Loading/></div> : <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 pb-32">
+                <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 pb-32">
                     {Array.isArray(categories) && categories.map((category) => (
                         <div 
                             key={category.id} 
@@ -55,10 +56,11 @@ const CategoryEntry = () => {
                         </div>
                     ))}
                 </div> 
-                }
-                    
                 </div>
             </Base>
+                }
+                    
+                
         </div>
     );
 };

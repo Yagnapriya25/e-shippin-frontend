@@ -42,11 +42,12 @@ export default function Home() {
     };
     return (
         <div className="overflow-hidden overflow-x-hidden">
+        {loading ? (
+            <div><Loading/></div>
+        ) : (
             <Base>
                 <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
-                    {loading ? (
-                        <div><Loading/></div>
-                    ) : (
+                    
                         <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
                             {productInfo && productInfo.product && productInfo.product.length > 0 ? (
                                 productInfo.product.map((product) => (
@@ -72,9 +73,10 @@ export default function Home() {
                                 <div>No products available</div>
                             )}
                         </div>
-                    )}
-                </div>
+                        </div>
             </Base>
+                    )}
+                
         </div>
     );
 }

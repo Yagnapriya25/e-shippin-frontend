@@ -66,9 +66,10 @@ const userInfo = sessionStorage.getItem("id");
   }
   return (
     <div className="h-screen w-screen">
+    {
+      loading ? <div><Loading/></div> : 
       <Base>
-      {
-        loading ? <div><Loading/></div> :  <div className="grid sm:grid-cols-12 h-full overflow-y-scroll hide-scrollbar pb-16 md:pb-10 lg:mb-6 xl:pb-6">
+   <div className="grid sm:grid-cols-12 h-full overflow-y-scroll hide-scrollbar pb-16 md:pb-10 lg:mb-6 xl:pb-6">
         
         <div className="hidden md:block xl:block lg:block col-span-2 flex flex-col">
           {singleProduct.product.images && singleProduct.product.images.length > 0 ? (
@@ -144,9 +145,10 @@ const userInfo = sessionStorage.getItem("id");
           </div>
         </div>
       </div>
+          </Base>
       }
        
-      </Base>
+  
     </div>
   );
 }

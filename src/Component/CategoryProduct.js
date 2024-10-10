@@ -31,7 +31,7 @@ export default function CategoryProduct() {
     };
 
     if (loading || categoryLoading) {
-        return <div>Loading...</div>;
+        return <div><Loading/></div>;
     }
 
     if (error) {
@@ -40,10 +40,11 @@ export default function CategoryProduct() {
 
     return (
         <div className="overflow-hidden overflow-x-hidden">
+        {
+            loading ? <div><Loading/></div> :
             <Base>
                 <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
-                {
-                    loading ? <div><Loading/></div> : <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
+                 <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
                     {categoryInfo.products.map((product) => (
                         <div
                             key={product.id} // Make sure to use a unique identifier
@@ -72,10 +73,11 @@ export default function CategoryProduct() {
                         </div>
                     ))}
                 </div>
-                }
-                    
                 </div>
             </Base>
+                }
+                    
+                
         </div>
     );
 }
