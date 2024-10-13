@@ -8,6 +8,8 @@ import { getAddress } from "../Redux/actions/addressAction";
 
 const URL = "http://localhost:7890/api";
 
+
+
 const loadRazorpayScript = () => {
     return new Promise((resolve, reject) => {
         const script = document.createElement('script');
@@ -34,6 +36,8 @@ export default function Buy() {
     const token = sessionStorage.getItem("token");
     const id = sessionStorage.getItem("id");
     const [selectedImage, setSelectedImage] = useState(null);
+
+    
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -108,7 +112,7 @@ export default function Buy() {
                 }
 
                 const options = {
-                    key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+                    key: "rzp_test_zVUZCNrVjLSv79",
                     amount: data.amount,
                     currency: data.currency,
                     name: "E-Shippin",
@@ -126,7 +130,7 @@ export default function Buy() {
                         color: "#F37254",
                     },
                 };
-
+                console.log(options.key);
                 const razorpay = new window.Razorpay(options);
                 razorpay.open();
             } else {
@@ -187,12 +191,12 @@ export default function Buy() {
                                     <p>No address found</p>
                                 )}
                             </div>
-                            <button className="bg-blue-500 text-white" onClick={handleAddressEdit}>
+                            <button className="bg-blue-500 text-white h-12 w-20 m-10 " onClick={handleAddressEdit}>
                                 EDIT
                             </button>
                         </div>
-
-                        <div className="bg-white shadow w-5/6 md:w-4/6 h-36 p-5 flex justify-between">
+                        <hr/>
+                        <div className="bg-white shadow w-5/6 md:w-4/6 h-36 p-5 flex justify-around">
                             <div className="mt-6 h-20 w-20">
                                 <img src={selectedImage} alt="product" className="h-full" />
                             </div>
@@ -204,7 +208,7 @@ export default function Buy() {
                             </div>
                         </div>
 
-                        <button className="bg-green-600 text-white p-2 flex gap-2 w-32" onClick={handleBuyNow}>
+                        <button className="bg-green-600 text-white p-2 m-5 flex gap-2 w-32" onClick={handleBuyNow}>
                             Buy Now <i className="bx bxs-truck pt-2"></i>
                         </button>
                     </div>
