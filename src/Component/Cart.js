@@ -445,7 +445,7 @@ export default function Cart() {
     }
 
     try {
-      const response = await fetch(`${URL}/order/payment/cart/${userInfo}`, {
+      const response = await fetch(`${URL}/order/purchase/${userInfo}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ items }),
@@ -456,7 +456,7 @@ export default function Cart() {
       if (response.ok) {
         const options = {
           key: "rzp_test_zVUZCNrVjLSv79",
-          amount: data.amount,
+          amount: data.order.amount,
           currency: data.currency,
           name: "E-Shippin",
           description: "Purchase Description",
