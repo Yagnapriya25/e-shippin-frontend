@@ -9,6 +9,7 @@ export default function Topbar() {
   const dispatch = useDispatch();
   const [loading,setLoading]=useState(false);
   const [userData,setUserData]=useState({});
+  const [keyword,setKeyword]=useState('');
 
   const {error,userInfo}=useSelector((state)=>state.user);
 
@@ -28,6 +29,10 @@ export default function Topbar() {
     fetchUserData();
   }, [dispatch]);
 
+  const handleSearch = ()=>{
+    navigate(`/search/${keyword}`)
+  }
+
   return (
     <div className="h-4/6 shadow-gray-700 sticky top-2.5 bg-white shadow ">
       <div className="flex justify-around">
@@ -39,8 +44,13 @@ export default function Topbar() {
             type="text"
             className="pl-5 w-40 h-6 md:w-56 lg:h-6 lg:w-30 lg:pl-10 border-2 outline-none xl:h-7 xl:w-30 xl:pl-10 md:h-7 md:w-18 md:pl-10 "
             placeholder="Search..."
+            value={keyword}
+            onChange={(e)=>setKeyword(e.target.value)}
+            
           />
+          <button onClick={handleSearch}>
           <i className="bx bx-search text-red-400 pt-1 lg:text-xl xl:text-xl md:text-lg cursor-pointer"></i>
+          </button>
         </span>
         <ul className="hidden lg:flex lg:gap-10 lg:my-5 md:block lg:block xl:block xl:flex md:flex xl:gap-10 md:gap-10 xl:my-8 md:my-5">
           <li className="hover:text-red-400 cursor-pointer lg:text-lg xl:text-lg md:text-md" onClick={()=>navigate(`/home/${token}`)}>

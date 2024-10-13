@@ -44,7 +44,7 @@ function App() {
 
         <Route path="/category/:token" element={<Category />} />
 
-        <Route path="/search/:name" element={<Search />} />
+        <Route path="/search/:keyword" element={<Search />} />
 
         <Route path="/profile_edit/:token" element={<ProfileEdit />} />
 

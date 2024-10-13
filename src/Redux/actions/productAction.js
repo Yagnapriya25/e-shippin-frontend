@@ -1,4 +1,4 @@
-import { getSingleUserProductFail, getSingleUserProductRequest, getSingleUserProductSuccess, productDeleteFail, productDeleteRequest, productDeleteSuccess, productEditFail, productEditRequest, productEditSuccess, productGetAllFail, productGetAllRequest, productGetAllSuccess, productGetSingleFail, productGetSingleRequest, productGetSingleSuccess, productPostFail, productPostRequest, productPostSuccess } from "../slices/productSlice";
+import { getSingleUserProductFail, getSingleUserProductRequest, getSingleUserProductSuccess, productDeleteFail, productDeleteRequest, productDeleteSuccess, productEditFail, productEditRequest, productEditSuccess, productGetAllFail, productGetAllRequest, productGetAllSuccess, productGetSingleFail, productGetSingleRequest, productGetSingleSuccess, productPostFail, productPostRequest, productPostSuccess, searchProductFail, searchProductRequest, searchProductSuccess } from "../slices/productSlice";
 
 
 
@@ -150,6 +150,25 @@ const getSingleUserProduct = (userInfo) =>async(dispatch)=>{
         dispatch(getSingleUserProductFail(error.message))
     }
 }
+const searchProduct = (productInfo)=>async(dispatch)=>{
+    try {
+        dispatch(searchProductRequest());
+        const res = await fetch(`${URL}/product/search/${productInfo}`,{
+            method:"GET",
+        })
+        const data = await res.json();
+        console.log(data);
+        if(res.ok){
+            dispatch(searchProductSuccess(data))
+        }
+        else{
+            dispatch(searchProductFail(data.message))
+        }
+    } catch (error) {
+        dispatch(searchProductFail(error.message))
+
+    }
+}
 
 export {
     productPost,
@@ -157,5 +176,6 @@ export {
     getSingleProduct,
     deleteProduct,
     updateProduct,
-    getSingleUserProduct
+    getSingleUserProduct,
+    searchProduct
 };

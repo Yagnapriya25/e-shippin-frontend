@@ -79,6 +79,17 @@ const productSlice = createSlice({
     getSingleUserProductFail(state,action){
       state.loading = false;
       state.error = action.payload
+    },
+    searchProductRequest(state){
+      state.loading = true
+    },
+    searchProductSuccess(state,action){
+      state.loading = false;
+      state.products = action.payload;
+    },
+    searchProductFail(state,action){
+      state.loading = false
+      state.error = action.payload
     }
   },
 });
@@ -101,7 +112,10 @@ export const {
   productEditFail,
   getSingleUserProductFail,
   getSingleUserProductRequest,
-  getSingleUserProductSuccess
+  getSingleUserProductSuccess,
+  searchProductRequest,
+  searchProductSuccess,
+  searchProductFail
 } = productSlice.actions;
 
 export default productSlice.reducer;
