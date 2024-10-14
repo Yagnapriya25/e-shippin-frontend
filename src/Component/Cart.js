@@ -499,11 +499,11 @@ export default function Cart() {
 
       const verificationData = await verificationResponse.json();
       if (verificationResponse.ok) {
-        alert("Payment successful!");
         await dispatch(emptyCart(userInfo));
-        navigate("/success");
+      
       } else {
         alert("Payment verification failed!");
+        await dispatch(emptyCart(userInfo));
       }
     } catch (error) {
       console.error("Verification error: ", error);

@@ -112,7 +112,7 @@ export default function Buy() {
                 }
 
                 const options = {
-                    key: "rzp_test_zVUZCNrVjLSv79",
+                    key: import.meta.env.REACT_APP_RAZORPAY_KEY_ID,
                     amount: data.amount,
                     currency: data.currency,
                     name: "E-Shippin",
@@ -158,8 +158,9 @@ export default function Buy() {
 
             const verificationData = await verificationResponse.json();
             if (verificationResponse.ok) {
-                alert("Payment successful!");
-                console.log(verificationData);
+                setTimeout(()=>{
+                    navigate(`/home/${token}`)
+                },1000)
                 // You can navigate to a success page or update state here
             } else {
                 alert("Payment verification failed!");
