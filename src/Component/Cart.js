@@ -370,6 +370,8 @@ export default function Cart() {
   const totalPrice = cartInfo?.totalPrice?.totalPrice || 0;
   const productDetails = cartInfo?.totalPrice?.productDetails || [];
 
+
+  // console.log(cartInfo.cart._id);
   const formatPrice = (amount) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -452,7 +454,8 @@ export default function Cart() {
       });
 
       const data = await response.json();
-
+      console.log(data);
+      console.log(response);
       if (response.ok) {
         const options = {
           key: "rzp_test_zVUZCNrVjLSv79",
@@ -460,7 +463,7 @@ export default function Cart() {
           currency: data.currency,
           name: "E-Shippin",
           description: "Purchase Description",
-          order_id: data.id,
+          order_id: data.order.id,
           handler: async function (response) {
             await verifyPayment(response);
           },
@@ -487,29 +490,32 @@ export default function Cart() {
 
   const verifyPayment = async (response) => {
     try {
-      const verificationResponse = await fetch(`${URL}/order/payment/verify`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-        body: JSON.stringify({
-          razorpay_order_id: response.razorpay_order_id,
-          razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_signature: response.razorpay_signature,
-        }),
-      });
+        const verificationResponse = await fetch(`${URL}/order/payment/verify`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+            }),
+        });
 
-      const verificationData = await verificationResponse.json();
-      if (verificationResponse.ok) {
-        alert("Payment successful!");
-        await dispatch(emptyCart(userInfo));
-        navigate("/success");
-      } else {
-        alert("Payment verification failed!");
-      }
+        const verificationData = await verificationResponse.json();
+        if (verificationResponse.ok) {
+          dispatch(emptyCart(userInfo))
+            setTimeout(() => {
+                navigate(`/home/${token}`);
+            }, 1000);
+            // Optionally, you can log the verification data or show a success message on the UI
+        } else {
+            console.error("Payment verification failed:", verificationData.error);
+            // Optionally handle verification failure here
+        }
     } catch (error) {
-      console.error("Verification error: ", error);
-      alert("Failed to verify payment!");
+        console.error("Verification error: ", error);
+        // Optionally handle general verification errors here
     }
-  };
+};
 
   return (
     <div className="h-screen w-screen bg-slate-200">
@@ -603,7 +609,7 @@ export default function Cart() {
 
             <div className="block md:hidden flex justify-around my-3">
               <h4>{formatPrice(totalPrice)}</h4>
-              <button className="bg-red-500 px-2 text-white" onClick={handleBuyNow}>PLACE ORDER</button>
+             <button className="bg-red-500 px-2 text-white" onClick={handleBuyNow}>PLACE ORDER</button>
             </div>
             <div className="hidden md:block bg-white md:h-80 lg:h-96 w-5/6 md:mx-10 md:my-14 lg:mx-20 lg:my-10 md:px-10 md:pt-5 lg:px-20 lg:pt-10 overflow-hidden">
               <div className="overflow-y-scroll md:h-40 lg:h-36 hide-scrollbar">

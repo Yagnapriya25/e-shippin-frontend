@@ -104,7 +104,7 @@ export default function Buy() {
             });
 
             const data = await response.json();
-
+            console.log(response);
             if (response.ok) {
                 if (!razorpayLoaded) {
                     alert("Razorpay SDK not loaded!");
@@ -112,7 +112,7 @@ export default function Buy() {
                 }
 
                 const options = {
-                    key: import.meta.env.REACT_APP_RAZORPAY_KEY_ID,
+                    key: "rzp_test_zVUZCNrVjLSv79",
                     amount: data.amount,
                     currency: data.currency,
                     name: "E-Shippin",
@@ -141,6 +141,7 @@ export default function Buy() {
             alert("Something went wrong while initiating payment!");
         } finally {
             setPaymentLoading(false);
+            
         }
     };
 
@@ -155,21 +156,23 @@ export default function Buy() {
                     razorpay_signature: response.razorpay_signature,
                 }),
             });
-
+    
             const verificationData = await verificationResponse.json();
             if (verificationResponse.ok) {
-                setTimeout(()=>{
-                    navigate(`/home/${token}`)
-                },1000)
-                // You can navigate to a success page or update state here
+                setTimeout(() => {
+                    navigate(`/home/${token}`);
+                }, 1000);
+                // Optionally, you can log the verification data or show a success message on the UI
             } else {
-                alert("Payment verification failed!");
+                console.error("Payment verification failed:", verificationData.error);
+                // Optionally handle verification failure here
             }
         } catch (error) {
             console.error("Verification error: ", error);
-            alert("Failed to verify payment!");
+            // Optionally handle general verification errors here
         }
     };
+    
 
     return (
         <div className="h-screen w-screen bg-[#F2F1F1] overflow-hidden">
