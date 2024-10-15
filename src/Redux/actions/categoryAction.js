@@ -3,7 +3,7 @@ import { categoryDeleteFail, categoryDeleteRequest, categoryDeleteSuccess, categ
 
 
 
-let URL = "http://localhost:7890/api";
+let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 
 const categoryPost = (credential)=>async(dispatch)=>{

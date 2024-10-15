@@ -6,7 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getSingleProduct } from "../Redux/actions/productAction";
 import { getAddress } from "../Redux/actions/addressAction";
 
-const URL = "http://localhost:7890/api";
+
+let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 
 
@@ -102,7 +103,7 @@ export default function Buy() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
             });
-
+             console.log(`${URL}/order/payment/${id}/${p_id}`);
             const data = await response.json();
             console.log(response);
             if (response.ok) {

@@ -3,7 +3,6 @@ import Base from "../Base/Base";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getSingleProduct } from "../Redux/actions/productAction";
-import p_img from '../Images/realme-narzo-30-pro-5g (1).jpg'
 import { postCart } from "../Redux/actions/cartAction";
 import Loading from "./Loading";
 
@@ -76,7 +75,7 @@ const userInfo = sessionStorage.getItem("id");
             singleProduct.product.images.map((image, index) => (
               <img
                 key={index}
-                src={image.image} // Assuming 'image' is the correct property for the image URL
+                src={image.image} 
                 alt={`product-thumbnail-${index}`}
                 className="md:h-16 lg:h-20 xl:h-20 md:w-16 lg:w-20 xl:w-20 mb-5 shadow-lg shadow-black cursor-pointer"
                 onClick={() => setSelectedImage(image.image)}

@@ -2,7 +2,7 @@ import { addressEditFail, addressEditRequest, addressEditSuccess, addressGetFail
 
 
 
-let URL = "http://localhost:7890/api";
+let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 
 

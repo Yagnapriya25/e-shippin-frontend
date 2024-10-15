@@ -297,7 +297,7 @@ import {
 import { getAddress } from "../Redux/actions/addressAction";
 import Loading from "./Loading";
 
-const URL = "http://localhost:7890/api";
+let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 const loadRazorpayScript = () => {
   return new Promise((resolve, reject) => {

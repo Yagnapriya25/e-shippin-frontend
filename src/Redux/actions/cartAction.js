@@ -2,7 +2,7 @@ import { cartDecreaseFail, cartDecreaseRequest, cartDecreaseSuccess, cartIncreas
 
 
 
-let URL = "http://localhost:7890/api";
+let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 
 const postCart = (userInfo,productInfo)=>async(dispatch)=>{

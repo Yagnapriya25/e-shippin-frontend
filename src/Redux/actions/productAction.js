@@ -5,7 +5,7 @@ import { getSingleUserProductFail, getSingleUserProductRequest, getSingleUserPro
 
 
 
-let URL = "http://localhost:7890/api";
+let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 const productPost = (credential,categoryInfo,userInfo)=>async(dispatch)=>{
     try {

@@ -26,7 +26,7 @@ import {
 } from "../slices/userSlice";
 // import { URL } from "../../server";
 
-let URL = "http://localhost:7890/api";
+let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 const login = (credentials) => async (dispatch) => {
   try {
