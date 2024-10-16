@@ -26,13 +26,14 @@ import {
 } from "../slices/userSlice";
 // import { URL } from "../../server";
 
-let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
+
 
 const login = (credentials) => async (dispatch) => {
   try {
     dispatch(loginRequest());
     const { email, password } = credentials;
-    const res = await fetch(`${URL}/user/login`,{
+    console.log(process.env.REACT_APP_URL);
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/login`,{
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
@@ -57,7 +58,7 @@ const register = (credentials) => async (dispatch) => {
   try {
     dispatch(signupRequest());
     const { email, password, username } = credentials;
-    const res = await fetch(`${URL}/user/register`, {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/register`, {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
@@ -80,7 +81,7 @@ const verifyOtp = (credentials) => async (dispatch) => {
   try {
     dispatch(otpRequest());
     const { otp } = credentials;
-    const res = await fetch(`${URL}/user/verify-otp`, {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/verify-otp`, {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
@@ -105,7 +106,7 @@ const forget = (credentials) => async (dispatch) => {
   try {
     dispatch(forgetPasswordRequest());
     const { email } = credentials;
-    const res = await fetch(`${URL}/user/forget`, {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/forget`, {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
@@ -129,7 +130,7 @@ const reset = (credentials, userData) => async (dispatch) => {
     const { password } = credentials;
     const { id, token } = userData;
     console.log(id,token);
-    const res = await fetch(`${URL}/user/reset-password/${id}/${token}`, {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/reset-password/${id}/${token}`, {
       method: "PUT",
       body: JSON.stringify(credentials),
       headers: {
@@ -152,7 +153,7 @@ const reset = (credentials, userData) => async (dispatch) => {
 const getAllUser = () => async (dispatch) => {
   try {
     dispatch(getAllUserRequest());
-    const res = await fetch(`${URL}/user/allusers`, {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/allusers`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -174,7 +175,7 @@ const getSingleUser = (userInfo) => async (dispatch) => {
     dispatch(getUserRequest());
     const { id } = userInfo;
 
-    const res = await fetch(`${URL}/user/getuser/${id}`, {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/getuser/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -203,7 +204,7 @@ const editUser = (credentials, userInfo) => async (dispatch) => {
     if (credentials.avatar) {
       formData.append("avatar", credentials.avatar); // Add the image file to FormData
     }
-    const res = await fetch(`${URL}/user/edit/${id}`, {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/edit/${id}`, {
       method: "PUT",
       body: formData,
       

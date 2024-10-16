@@ -3,14 +3,14 @@ import { categoryDeleteFail, categoryDeleteRequest, categoryDeleteSuccess, categ
 
 
 
-let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
+
 
 
 const categoryPost = (credential)=>async(dispatch)=>{
 try {
     dispatch(categoryPostRequest());
     const {name,photo}= credential;
-    const res = await fetch(`${URL}/category/create`,{
+    const res = await fetch(`${process.env.REACT_APP_URL}/category/create`,{
         method:"POST",
         body:JSON.stringify(credential),
         headers:{
@@ -35,7 +35,7 @@ try {
 const categoryGetAll = ()=>async(dispatch)=>{
     try {
         dispatch(categoryGetAllRequest());
-        const res = await fetch(`${URL}/category/getall`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/category/getall`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -58,7 +58,7 @@ const categoryGetSingle = (categoryInfo)=>async(dispatch)=>{
     try {
          dispatch(categoryGetSingleRequest());
          const {cat_id} = categoryInfo;
-         const res = await fetch(`${URL}/category/getsingle/${cat_id}`,{
+         const res = await fetch(`${process.env.REACT_APP_URL}/category/getsingle/${cat_id}`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -81,7 +81,7 @@ const deleteCategory = (categoryInfo)=>async(dispatch)=>{
     try {
         dispatch(categoryDeleteRequest());
         const {cat_id}=categoryInfo;
-        const res = await fetch(`${URL}/category/remove/${cat_id}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/category/remove/${cat_id}`,{
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
@@ -103,7 +103,7 @@ const getCategoryProducts = (categoryInfo)=>async(dispatch)=>{
     try {
         const {cat_id}=categoryInfo;
         dispatch(categoryProductRequest());
-        const res = await fetch(`${URL}/category/${cat_id}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/category/${cat_id}`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"

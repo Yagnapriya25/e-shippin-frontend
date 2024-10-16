@@ -5,7 +5,7 @@ import { getSingleUserProductFail, getSingleUserProductRequest, getSingleUserPro
 
 
 
-let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
+
 
 const productPost = (credential,categoryInfo,userInfo)=>async(dispatch)=>{
     try {
@@ -13,7 +13,7 @@ const productPost = (credential,categoryInfo,userInfo)=>async(dispatch)=>{
         const {cat_id}=categoryInfo;
         const {id}=userInfo;
   
-        const res = await fetch(`${URL}/product/create/${categoryInfo}/${userInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/create/${categoryInfo}/${userInfo}`,{
             method:"POST",
             body:credential,
            
@@ -36,7 +36,7 @@ const productPost = (credential,categoryInfo,userInfo)=>async(dispatch)=>{
 const getAllProduct = ()=>async(dispatch)=>{
     try {
         dispatch(productGetAllRequest());
-        const res = await fetch(`${URL}/product/getall`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/getall`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -60,7 +60,7 @@ const getSingleProduct = (productInfo,userInfo)=>async(dispatch)=>{
         dispatch(productGetSingleRequest());
         const {p_id}=productInfo;
         const {token}=userInfo;
-        const res = await fetch(`${URL}/product/getsingle/${productInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/getsingle/${productInfo}`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -82,7 +82,7 @@ const deleteProduct = (productInfo)=>async(dispatch)=>{
     try {
         dispatch(productDeleteRequest());
         const {id} = productInfo;
-        const res = await fetch(`${URL}/product/remove/${id}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/remove/${id}`,{
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
@@ -108,7 +108,7 @@ const updateProduct = (credential,productInfo)=>async(dispatch)=>{
        
        
         
-        const res = await fetch(`${URL}/product/edit/${productInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/edit/${productInfo}`,{
             method:"PUT",
             body:credential,
             // headers:{
@@ -132,7 +132,7 @@ const getSingleUserProduct = (userInfo) =>async(dispatch)=>{
     try {
         dispatch(getSingleUserProductRequest());
         const {id}= userInfo;
-        const res = await fetch(`${URL}/product/getproduct/${userInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/getproduct/${userInfo}`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -153,7 +153,7 @@ const getSingleUserProduct = (userInfo) =>async(dispatch)=>{
 const searchProduct = (productInfo)=>async(dispatch)=>{
     try {
         dispatch(searchProductRequest());
-        const res = await fetch(`${URL}/product/search/${productInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/search/${productInfo}`,{
             method:"GET",
         })
         const data = await res.json();

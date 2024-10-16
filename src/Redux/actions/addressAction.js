@@ -2,7 +2,7 @@ import { addressEditFail, addressEditRequest, addressEditSuccess, addressGetFail
 
 
 
-let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
+
 
 
 
@@ -20,7 +20,7 @@ const postAddress = (credential,userInfo) => async(dispatch)=>{
         formData.append("phoneNumber",credential.phoneNumber);
         formData.append("user", userInfo);
         
-        const res = await fetch(`${URL}/address/create/${userInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/address/create/${userInfo}`,{
             method:"POST",
             body:formData,
            
@@ -44,7 +44,7 @@ const postAddress = (credential,userInfo) => async(dispatch)=>{
 const getAddress = (userInfo)=>async(dispatch)=>{
     try {
         dispatch(addressGetRequest());
-        const res = await fetch(`${URL}/address/get/${userInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/address/get/${userInfo}`,{
             method:"GET",
             // headers:{
             //     "Content-Type":"application/json"
@@ -74,7 +74,7 @@ const editAddress = (credential,userInfo)=>async(dispatch)=>{
         formData.append("pincode",credential.pincode);
         formData.append("landmark",credential.landmark);
         formData.append("phoneNumber",credential.phoneNumber);
-        const res = await fetch(`${URL}/address/edit/${userInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/address/edit/${userInfo}`,{
             method:"PUT",
             body:formData,
             
@@ -97,7 +97,7 @@ const editAddress = (credential,userInfo)=>async(dispatch)=>{
 const removeAddress = (userInfo)=>async(dispatch)=>{
     try {
         dispatch(addressRemoveRequest());
-        const res = await fetch(`${URL}/address/remove/${userInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/address/remove/${userInfo}`,{
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"

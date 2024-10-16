@@ -2,13 +2,13 @@ import { cartDecreaseFail, cartDecreaseRequest, cartDecreaseSuccess, cartIncreas
 
 
 
-let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
+
 
 
 const postCart = (userInfo,productInfo)=>async(dispatch)=>{
     try {
         cartPostRequest();
-        const res = await fetch(`${URL}/cart/add/${userInfo}/${productInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/cart/add/${userInfo}/${productInfo}`,{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"
@@ -31,7 +31,7 @@ const postCart = (userInfo,productInfo)=>async(dispatch)=>{
 const decreaseCart = (userInfo,productInfo)=>async(dispatch)=>{
     try {
         dispatch(cartDecreaseRequest());
-        const res = await fetch(`${URL}/cart/decrease/${userInfo}/${productInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/cart/decrease/${userInfo}/${productInfo}`,{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"
@@ -75,14 +75,14 @@ const decreaseCart = (userInfo,productInfo)=>async(dispatch)=>{
 const increaseCart = (userInfo, productInfo) => async (dispatch) => {
     try {
         dispatch(cartIncreaseRequest());
-        const res = await fetch(`${URL}/cart/increase/${userInfo}/${productInfo}`, {
+        const res = await fetch(`${process.env.REACT_APP_URL}/cart/increase/${userInfo}/${productInfo}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             }
         });
         
-        console.log("API URL:", `${URL}/cart/increase/${userInfo}/${productInfo}`);
+        console.log("API URL:", `${process.env.REACT_APP_URL}/cart/increase/${userInfo}/${productInfo}`);
         console.log("Response status:", res.status);
         
         const data = await res.json();
@@ -100,7 +100,7 @@ const increaseCart = (userInfo, productInfo) => async (dispatch) => {
 const cartRemove = (userInfo,productInfo)=>async(dispatch)=>{
     try {
         dispatch(cartRemoveRequest());
-        const res = await fetch (`${URL}/cart/remove/${userInfo}/${productInfo}`,{
+        const res = await fetch (`${process.env.REACT_APP_URL}/cart/remove/${userInfo}/${productInfo}`,{
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
@@ -122,7 +122,7 @@ const cartRemove = (userInfo,productInfo)=>async(dispatch)=>{
 const getCart = (userInfo)=>async(dispatch)=>{
     try {
         dispatch(getAllCartRequest());
-        const res = await fetch(`${URL}/cart/get/${userInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/cart/get/${userInfo}`,{
             method:"GET",
             // headers:{
             //     "Content-Type":"application/json"
@@ -145,7 +145,7 @@ const getCart = (userInfo)=>async(dispatch)=>{
 const emptyCart = (userInfo)=>async(dispatch)=>{
     try {
         dispatch(cartRemoveAllRequest());
-        const res = await fetch(`${URL}/cart/removeAll/${userInfo}`,{
+        const res = await fetch(`${process.env.REACT_APP_URL}/cart/removeAll/${userInfo}`,{
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
