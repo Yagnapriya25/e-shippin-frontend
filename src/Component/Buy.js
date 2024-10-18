@@ -7,7 +7,6 @@ import { getSingleProduct } from "../Redux/actions/productAction";
 import { getAddress } from "../Redux/actions/addressAction";
 
 
-let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 
 
@@ -99,13 +98,13 @@ export default function Buy() {
                 p_id,
                 token
             });
-            const response = await fetch(`${URL}/order/payment/${id}/${p_id}`, {
+            const response = await fetch(`${process.env.REACT_APP_URL}/order/payment/${id}/${p_id}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
             });
-             console.log(`${URL}/order/payment/${id}/${p_id}`);
+             console.log(`${process.env.REACT_APP_URL}/order/payment/${id}/${p_id}`);
             const data = await response.json();
-            console.log(response);
+            console.log(data);
             if (response.ok) {
                 if (!razorpayLoaded) {
                     alert("Razorpay SDK not loaded!");
@@ -148,7 +147,7 @@ export default function Buy() {
 
     const verifyPayment = async (response) => {
         try {
-            const verificationResponse = await fetch(`${URL}/order/payment/verify`, {
+            const verificationResponse = await fetch(`${process.env.REACT_APP_URL}/order/payment/verify`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
                 body: JSON.stringify({

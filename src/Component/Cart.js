@@ -297,7 +297,6 @@ import {
 import { getAddress } from "../Redux/actions/addressAction";
 import Loading from "./Loading";
 
-let URL = "https://e-shipin-backend-b4ro.vercel.app/api";
 
 const loadRazorpayScript = () => {
   return new Promise((resolve, reject) => {
@@ -447,7 +446,7 @@ export default function Cart() {
     }
 
     try {
-      const response = await fetch(`${URL}/order/purchase/${userInfo}`, {
+      const response = await fetch(`${process.env.REACT_APP_URL}/order/purchase/${userInfo}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ items }),
@@ -490,7 +489,7 @@ export default function Cart() {
 
   const verifyPayment = async (response) => {
     try {
-        const verificationResponse = await fetch(`${URL}/order/payment/verify`, {
+        const verificationResponse = await fetch(`${process.env.REACT_APP_URL}/order/payment/verify`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
             body: JSON.stringify({
