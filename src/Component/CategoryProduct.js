@@ -11,7 +11,7 @@ export default function CategoryProduct() {
     const navigate = useNavigate();
     const { cat_id } = useParams();
 
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     
     const { categoryInfo, error, loading: categoryLoading } = useSelector((state) => state.category || {});
 

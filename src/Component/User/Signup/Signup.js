@@ -16,7 +16,7 @@ export default function Signup() {
     password: "",
   });
 
- const token = sessionStorage.getItem("token");
+ const token = localStorage.getItem("token");
 
   const [otp, setOtp] = useState("");
   const [showPassword, setShowPassword] = useState(true);
@@ -43,7 +43,6 @@ export default function Signup() {
     e.preventDefault();
     if (loading) return; // Prevent multiple submissions when loading
     setLoading(true); // Set loading state to true when the signup starts
-    console.log("Signup form submitted with credentials: ", credentials);
     dispatch(register(credentials)).finally(() => {
       setLoading(false); // Set loading back to false after the dispatch
       setOtpSent(true); // OTP sent, now change the UI
@@ -54,7 +53,6 @@ export default function Signup() {
     e.preventDefault();
     if (loading) return;
     setLoading(true);
-    console.log("OTP form submitted with otp: ", otp);
     dispatch(verifyOtp({ otp, email: credentials.email }))
       .then((response) => {
         console.log(response);
@@ -67,7 +65,7 @@ export default function Signup() {
         setLoading(false); // Set loading back to false after the dispatch
         setTimeout(()=>{
           navigate(`/`)
-        },2000)
+        },1000)
       });
   };
 

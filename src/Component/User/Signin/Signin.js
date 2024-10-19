@@ -30,7 +30,7 @@ export default function Signin() {
   }
 
   useEffect(()=>{
-    if(!sessionStorage.getItem("token") && !sessionStorage.getItem("id")){
+    if(!localStorage.getItem("token") && !localStorage.getItem("id")){
       navigate("/")
     }
   })
@@ -50,11 +50,11 @@ export default function Signin() {
     .finally(() => {
      
         setLoading(false);
-        if(sessionStorage.getItem("token") && sessionStorage.getItem("id")){
-          const token = sessionStorage.getItem("token");
+        if(localStorage.getItem("token") && localStorage.getItem("id")){
+          const token = localStorage.getItem("token");
           setTimeout(()=>{
             navigate(`/home/${token}`)
-          },1000)
+          },100)
         }
         
            

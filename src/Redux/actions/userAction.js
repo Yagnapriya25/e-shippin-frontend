@@ -44,8 +44,8 @@ const login = (credentials) => async (dispatch) => {
     console.log(data);
     if (res.ok) {
       dispatch(loginSuccess(data));
-      sessionStorage.setItem("id", data.user._id);
-      sessionStorage.setItem("token", data.token);
+      localStorage.setItem("id", data.user._id);
+      localStorage.setItem("token", data.token);
     } else {
       dispatch(loginFail(data.message));
     }
@@ -91,8 +91,8 @@ const verifyOtp = (credentials) => async (dispatch) => {
     const data = await res.json();
     if (res.ok) {
       dispatch(otpSuccess(data));
-      sessionStorage.setItem("token",data.token);
-      sessionStorage.setItem("id",data.user._id);
+      localStorage.setItem("token",data.token);
+      localStorage.setItem("id",data.user._id);
       
     } else {
       dispatch(otpFail(data.message));
@@ -141,8 +141,8 @@ const reset = (credentials, userData) => async (dispatch) => {
     console.log(data);
     if (res.ok) {
       dispatch(resetPasswordSuccess(data));
-      sessionStorage.setItem("token",data.token);
-      sessionStorage.setItem("id",data.user._id);
+      localStorage.setItem("token",data.token);
+      localStorage.setItem("id",data.user._id);
     } else {
       dispatch(resetPasswordFail(data.message));
     }

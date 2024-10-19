@@ -12,14 +12,14 @@ export default function UserProducts() {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const { products, error } = useSelector((state) => state.product);
-    const token= sessionStorage.getItem("token");
+    const token= localStorage.getItem("token");
 
     useEffect(() => {
-        if (!sessionStorage.getItem("token") && !sessionStorage.getItem("id")) {
+        if (!localStorage.getItem("token") && !localStorage.getItem("id")) {
             navigate("/");
         }
     }, [navigate]);
-      const id = sessionStorage.getItem("id");
+      const id = localStorage.getItem("id");
     useEffect(() => {
         const fetchProducts = async () => {
             setLoading(true);
@@ -52,14 +52,14 @@ export default function UserProducts() {
     ) :
             <Base>
                 <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
-                    (
+                    
                         <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
                             {products && products.product && products.product.length > 0 ? (
                                 products.product.map((product) => (
                                     <div
                                         key={product._id}
                                         className="flex flex-col justify-center place-items-center shadow-gray-700 shadow xl:h-48 xl:w-52 lg:h-44 lg:w-48 md:h-40 md:w-44 h-28 w-28 p-4 cursor-pointer"
-                                        onClick={() => handleProductClick(product._id, sessionStorage.getItem("token"))}
+                                        onClick={() => handleProductClick(product._id, localStorage.getItem("token"))}
                                     >
                                         <div className="h-4/6 w-4/6">
                                             <img src={product.images[0]?.image || p_img} alt="product" className="h-full w-full" />
@@ -94,7 +94,7 @@ export default function UserProducts() {
                         </div>
                         </div>
                         
-                    )</div>
+                    </div>
                     </Base>
                 }
                    

@@ -3,7 +3,7 @@ import Topbar from "./Topbar";
 import { useNavigate } from "react-router-dom";
 
 export default function Base({ children }) {
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   return (

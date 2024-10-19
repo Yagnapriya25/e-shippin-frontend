@@ -10,8 +10,8 @@ export default function AddressEdit() {
   const dispatch = useDispatch();
   const { addressInfo, error } = useSelector((state) => state.address);
   const navigate = useNavigate();
-  const userInfo = sessionStorage.getItem("id");
-  const token = sessionStorage.getItem("token");
+  const userInfo = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
 
   const [credential, setCredential] = useState({
     name: "",

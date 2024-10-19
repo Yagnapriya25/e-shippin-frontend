@@ -33,8 +33,8 @@ export default function Buy() {
     const { addressInfo } = useSelector((state) => state.address);
     const navigate = useNavigate();
     const { p_id } = useParams();
-    const token = sessionStorage.getItem("token");
-    const id = sessionStorage.getItem("id");
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
     const [selectedImage, setSelectedImage] = useState(null);
 
     
@@ -112,7 +112,7 @@ export default function Buy() {
                 }
 
                 const options = {
-                    key: "rzp_test_zVUZCNrVjLSv79",
+                    key: process.env.REACT_APP_SECRET_KEY,
                     amount: data.amount,
                     currency: data.currency,
                     name: "E-Shippin",
@@ -205,10 +205,10 @@ export default function Buy() {
                                 <img src={selectedImage} alt="product" className="h-full" />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <h3 className="text-lg font-serif">{singleProduct?.product?.name}</h3>
-                                <h4 className="text-red-600 font-serif">{singleProduct?.product?.category?.name}</h4>
-                                <p className="font-serif">{singleProduct?.product?.description1}</p>
-                                <h3 className="text-xl font-serif">{formatPrice(singleProduct?.product?.price)}</h3>
+                                <h3 className="text-sm md:text-md lg:text-lg xl:text-lg font-serif">{singleProduct?.product?.name}</h3>
+                                <h4 className="text-sm md:text-md lg:text-lg xl:text-lg text-red-600 font-serif">{singleProduct?.product?.category?.name}</h4>
+                                <p className="text-sm md:text-md lg:text-lg xl:text-lg font-serif">{singleProduct?.product?.description1}</p>
+                                <h3 className="text-sm md:text-md lg:text-lg xl:text-lg font-serif">{formatPrice(singleProduct?.product?.price)}</h3>
                             </div>
                         </div>
 

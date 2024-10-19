@@ -20,9 +20,9 @@
 //   const { addressInfo } = useSelector((state) => state.address);
 //   const navigate = useNavigate();
 
-//   const token = sessionStorage.getItem("token");
+//   const token = localStorage.getItem("token");
 
-//   const userInfo = sessionStorage.getItem("id");
+//   const userInfo = localStorage.getItem("id");
 
 //   useEffect(() => {
 //     const fetchCart = async () => {
@@ -321,8 +321,8 @@ export default function Cart() {
   const { addressInfo } = useSelector((state) => state.address);
   const navigate = useNavigate();
 
-  const token = sessionStorage.getItem("token");
-  const userInfo = sessionStorage.getItem("id");
+  const token = localStorage.getItem("token");
+  const userInfo = localStorage.getItem("id");
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -457,7 +457,7 @@ export default function Cart() {
       console.log(response);
       if (response.ok) {
         const options = {
-          key: "rzp_test_zVUZCNrVjLSv79",
+          key: process.env.REACT_APP_SECRET_KEY,
           amount: data.order.amount,
           currency: data.currency,
           name: "E-Shippin",

@@ -10,7 +10,7 @@ export default function Profile() {
 
   const navigate = useNavigate();
 
-const token = sessionStorage.getItem("token");
+const token = localStorage.getItem("token");
 
   const [loading,setLoading]=useState(false);
 
@@ -21,7 +21,7 @@ const token = sessionStorage.getItem("token");
   useEffect(() => {
     const fetchUserData = async () => {
       setLoading(true); 
-      await dispatch(getSingleUser({id:sessionStorage.getItem("id")})); 
+      await dispatch(getSingleUser({id:localStorage.getItem("id")})); 
       setLoading(false); 
     };
     if(userInfo){
@@ -33,8 +33,8 @@ const token = sessionStorage.getItem("token");
 
   const handleLogout = ()=>{
     if(loading) return;
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("id");
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
     setTimeout(()=>{
       navigate("/")
     },1000)

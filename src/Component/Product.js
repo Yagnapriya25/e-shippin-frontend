@@ -48,7 +48,7 @@ export default function Product() {
   if (!singleProduct) {
     return <div>No product found.</div>; // Handle case where product is not found
   }
-const userInfo = sessionStorage.getItem("id");
+const userInfo = localStorage.getItem("id");
   const handleCart = (p_id)=>{
     if(loading) return;
     dispatch(postCart(userInfo,p_id)).then(()=>{

@@ -11,8 +11,8 @@ export default function AddProduct() {
   const navigate = useNavigate();
 
   const { cat_id } = useParams();
-  const userInfo = sessionStorage.getItem("id");
-  const token = sessionStorage.getItem("token");
+  const userInfo = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
 
   const [credential, setCredential] = useState({
     name: '',
