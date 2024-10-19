@@ -36,10 +36,10 @@ export default function Topbar() {
   return (
     <div className="h-2/6 md:h-4/6 pt-0 lg:pt-0 xl:pt-0 shadow-gray-700 sticky top-2.5 bg-white shadow ">
       <div className="flex justify-around">
-        <div className="h-10 my-3 lg:h-12 lg:mx-4 lg:my-1 xl:h-14 xl:mx-6 xl:my-1 md:h-10 md:mx-4 md:my-3">
+        <div className="h-8 my-0 lg:h-12 lg:mx-4 lg:my-1 xl:h-14 xl:mx-6 xl:my-1 md:h-10 md:mx-4 md:my-3">
           <img src={logo} alt="logo" className="h-full w-16" />
         </div>
-        <span className="my-6 flex gap-2 lg:my-5 lg:flex lg:gap-3 xl:my-8 xl:flex xl:gap-3 md:my-5 md:flex md:gap-3">
+        <span className="my-3 flex gap-2 lg:my-5 lg:flex lg:gap-3 xl:my-8 xl:flex xl:gap-3 md:my-5 md:flex md:gap-3">
           <input
             type="text"
             className="pl-5 w-40 h-6 md:w-56 lg:h-6 lg:w-30 lg:pl-10 border-2 outline-none xl:h-7 xl:w-30 xl:pl-10 md:h-7 md:w-18 md:pl-10 "
