@@ -119,14 +119,14 @@ const userInfo = localStorage.getItem("id");
         </div>
       
         <div className="col-span-5 flex flex-col p-2 md:p-3 lg:p-5 xl:p-5">
-        <h1 className="font-bold text-xl px-20 py-8">{singleProduct.product.name}</h1>
+        <h1 className="font-bold text-xl px-20 py-8 uppercase">{singleProduct.product.name}</h1>
         <ul className="list-disc px-0">
          
-              <li  className="text-sm md:text-md lg:text-lg xl:text-lg p-2 md:p-1 lg:p-0 xl:p-0">
+              <li  className="text-sm md:text-md lg:text-lg xl:text-lg p-2 md:p-1 lg:p-0 xl:p-0 uppercase">
                 {singleProduct.product.description1}
-              </li>  <li  className="text-sm md:text-md lg:text-lg xl:text-lg p-2 md:p-1 lg:p-0 xl:p-0">
+              </li>  <li  className="text-sm md:text-md lg:text-lg xl:text-lg p-2 md:p-1 lg:p-0 xl:p-0 uppercase">
                 {singleProduct.product.description2}
-              </li>  <li  className="text-sm md:text-md lg:text-lg xl:text-lg p-2 md:p-1 lg:p-0 xl:p-0">
+              </li>  <li  className="text-sm md:text-md lg:text-lg xl:text-lg p-2 md:p-1 lg:p-0 xl:p-0 uppercase">
                 {singleProduct.product.description3}
               </li>
           

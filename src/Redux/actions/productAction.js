@@ -1,12 +1,6 @@
 import { getSingleUserProductFail, getSingleUserProductRequest, getSingleUserProductSuccess, productDeleteFail, productDeleteRequest, productDeleteSuccess, productEditFail, productEditRequest, productEditSuccess, productGetAllFail, productGetAllRequest, productGetAllSuccess, productGetSingleFail, productGetSingleRequest, productGetSingleSuccess, productPostFail, productPostRequest, productPostSuccess, searchProductFail, searchProductRequest, searchProductSuccess } from "../slices/productSlice";
 
 
-
-
-
-
-
-
 const productPost = (credential,categoryInfo,userInfo)=>async(dispatch)=>{
     try {
         dispatch(productPostRequest());
