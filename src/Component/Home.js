@@ -59,7 +59,7 @@ export default function Home() {
                                         <div className="h-4/6 w-4/6">
                                             <img src={product.images[0]?.image || p_img} alt="product" className="h-full w-full" />
                                         </div>
-                                        <div className="">
+                                        <div className="text-center">
                                             <h6 className="capitalize xl:text-xl lg:text-lg md:text-md text-sm font-serif">
                                                 {product.name}
                                             </h6>
