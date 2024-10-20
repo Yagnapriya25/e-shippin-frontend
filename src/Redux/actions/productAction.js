@@ -95,32 +95,33 @@ const deleteProduct = (productInfo)=>async(dispatch)=>{
 
     }
 }
-const updateProduct = (credential,productInfo)=>async(dispatch)=>{
+const updateProduct = (credential, productInfo) => async (dispatch) => {
     try {
         dispatch(productEditRequest());
-        const {id} = productInfo;
-       
-       
-        
-        const res = await fetch(`${process.env.REACT_APP_URL}/product/edit/${productInfo}`,{
-            method:"PUT",
-            body:credential,
-            // headers:{
-            //     "Content-Type":"application/json"
-            // }
-        })
+
+        const { id } = productInfo;
+
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/edit/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json" // Ensure you set the Content-Type header
+            },
+            body: JSON.stringify(credential) // Stringify the credential object
+        });
+
         const data = await res.json();
         console.log(data);
-        if(res.ok){
-            dispatch(productEditSuccess(data))
-        }
-        else{
-            dispatch(productEditFail(data.message))
+
+        if (res.ok) {
+            dispatch(productEditSuccess(data));
+        } else {
+            dispatch(productEditFail(data.message));
         }
     } catch (error) {
-         dispatch(productDeleteFail(error.message))   
+        dispatch(productEditFail(error.message)); // Use productEditFail instead of productDeleteFail
     }
-}
+};
+
 
 const getSingleUserProduct = (userInfo) =>async(dispatch)=>{
     try {
