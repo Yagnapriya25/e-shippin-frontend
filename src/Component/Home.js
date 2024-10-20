@@ -3,7 +3,7 @@ import Base from "../Base/Base";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../Redux/actions/productAction";
-import p_img from "../Images/realme-narzo-30-pro-5g (1).jpg"; // Make sure this import is correct
+import p_img from "../Images/realme-narzo-30-pro-5g (1).jpg"; 
 import Loading from "./Loading";
 
 export default function Home() {
@@ -40,17 +40,17 @@ export default function Home() {
             maximumFractionDigits: 0,
         }).format(amount);
     };
+
     return (
         <div className="overflow-hidden overflow-x-hidden">
-        {loading ? (
-            <div><Loading/></div>
-        ) : (
-            <Base>
-                <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
-                    
+            {loading ? (
+                <div><Loading/></div>
+            ) : (
+                <Base>
+                    <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
                         <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
-                            {productInfo && productInfo.product && productInfo.product.length > 0 ? (
-                                productInfo.product.map((product) => (
+                            {productInfo && productInfo.products && productInfo.products.length > 0 ? ( // Check for products array
+                                productInfo.products.map((product) => ( // Access products correctly
                                     <div
                                         key={product._id}
                                         className="flex flex-col justify-center place-items-center shadow-gray-700 shadow xl:h-48 xl:w-52 lg:h-44 lg:w-48 md:h-40 md:w-44 h-28 w-28 p-4 cursor-pointer"
@@ -64,7 +64,7 @@ export default function Home() {
                                                 {product.name}
                                             </h6>
                                             <h5 className="font-bold px-5 xl:text-xl lg:text-lg md:text-md text-sm">
-                                                {formatPrice(product.price)}
+                                                {formatPrice(product.price)} {/* Ensure price exists */}
                                             </h5>
                                         </div>
                                     </div>
@@ -73,10 +73,9 @@ export default function Home() {
                                 <div>No products available</div>
                             )}
                         </div>
-                        </div>
-            </Base>
-                    )}
-                
+                    </div>
+                </Base>
+            )}
         </div>
     );
 }
