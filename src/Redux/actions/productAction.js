@@ -28,7 +28,7 @@ const productPost = (credential, categoryInfo, userInfo) => async (dispatch) => 
         const { cat_id } = categoryInfo;
         const { id } = userInfo;
 
-        const res = await fetch(`${process.env.REACT_APP_URL}/product/create/${cat_id}/${id}`, {
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/create/${cat_id}/${userInfo}}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
