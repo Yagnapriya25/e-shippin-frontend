@@ -25,15 +25,13 @@ import {
 const productPost = (credential, categoryInfo, userInfo) => async (dispatch) => {
     try {
         dispatch(productPostRequest());
-        const { cat_id } = categoryInfo;
-        const { id } = userInfo;
 
-        const res = await fetch(`${process.env.REACT_APP_URL}/product/create/${cat_id}/${userInfo}}`, {
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/create/${categoryInfo}/${userInfo}`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                // 'Content-Type' should be omitted when using FormData
             },
-            body: JSON.stringify(credential) // Ensure body is stringified
+            body: credential // Send FormData directly
         });
 
         const data = await res.json();
@@ -48,6 +46,7 @@ const productPost = (credential, categoryInfo, userInfo) => async (dispatch) => 
         dispatch(productPostFail(error.message));
     }
 };
+
 
 const getAllProduct = () => async (dispatch) => {
     try {
