@@ -121,14 +121,10 @@ const deleteProduct = (productInfo) => async (dispatch) => {
 const updateProduct = (credential, productInfo) => async (dispatch) => {
     try {
         dispatch(productEditRequest());
-        const { id } = productInfo;
 
         const res = await fetch(`${process.env.REACT_APP_URL}/product/edit/${productInfo}`, {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(credential) // Ensure body is stringified
+            body: credential // Ensure body is stringified
         });
 
         const data = await res.json();
