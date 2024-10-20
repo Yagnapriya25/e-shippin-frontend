@@ -124,7 +124,7 @@ const updateProduct = (credential, productInfo) => async (dispatch) => {
         dispatch(productEditRequest());
         const { id } = productInfo;
 
-        const res = await fetch(`${process.env.REACT_APP_URL}/product/edit/${id}`, {
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/edit/${productInfo}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
