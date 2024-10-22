@@ -25,7 +25,7 @@ export default function UserProducts() {
         const fetchProducts = async () => {
             if (userId) {
                 setLoading(true);
-                await dispatch(getSingleUserProduct({ userId }));
+                await dispatch(getSingleUserProduct(userId));
                 setLoading(false);
             }
         };
