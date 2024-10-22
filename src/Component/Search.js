@@ -10,8 +10,8 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { products, error } = useSelector((state) => state.product); // Changed from productInfo to products
-  const { keyword } = useParams(); // Ensure you're using the correct param name
+  const { products, error } = useSelector((state) => state.product);
+  const { keyword } = useParams();
 
   useEffect(() => {
     if (!localStorage.getItem("token") && !localStorage.getItem("id")) {
@@ -44,6 +44,8 @@ export default function Search() {
     }).format(amount);
   };
 
+  const productArray = products?.products || []; // Adjust this line
+
   return (
     <div className="overflow-hidden overflow-x-hidden">
       {loading ? (
@@ -52,8 +54,10 @@ export default function Search() {
         <Base>
           <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
             <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
-              {products.product && products.product.length > 0 ? ( // Adjusted to check products directly
-                products.product.map((product) => (
+              {error ? (
+                <div>{error}</div> // Handle error case
+              ) : productArray.length > 0 ? (
+                productArray.map((product) => (
                   <div
                     key={product._id}
                     className="flex flex-col justify-center place-items-center shadow-gray-700 shadow xl:h-48 xl:w-52 lg:h-44 lg:w-48 md:h-40 md:w-44 h-28 w-28 p-4 cursor-pointer"
@@ -62,7 +66,7 @@ export default function Search() {
                     <div className="h-4/6 w-4/6">
                       <img src={product.images[0]?.image || p_img} alt="product" className="h-full w-full" />
                     </div>
-                    <div className="">
+                    <div>
                       <h6 className="capitalize xl:text-xl lg:text-lg md:text-md text-sm font-serif">
                         {product.name}
                       </h6>
@@ -73,7 +77,7 @@ export default function Search() {
                   </div>
                 ))
               ) : (
-                <div>No products available</div> // Updated message
+                <div>No products available</div>
               )}
             </div>
           </div>
