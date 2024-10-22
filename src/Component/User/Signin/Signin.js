@@ -29,12 +29,7 @@ export default function Signin() {
     })
   }
 
-  useEffect(()=>{
-    if(!localStorage.getItem("token") && !localStorage.getItem("id")){
-      navigate("/")
-    }
-  })
-
+  
   const handleLoginSubmit = (e)=>{
     e.preventDefault();
     if(loading) return;

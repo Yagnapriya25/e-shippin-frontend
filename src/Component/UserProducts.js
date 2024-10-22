@@ -56,8 +56,8 @@ export default function UserProducts() {
                 <div><Loading /></div>
             ) : (
                 <Base>
-                    <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
-                        <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
+                <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar pb-16 lg:pb-10 xl:pb-10">
+                <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
                             {productList.length > 0 ? (
                                 productList.map((product) => (
                                     <div
