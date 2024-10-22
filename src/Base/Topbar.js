@@ -36,7 +36,7 @@ export default function Topbar() {
   return (
     <div className="h-2/6 md:h-4/6 pt-0 lg:pt-0 xl:pt-0 shadow-gray-700 sticky top-2.5 bg-white shadow ">
       <div className="flex justify-around">
-        <div className="h-8 my-2 lg:h-12 lg:mx-4 lg:my-1 xl:h-14 xl:mx-6 xl:my-1 md:h-10 md:mx-4 md:my-3">
+        <div className="h-8 my-2 lg:h-12 lg:mx-4 lg:my-3 xl:h-14 xl:mx-6 xl:my-3 md:h-10 md:mx-4 md:my-3">
           <img src={logo} alt="logo" className="h-full w-16" />
         </div>
         <span className="my-3 flex gap-2 lg:my-5 lg:flex lg:gap-3 xl:my-8 xl:flex xl:gap-3 md:my-5 md:flex md:gap-3">
@@ -64,7 +64,7 @@ export default function Topbar() {
           </li>
         </ul>
 
-        <div className="hidden md:block lg:h-13 lg:my-1 xl:h-15 xl:my-2 md:h-12 md:my-1">
+        <div className="hidden md:block lg:h-13 lg:my-3 xl:h-15 xl:my-4 md:h-12 md:my-1">
           <img
             src={userData.avatar ? userData.avatar : img}
             alt="profile"
