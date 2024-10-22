@@ -25,12 +25,12 @@ export default function UserProducts() {
         const fetchProducts = async () => {
             if (userId) {
                 setLoading(true);
-                await dispatch(getSingleUserProduct({ id: userId, token }));
+                await dispatch(getSingleUserProduct({ userId }));
                 setLoading(false);
             }
         };
         fetchProducts();
-    }, [dispatch, userId, token]);
+    }, [dispatch, userId]);
 
     const handleProductClick = (p_id) => {
         navigate(`/userProductView/${p_id}/${token}`);

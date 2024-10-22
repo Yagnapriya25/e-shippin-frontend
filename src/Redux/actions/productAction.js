@@ -142,9 +142,8 @@ const updateProduct = (credential, productInfo) => async (dispatch) => {
 const getSingleUserProduct = (userInfo) => async (dispatch) => {
     try {
         dispatch(getSingleUserProductRequest());
-        const { id } = userInfo;
 
-        const res = await fetch(`${process.env.REACT_APP_URL}/product/getproduct/${id}`, {
+        const res = await fetch(`${process.env.REACT_APP_URL}/product/getproduct/${userInfo}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
