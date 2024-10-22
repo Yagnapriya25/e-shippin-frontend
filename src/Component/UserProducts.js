@@ -69,7 +69,7 @@ export default function UserProducts() {
                                             <img src={product.images[0]?.image || p_img} alt="product" className="h-full w-full" />
                                         </div>
                                         <div>
-                                            <h6 className="capitalize xl:text-xl lg:text-lg md:text-md text-sm font-serif">
+                                            <h6 className="capitalize xl:text-xl text-center lg:text-lg md:text-md text-sm font-serif">
                                                 {product.name}
                                             </h6>
                                             <h5 className="font-bold px-5 xl:text-xl lg:text-lg md:text-md text-sm">
