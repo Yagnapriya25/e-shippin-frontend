@@ -22,14 +22,19 @@ export default function Search() {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      await dispatch(searchProduct(keyword));
-      setLoading(false);
+      try {
+        await dispatch(searchProduct(keyword)); // Fetch products
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     if (keyword) {
       fetchProducts();
     }
-  }, [dispatch, keyword]);
+  }, [dispatch, keyword]); // Trigger fetch when keyword changes
 
   const handleProductClick = (id, token) => {
     navigate(`/product/${id}/${token}`);
@@ -44,7 +49,7 @@ export default function Search() {
     }).format(amount);
   };
 
-  const productArray = products?.products || []; // Adjust this line
+  const productArray = products || []; // Access products directly
 
   return (
     <div className="overflow-hidden overflow-x-hidden">
@@ -55,7 +60,7 @@ export default function Search() {
           <div className="h-screen w-screen bg-white overflow-x-hidden overflow-y-scroll hide-scrollbar">
             <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-3 mx-2 xl:gap-5 lg:gap-4 md:gap-3 gap-3 mb-32">
               {error ? (
-                <div>{error}</div> // Handle error case
+                <div>{error}</div> // Show error if it exists
               ) : productArray.length > 0 ? (
                 productArray.map((product) => (
                   <div
@@ -67,10 +72,10 @@ export default function Search() {
                       <img src={product.images[0]?.image || p_img} alt="product" className="h-full w-full" />
                     </div>
                     <div>
-                      <h6 className="capitalize xl:text-xl lg:text-lg text-center md:text-md text-sm font-serif">
+                      <h6 className="capitalize xl:text-xl lg:text-lg md:text-md text-sm font-serif">
                         {product.name}
                       </h6>
-                      <h5 className="font-bold px-5 xl:text-xl lg:text-lg text-center md:text-md text-sm">
+                      <h5 className="font-bold px-5 xl:text-xl lg:text-lg md:text-md text-sm">
                         {formatPrice(product.price)}
                       </h5>
                     </div>
