@@ -32,27 +32,32 @@ const login = (credentials) => async (dispatch) => {
   try {
     dispatch(loginRequest());
     const { email, password } = credentials;
-    console.log(process.env.REACT_APP_URL);
-    const res = await fetch(`${process.env.REACT_APP_URL}/user/login`,{
+
+    const res = await fetch(`${process.env.REACT_APP_URL}/user/login`, {
       method: "POST",
-      body: JSON.stringify(credentials),
+      body: JSON.stringify({ email, password }), // Send only necessary fields
       headers: {
         "Content-Type": "application/json",
       },
     });
+
     const data = await res.json();
-    console.log(data);
+    console.log("Response data:", data); // Log response data for debugging
+
     if (res.ok) {
       dispatch(loginSuccess(data));
       localStorage.setItem("id", data.user._id);
       localStorage.setItem("token", data.token);
     } else {
-      dispatch(loginFail(data.message));
+      // Handle errors returned from the server
+      dispatch(loginFail(data.message || 'Login failed')); // Fallback message
     }
   } catch (error) {
-    dispatch(loginFail(error.message));
+    console.error("Login error:", error); // Log error for debugging
+    dispatch(loginFail(error.message || 'Network error')); // Handle network errors
   }
 };
+
 
 const register = (credentials) => async (dispatch) => {
   try {
