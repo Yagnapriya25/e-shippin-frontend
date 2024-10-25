@@ -517,7 +517,7 @@ export default function Cart() {
 };
 
   return (
-    <div className="h-screen w-screen bg-slate-200">
+    <div className="w-screen bg-slate-200">
       {loadingCart ? (
         <Loading />
       ) : (
