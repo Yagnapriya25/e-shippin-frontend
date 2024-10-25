@@ -606,7 +606,7 @@ export default function Cart() {
               </div>
             </div>
 
-            <div className="block md:hidden flex justify-around my-3">
+            <div className="block md:hidden flex justify-around pt-10">
               <h4>{formatPrice(totalPrice)}</h4>
              <button className="bg-red-500 px-2 text-white" onClick={handleBuyNow}>PLACE ORDER</button>
             </div>
