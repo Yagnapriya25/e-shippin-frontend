@@ -41,7 +41,7 @@ const token = localStorage.getItem("token");
   }
 
   return (
-    <div className="h-screen w-screen bg-[#E7EAF4]">
+    <div className="w-screen bg-[#E7EAF4]">
     {
       loading ? <div><Loading/></div> :
       <Base>

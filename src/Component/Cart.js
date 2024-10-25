@@ -522,7 +522,7 @@ export default function Cart() {
         <Loading />
       ) : (
         <Base>
-          <div className="grid grid-cols-1 md:grid-cols-2 mx-2 my-0 md:mx-8 md:my-8 lg:mx-11 lg:my-11">
+          <div className="grid grid-cols-1 md:grid-cols-2 mx-2 my-2 md:mx-8 md:my-8 lg:mx-11 lg:my-11">
             <div>
               <h2 className="font-['Kings'] text-sm lg:text-3xl md:text-xl">CART</h2>
               <div className="flex justify-between font-['Kings']">
