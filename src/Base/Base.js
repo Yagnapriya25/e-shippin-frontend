@@ -15,7 +15,7 @@ export default function Base({ children }) {
         {children}
       </div>
       <div className="block sticky bottom-0 md:hidden ">
-        <div className="h-30 bg-indigo-300">
+        <div className="bg-indigo-300">
           <ul className="flex justify-around text-white ">
             <li>
               <i class="bx bx-home-alt hover:text-red-400 cursor-pointer" onClick={()=>navigate(`/home/${token}`)}></i>
