@@ -41,12 +41,12 @@ const token = localStorage.getItem("token");
   }
 
   return (
-    <div className="w-screen bg-[#E7EAF4]">
+    <div className="h-screen w-screen bg-[#E7EAF4]">
     {
       loading ? <div><Loading/></div> :
       <Base>
    
-        <div className="mx-5 w-5/6 md:mx-44 lg:mx-80 py-5 md:py-3 xl:py-0 lg:py-0 h-4/6 md:h-5/6 lg:h-5/6 xl:h-5/6 md:w-3/6 bg-white rounded-tl-[50px] rounded-br-[50px] lg:rounded-tl-[150px] md:rounded-tl-[100px] md:rounded-br-[100px] lg:rounded-br-[150px]">
+        <div className="mx-5 w-5/6 md:mx-44 mt-30 lg:mx-80 py-5 md:py-3 xl:py-0 lg:py-0 h-4/6 md:h-5/6 lg:h-5/6 xl:h-5/6 md:w-3/6 bg-white rounded-tl-[50px] rounded-br-[50px] lg:rounded-tl-[150px] md:rounded-tl-[100px] md:rounded-br-[100px] lg:rounded-br-[150px]">
          <div className="text-center flex flex-col justify-center items-center pt-10 md:pt-5 lg:pt-10">
           <div className="h-20 w-20  lg:h-36 lg:w-36 md:h-28 md:w-28 md:mx-32 lg:mx-44 xl:mx-64">
             <img
