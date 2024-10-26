@@ -84,7 +84,7 @@ export default function Signin() {
                   required
                 />
               </div>
-            </div>
+              </div>
             <div id="signin-nav">
               <Link to={"/forget"} style={{ color: "#D76C1E", textDecoration: "none" }}>
                 Forget Password?

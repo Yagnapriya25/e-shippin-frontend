@@ -220,7 +220,7 @@ export default function AddProduct() {
       {loading ? <Loading /> : (
         <Base>
           <div className="flex justify-center h-full">
-            <div className="h-40 md:h-[90%] pt-28 mt-10 md:pt-6 lg:pt-6 xl:pt-6 w-full md:w-5/6 lg:w-4/6  bg-white flex flex-col gap-6 justify-center items-center overflow-hidden ">
+            <div className="pt-28 mt-10 md:pt-6 lg:pt-6 xl:pt-6 w-full md:w-5/6 lg:w-4/6  bg-white flex flex-col gap-6 justify-center items-center overflow-hidden ">
               <div className="w-full md:h-[90%] lg:h-[90%] overflow-y-auto hide-scrollbar">
                 <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-6" encType="multipart/form-data">
                   <input
