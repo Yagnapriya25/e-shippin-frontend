@@ -69,7 +69,7 @@ export default function Product() {
   };
 
   return (
-    <div className="h-screen w-screen">
+    <div className="h-screen w-screen overflow-y-auto">
       <Base>
         <div className="grid sm:grid-cols-12 overflow-y-scroll hide-scrollbar pb-80 md:pb-10 lg:mb-6 xl:pb-6">
           <div className="hidden md:block xl:block lg:block col-span-2 flex flex-col">
