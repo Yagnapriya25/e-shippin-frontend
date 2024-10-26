@@ -34,7 +34,7 @@ export default function Topbar() {
   }
 
   return (
-    <div className="h-0 xl:h-20 pt-0 lg:pt-0 xl:pt-0 shadow-gray-700 sticky top-2.5 bg-white shadow ">
+    <div className="xl:h-20 pt-0 lg:pt-0 xl:pt-0 shadow-gray-700 sticky top-2.5 bg-white shadow ">
       <div className="flex justify-around">
         <div className="h-8 my-2 lg:h-12 lg:mx-4 lg:my-3 xl:h-14 xl:mx-6 xl:my-3 md:h-10 md:mx-4 md:my-3">
           <img src={logo} alt="logo" className="h-full w-16" />
