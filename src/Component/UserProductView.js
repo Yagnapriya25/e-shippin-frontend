@@ -221,7 +221,7 @@ export default function UserProductView() {
       <Base>
         <div className="flex flex-col h-screen">
           {/* Content area that scrolls */}
-          <div className="flex-1 overflow-y-auto pb-4">
+          <div className="flex-1 overflow-y-auto pb-20">
             <div className="grid sm:grid-cols-12 h-full overflow-y-scroll hide-scrollbar">
               <div className="hidden md:block col-span-2 flex flex-col">
                 {singleProduct.product.images && singleProduct.product.images.length > 0 ? (
