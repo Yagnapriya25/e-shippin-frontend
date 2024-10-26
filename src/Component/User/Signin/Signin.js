@@ -8,19 +8,15 @@ import { login } from "../../../Redux/actions/userAction";
 
 export default function Signin() {
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
-
-  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [credentials, setCredentials] = useState({
     email: "",
     password: ""
   });
 
-  const { error, userInfo } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (error) {
@@ -35,27 +31,21 @@ export default function Signin() {
     });
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    if (loading) return;
-    setLoading(true);
     setErrorMessage(''); // Reset error message on submit
 
-    dispatch(login({ email: credentials.email, password: credentials.password }))
-      .then(() => {
-        // Navigate on successful login
-        navigate(`/home/${token}`); // or wherever you want to navigate
-      })
-      .catch((err) => {
-        console.error("Login failed:", err);
-        setErrorMessage("Login failed. Please check your credentials."); // Update error message
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      const result = await dispatch(login(credentials));
+      if (result && result.user && result.token) {
+        // Navigate to home if login is successful
+        navigate(`/home/${localStorage.getItem("token")}`);
+      }
+    } catch (err) {
+      console.error("Login failed:", err);
+      setErrorMessage("Login failed. Please check your credentials."); // Update error message
+    }
   };
-
-  const toggle = () => setShowPassword(!showPassword);
 
   return (
     <div className="signin-container h-screen">
@@ -86,7 +76,7 @@ export default function Signin() {
               </div>
               <div id="signin-form-field">
                 <input
-                  type={!showPassword ? "password" : "text"}
+                  type="password"
                   placeholder="Password"
                   name="password"
                   value={credentials.password}
@@ -94,9 +84,6 @@ export default function Signin() {
                   required
                 />
               </div>
-            </div>
-            <div id="signin-show">
-              <input type="checkbox" onClick={toggle} /> Show
             </div>
             <div id="signin-nav">
               <Link to={"/forget"} style={{ color: "#D76C1E", textDecoration: "none" }}>
@@ -110,7 +97,7 @@ export default function Signin() {
               </span>
             </div>
             <div id="signin-btn">
-              <button type="submit" disabled={loading}>Login</button>
+              <button type="submit">Login</button>
             </div>
           </form>
         </div>

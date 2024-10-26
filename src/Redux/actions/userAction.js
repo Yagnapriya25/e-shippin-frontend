@@ -31,11 +31,10 @@ import {
 const login = (credentials) => async (dispatch) => {
   try {
     dispatch(loginRequest());
-    const { email, password } = credentials;
 
     const res = await fetch(`${process.env.REACT_APP_URL}/user/login`, {
       method: "POST",
-      body: JSON.stringify({ email, password }), // Send only necessary fields
+      body: JSON.stringify(credentials),
       headers: {
         "Content-Type": "application/json",
       },
@@ -46,17 +45,23 @@ const login = (credentials) => async (dispatch) => {
 
     if (res.ok) {
       dispatch(loginSuccess(data));
-      localStorage.setItem("id", data.user._id);
-      localStorage.setItem("token", data.token);
+      // Set localStorage before returning
+      if (data.user && data.user._id && data.token) {
+        localStorage.setItem("id", data.user._id);
+        localStorage.setItem("token", data.token);
+      }
+      return data; // Return data for use in the component
     } else {
-      // Handle errors returned from the server
-      dispatch(loginFail(data.message || 'Login failed')); // Fallback message
+      dispatch(loginFail(data.message || 'Login failed'));
     }
   } catch (error) {
-    console.error("Login error:", error); // Log error for debugging
-    dispatch(loginFail(error.message || 'Network error')); // Handle network errors
+    console.error("Login error:", error);
+    dispatch(loginFail(error.message || 'Network error'));
   }
 };
+
+
+
 
 
 const register = (credentials) => async (dispatch) => {

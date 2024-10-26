@@ -10,7 +10,7 @@ export default function AddProduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cat_id } = useParams();
-  const userInfo = localStorage.getItem("id"); // Ensure this is the user ID
+  const userInfo = localStorage.getItem("id");
 
   const [credential, setCredential] = useState({
     name: '',
@@ -72,8 +72,8 @@ export default function AddProduct() {
     <div className="h-screen w-screen bg-[#E7EAF4]">
       {loading ? <Loading /> : (
         <Base>
-          <div className="h-[90%] md:h-[95%] flex justify-center">
-            <div className="pt-20 w-6/6 md:w-5/6 lg:w-4/6 xl:w-4/6 bg-white flex flex-col gap-6 justify-center items-center overflow-x-hidden overflow-y-auto hide-scrollbar">
+          <div className="flex justify-center h-[90%] md:h-[95%]">
+            <div className="pt-20 w-6/6 md:w-5/6 lg:w-4/6 xl:w-4/6 bg-white flex flex-col gap-6 justify-center items-center overflow-x-hidden overflow-y-auto hide-scrollbar py-10">
               <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-6" encType="multipart/form-data">
                 <input
                   type="file"
