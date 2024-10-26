@@ -8,7 +8,7 @@ export default function Base({ children }) {
 
   return (
     <div className="h-screen w-screen overflow-hidden hide-scrollbar">
-      <div className="h-18 md:h-28 lg:h-20 xl:h-20 sticky top-2.5 mx-5 my-0">
+      <div className="h-18 md:h-20 xl:h-20 lg:h-20 xl:h-20 sticky top-2.5 mx-5 my-0">
         <Topbar />
       </div>
       <div className="mx-1 pt-6 xl:my-5 lg:mx-4 xl:mx-5 md:mx-3 overflow-hidden overflow-x-hidden hide-scrollbar pb-20 xl:mb-10 lg:mb-10">

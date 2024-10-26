@@ -178,7 +178,7 @@ export default function Buy() {
         <div className="h-screen w-screen bg-[#F2F1F1] overflow-hidden">
             {loading || paymentLoading ? <Loading /> :  
                 <Base>
-                    <div className="h-full pt-20 pb-5 flex flex-col justify-center items-center overflow-y-scroll hide-scrollbar">
+                    <div className="h-full pt-40 md:pt-20 lg:pt-20 xl:pt-20 pb-5 flex flex-col justify-center items-center overflow-y-scroll hide-scrollbar">
                         <div className="bg-white shadow w-5/6 md:w-4/6 p-5 flex justify-around">
                             <div className="text-md">
                                 {addressInfo?.address ? (
