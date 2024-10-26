@@ -625,7 +625,7 @@ export default function Cart() {
               </div>
 
               <hr className="border-black" />
-              <div className="flex justify-between pt-8 lg:pt-10">
+              <div className="flex justify-between pt-20 lg:pt-10">
                 <h2>Total</h2>
                 <h1>{formatPrice(totalPrice)}</h1>
               </div>
