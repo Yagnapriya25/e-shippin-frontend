@@ -484,3 +484,11 @@
         }
     }
 }
+@media (max-width: 768px) { /* Mobile screens */
+    .topbar {
+      height: 70px; /* Increase height for mobile */
+    }
+  }
+  
+  /* CSS for other components */
+  

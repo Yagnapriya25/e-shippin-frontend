@@ -21,3 +21,14 @@ body {
       monospace;
   }
 
+  @media (max-width: 768px) { /* Mobile screens */
+    .topbar {
+      height: 70px; /* Increase height for mobile */
+    }
+  }
+  
+  /* CSS for other components */
+  .some-container-class {
+    padding-bottom: 10px; /* Reduce bottom padding for all screens */
+    margin-bottom: 10px; /* Reduce bottom margin for all screens */
+  }

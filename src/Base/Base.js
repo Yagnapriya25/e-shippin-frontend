@@ -11,7 +11,7 @@ export default function Base({ children }) {
       <div className="sticky top-2.5 mx-5 my-0 z-10">
         <Topbar />
       </div>
-      <div className="flex-grow mx-1 lg:mx-4 xl:mx-5 md:mx-3 mt-0 mb-10 md:mb-0 overflow-y-auto hide-scrollbar">
+      <div className="flex-grow mx-1 lg:mx-4 xl:mx-5 md:mx-3 mt-5 mb-10 md:mb-0 overflow-y-auto hide-scrollbar">
         {children}
       </div>
       <div className="block sticky bottom-0 md:hidden">
