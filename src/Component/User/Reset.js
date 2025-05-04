@@ -16,7 +16,7 @@ export default function Reset() {
   const dispatch = useDispatch();
 
   const {error,userInfo} = useSelector((state)=>state.user)
-
+  const [success,setSuccess]=useState("");
   const [loading,setLoading]=useState(false);
 
   const [credentials,setCredentials]=useState({
@@ -36,16 +36,14 @@ export default function Reset() {
    e.preventDefault();
    if(loading) return ;
    if(credentials.password !== credentials.confirmPassword){
-    console.log("its working 1");
+  
    }
    if(credentials.password===credentials.confirmPassword){
     setLoading(true);
+     setSuccess("");
     dispatch(reset({password: credentials.password}, {id: id, token: token})).finally(()=>{
-
        setLoading(false);
-       setTimeout(()=>{
-         navigate(`/`)
-       },1000)
+       setSuccess("Password Reset Successfully! You can login now")      
     })
    }
    
@@ -111,6 +109,7 @@ export default function Reset() {
             </button>
             '
           </div>
+              <p>{success}</p>
           </form>
         </div>
         
